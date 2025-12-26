@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
 import './AISummaryModal.css';
 
 interface AISummaryModalProps {
@@ -61,35 +62,31 @@ const overlayVariants = {
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1,
-    transition: { duration: 0.3 }
+    transition: { duration: 0.2 }
   },
   exit: { 
     opacity: 0,
-    transition: { duration: 0.2 }
+    transition: { duration: 0.15 }
   }
 };
 
 const modalVariants = {
   hidden: { 
     opacity: 0, 
-    scale: 0.9,
-    y: 20
+    scale: 0.95,
   },
   visible: { 
     opacity: 1, 
     scale: 1,
-    y: 0,
     transition: { 
-      type: 'spring',
-      stiffness: 300,
-      damping: 25
+      duration: 0.2,
+      ease: 'easeOut'
     }
   },
   exit: { 
     opacity: 0, 
     scale: 0.95,
-    y: 10,
-    transition: { duration: 0.2 }
+    transition: { duration: 0.15 }
   }
 };
 
@@ -118,13 +115,12 @@ export function AISummaryModal({
   const loadSummary = () => {
     setIsLoading(true);
     
-    // Simulate a brief loading state for better UX
     setTimeout(() => {
       const hardcodedSummary = hardcodedSummaries[chartTitle] || 
         `AI is transforming how this aspect of customer service works. The data shows clear patterns that can help you make better decisions for your business.`;
       setSummary(hardcodedSummary);
       setIsLoading(false);
-    }, 600);
+    }, 500);
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -145,24 +141,9 @@ export function AISummaryModal({
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  // Prevent body scroll when modal is open and scroll to top
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      // Scroll page to top so modal is visible
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
-
   // Format summary with markdown-like styling
   const formatSummary = (text: string) => {
     return text.split('\n').map((line, index) => {
-      // Bold headers
       if (line.startsWith('**') && line.endsWith('**')) {
         return (
           <h3 key={index} className="ai-modal__section-title">
@@ -170,7 +151,6 @@ export function AISummaryModal({
           </h3>
         );
       }
-      // Bullet points
       if (line.startsWith('•') || line.startsWith('→')) {
         return (
           <p key={index} className="ai-modal__bullet">
@@ -178,7 +158,6 @@ export function AISummaryModal({
           </p>
         );
       }
-      // Regular paragraphs
       if (line.trim()) {
         return (
           <p key={index} className="ai-modal__paragraph">
@@ -190,7 +169,7 @@ export function AISummaryModal({
     });
   };
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -210,6 +189,7 @@ export function AISummaryModal({
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
             <div className="ai-modal__header">
@@ -264,4 +244,7 @@ export function AISummaryModal({
       )}
     </AnimatePresence>
   );
+
+  // Use portal to render modal at document body level
+  return createPortal(modalContent, document.body);
 }
