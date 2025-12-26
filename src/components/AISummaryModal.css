@@ -1,27 +1,34 @@
 .ai-modal-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
   padding: 1rem;
 }
 
 .ai-modal {
+  position: relative;
   background: var(--color-surface, #ffffff);
   border-radius: 16px;
   width: 100%;
-  max-width: 600px;
+  max-width: 560px;
   max-height: 80vh;
   display: flex;
   flex-direction: column;
   box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(0, 0, 0, 0.05);
+    0 25px 50px -12px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
   overflow: hidden;
+  margin: auto;
 }
 
 /* Header */
@@ -31,6 +38,7 @@
   align-items: flex-start;
   padding: 1.5rem 1.5rem 1rem;
   border-bottom: 1px solid var(--color-border, #e5e5e5);
+  flex-shrink: 0;
 }
 
 .ai-modal__title-group {
@@ -77,6 +85,7 @@
   border-radius: 8px;
   transition: all 0.2s ease;
   margin: -0.25rem -0.25rem 0 0;
+  flex-shrink: 0;
 }
 
 .ai-modal__close:hover {
@@ -89,7 +98,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 1.5rem;
-  min-height: 200px;
+  min-height: 150px;
 }
 
 /* Loading State */
@@ -116,42 +125,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-/* Error State */
-.ai-modal__error {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 2rem 1rem;
-  text-align: center;
-  color: #dc2626;
-}
-
-.ai-modal__error-icon {
-  font-size: 2rem;
-}
-
-.ai-modal__error p {
-  margin: 0;
-  color: var(--color-text-secondary, #666);
-}
-
-.ai-modal__retry-btn {
-  padding: 0.5rem 1rem;
-  background: var(--color-surface-hover, #f5f5f5);
-  border: 1px solid var(--color-border, #e5e5e5);
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.ai-modal__retry-btn:hover {
-  background: var(--color-border, #e5e5e5);
 }
 
 /* Summary Content */
@@ -198,36 +171,12 @@
   gap: 0.75rem;
   padding: 1rem 1.5rem 1.5rem;
   border-top: 1px solid var(--color-border, #e5e5e5);
-}
-
-.ai-modal__download-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  background: linear-gradient(135deg, #E8826E 0%, #FF9780 100%);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.ai-modal__download-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(232, 130, 110, 0.4);
-}
-
-.ai-modal__download-btn:active {
-  transform: translateY(0);
+  flex-shrink: 0;
 }
 
 .ai-modal__close-btn {
-  padding: 0.75rem 1.25rem;
+  flex: 1;
+  padding: 0.875rem 1.5rem;
   background: var(--color-surface, #ffffff);
   color: var(--color-text-secondary, #666);
   border: 1px solid var(--color-border, #e5e5e5);
@@ -243,8 +192,26 @@
   color: var(--color-text-primary, #1a1a1a);
 }
 
+.ai-modal__close-btn--primary {
+  background: linear-gradient(135deg, #E8826E 0%, #FF9780 100%);
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.ai-modal__close-btn--primary:hover {
+  background: linear-gradient(135deg, #d9735f 0%, #f08871 100%);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(232, 130, 110, 0.4);
+}
+
 /* Responsive */
 @media (max-width: 640px) {
+  .ai-modal-overlay {
+    padding: 0.5rem;
+  }
+
   .ai-modal {
     max-height: 90vh;
   }
@@ -258,88 +225,69 @@
   }
 
   .ai-modal__footer {
-    flex-direction: column;
     padding: 0.75rem 1.25rem 1.25rem;
   }
-
-  .ai-modal__close-btn {
-    order: 1;
-  }
-
-  .ai-modal__download-btn {
-    order: 0;
-  }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .ai-modal {
-    background: #1a1a1a;
-  }
-
-  .ai-modal__header {
-    border-bottom-color: #333;
-  }
-
-  .ai-modal__title {
-    color: #f5f5f5;
-  }
-
-  .ai-modal__subtitle {
-    color: #a3a3a3;
-  }
-
-  .ai-modal__close {
-    color: #a3a3a3;
-  }
-
-  .ai-modal__close:hover {
-    background: #262626;
-    color: #f5f5f5;
-  }
-
-  .ai-modal__summary {
-    color: #e5e5e5;
-  }
-
-  .ai-modal__footer {
-    border-top-color: #333;
-  }
-
-  .ai-modal__close-btn {
-    background: #262626;
-    border-color: #333;
-    color: #a3a3a3;
-  }
-
-  .ai-modal__close-btn:hover {
-    background: #333;
-    color: #f5f5f5;
-  }
-
-  .ai-modal__retry-btn {
-    background: #262626;
-    border-color: #333;
-    color: #a3a3a3;
-  }
-
-  .ai-modal__retry-btn:hover {
-    background: #333;
-  }
-
-  .ai-modal__spinner {
-    border-color: #333;
-    border-top-color: #E8826E;
-  }
-
-  .ai-modal__section-title {
-    color: #f5f5f5;
-    border-bottom-color: rgba(232, 130, 110, 0.3);
-  }
-
-  .ai-modal__bullet {
-    color: #a3a3a3;
-  }
+/* Dark mode - using data attribute instead of prefers-color-scheme */
+[data-theme="dark"] .ai-modal {
+  background: #1a1a1a;
 }
 
+[data-theme="dark"] .ai-modal__header {
+  border-bottom-color: #333;
+}
 
+[data-theme="dark"] .ai-modal__title {
+  color: #f5f5f5;
+}
+
+[data-theme="dark"] .ai-modal__subtitle {
+  color: #a3a3a3;
+}
+
+[data-theme="dark"] .ai-modal__close {
+  color: #a3a3a3;
+}
+
+[data-theme="dark"] .ai-modal__close:hover {
+  background: #262626;
+  color: #f5f5f5;
+}
+
+[data-theme="dark"] .ai-modal__summary {
+  color: #e5e5e5;
+}
+
+[data-theme="dark"] .ai-modal__footer {
+  border-top-color: #333;
+}
+
+[data-theme="dark"] .ai-modal__close-btn {
+  background: #262626;
+  border-color: #333;
+  color: #a3a3a3;
+}
+
+[data-theme="dark"] .ai-modal__close-btn:hover {
+  background: #333;
+  color: #f5f5f5;
+}
+
+[data-theme="dark"] .ai-modal__spinner {
+  border-color: #333;
+  border-top-color: #E8826E;
+}
+
+[data-theme="dark"] .ai-modal__section-title {
+  color: #f5f5f5;
+  border-bottom-color: rgba(232, 130, 110, 0.3);
+}
+
+[data-theme="dark"] .ai-modal__bullet {
+  color: #a3a3a3;
+}
+
+[data-theme="dark"] .ai-modal__loading {
+  color: #a3a3a3;
+}
