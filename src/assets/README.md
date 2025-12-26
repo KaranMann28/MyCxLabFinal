@@ -42,3 +42,4 @@ import logo from '../assets/logos/gorgias-logo.svg';
 3. Prefer SVG for logos and icons
 4. Optimize images before adding (use tools like TinyPNG)
 
+

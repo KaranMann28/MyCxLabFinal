@@ -7,6 +7,7 @@ export { Footer } from './Footer';
 export { ScrollToTop } from './ScrollToTop';
 export { GorgiasLogo, GorgiasSymbol, GorgiasWordmark } from './GorgiasLogo';
 export { AISummaryModal } from './AISummaryModal';
+export { ScrollRevealLogo } from './ScrollRevealLogo';
 
 // Chart exports
 export { 

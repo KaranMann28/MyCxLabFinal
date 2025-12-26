@@ -25,7 +25,7 @@ export const translations: Translations = {
   
   // Key Findings
   'keyFindings.title': { en: 'Industry Snapshot', fr: 'Aperçu du Secteur' },
-  'keyFindings.subtitle': { en: 'Current state of AI adoption in ecommerce customer service', fr: 'État actuel de l\'adoption de l\'IA dans le service client e-commerce' },
+  'keyFindings.subtitle': { en: 'Current state of AI adoption in ecommerce customer service:', fr: 'État actuel de l\'adoption de l\'IA dans le service client e-commerce :' },
   'keyFindings.industryAiRate': { en: 'Industry AI Rate', fr: 'Taux IA du Secteur' },
   'keyFindings.shareOfSupport': { en: 'Share of support using AI assistance', fr: 'Part du support utilisant l\'IA' },
   'keyFindings.growth24Months': { en: 'Growth (24 months)', fr: 'Croissance (24 mois)' },
