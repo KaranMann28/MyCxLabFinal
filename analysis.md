@@ -203,6 +203,99 @@ Gorgias CX Lab is a public-facing, industry-level research experience that trans
 
 ---
 
+## 🔮 Future Research Ideas — Beyond This Dataset
+
+> **Purpose**: These research concepts leverage data Gorgias uniquely owns but isn't present in this case study. Each idea is designed to deliver **shock value** (counterintuitive findings) and **utility** (actionable insights).
+
+---
+
+### Research Idea #1: "The Revenue Hidden in Your Support Queue"
+
+**The Hypothesis**: Support conversations aren't cost centers — they're untracked revenue events.
+
+**Why Gorgias Can Do This**:
+- Gorgias connects support tickets to order history via Shopify/ecommerce integrations
+- Can track: tickets → subsequent purchases → LTV changes
+- No other platform has this closed-loop attribution at scale
+
+**The Shock Factor**:
+> "Customers who contact support spend 2.4x more over 12 months than customers who never reach out."
+
+**Potential Findings**:
+- **Pre-purchase inquiries** (sizing, shipping questions) convert at 60%+ into orders
+- **Post-purchase complaints** handled well lead to 40% repeat purchase rate
+- **Every support ticket answered within 1 hour** = $X increase in customer lifetime value
+- Most brands treat support as a cost to minimize — data shows it's a sales channel to optimize
+
+**Why This Matters**:
+- Reframes the entire support ROI conversation
+- Gives CFOs a reason to *invest* in support, not cut it
+- Shocking because it inverts the "support = cost" assumption
+
+---
+
+### Research Idea #2: "The 4-Hour Cliff — When Silence Becomes Churn"
+
+**The Hypothesis**: There's a specific response time threshold where customer recovery becomes statistically improbable.
+
+**Why Gorgias Can Do This**:
+- First-response time data on millions of tickets
+- Customer behavior tracking post-interaction
+- Churn/retention correlation with Shopify repeat purchase data
+
+**The Shock Factor**:
+> "After 4 hours of silence on a complaint, the probability of that customer ever purchasing again drops by 67%."
+
+**Potential Findings**:
+- **0-1 hour response**: 85% customer recovery rate
+- **1-4 hours**: 62% recovery rate  
+- **4-12 hours**: 28% recovery rate (THE CLIFF)
+- **12+ hours**: 11% recovery rate
+- The cliff exists regardless of *how good* the eventual response is — timing is the variable
+
+**Why This Matters**:
+- Gives support teams a concrete SLA with revenue attached
+- "Every hour costs you $X" is a boardroom-ready metric
+- Shocking because most brands think *quality* of response matters most — data shows *speed* may matter more
+
+---
+
+### Research Idea #3: "The Silent Majority — Predicting Who Leaves Without Complaining"
+
+**The Hypothesis**: 90% of unhappy customers never complain — they just disappear. But their behavior before churning follows predictable patterns.
+
+**Why Gorgias Can Do This**:
+- Ticket history patterns (frequency, tone, resolution satisfaction)
+- Order history correlation (purchase gaps, cart abandonment)
+- Can identify "at-risk" signals before explicit complaints
+
+**The Shock Factor**:
+> "For every customer who complains, 26 others leave silently. But we can predict 73% of silent churners 30 days before they disappear."
+
+**Potential Findings**:
+- **Pre-churn signals**: 2+ tickets in 30 days without purchase, negative sentiment in "thank you" responses, shorter message lengths over time
+- **The "last good order" pattern**: Customers who churn typically had an issue 2-3 orders before their final purchase
+- **Recovery window**: Once identified, proactive outreach recovers 34% of at-risk customers
+
+**Why This Matters**:
+- Turns reactive support into proactive retention
+- Shocking because it reveals the *invisible* churn problem nobody talks about
+- Utility: actual prediction model that identifies who to save
+
+---
+
+### Why These Ideas Win
+
+| Research Idea | Shock Element | Utility Element |
+|---------------|---------------|-----------------|
+| Revenue in Support Queue | Support = revenue, not cost | Reframe budgeting conversations |
+| The 4-Hour Cliff | Speed > Quality (counterintuitive) | Concrete SLA with $ attached |
+| Silent Majority | 26:1 silent churn ratio | Predictive churn prevention |
+
+**Common Thread**: Each idea takes something brands assume is a **cost to minimize** and proves it's an **opportunity to maximize**. That's the reframe that creates impact.
+
+---
+
 ## ✅ Quality Checklist for AI-Generated Content
 
 - [ ] Uses industry framing ("across ecommerce brands"), not company framing ("our customers")
