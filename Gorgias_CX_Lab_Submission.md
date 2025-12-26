@@ -323,40 +323,353 @@ ORDER BY automation_rate_pct DESC;
 
 ## ⚙️ System Behind It (Plain English)
 
-### Data Flow
+### Data Flow Overview
 
 ```
-┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-│   BigQuery   │ →  │   n8n        │ →  │   JSON       │ →  │   Vercel     │
-│   (source)   │    │  (orchestrate)│   │  (export)    │    │   (deploy)   │
-└──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│   BigQuery   │ →  │   n8n        │ →  │   AirOps     │ →  │   JSON/API   │ →  │   Vercel     │
+│   (source)   │    │ (orchestrate)│    │ (AI content) │    │   (export)   │    │   (deploy)   │
+└──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘    └──────────────┘
 ```
 
-### Where n8n Fits
+---
 
-| Step | What n8n Does |
-|------|---------------|
-| **Scheduled pull** | Weekly/monthly cron triggers BigQuery queries |
-| **Transformation** | Aggregates, anonymizes, formats for frontend |
-| **QA checks** | Validates row counts, null checks, threshold alerts |
-| **Export** | Writes JSON to storage (GCS or direct to repo) |
-| **Publish trigger** | Webhooks Vercel to rebuild with fresh data |
-| **Alerting** | Slack/email if any step fails |
+## 🔧 Deep Dive: n8n (Workflow Automation)
 
-### What Breaks First at Scale
+### What is n8n?
+n8n is an open-source workflow automation tool — think Zapier, but self-hostable, more powerful, and free for most use cases. It connects systems together and runs automated workflows on schedules or triggers.
 
-| Risk | Mitigation |
-|------|------------|
-| Query timeout | Pre-aggregate in BigQuery; cache results |
-| Data drift | Schema validation in n8n; alert on unexpected columns |
-| Stale data | Timestamp checks; "last updated" badge on frontend |
-| Cost blowup | BigQuery slot limits; query cost monitoring |
-| n8n failures | Retry logic; dead-letter queue; Slack alerts |
+### Why n8n for CX Lab?
 
-### [EMBED: Workflow Diagram]
-*Placeholder for n8n workflow screenshot or Miro diagram*
+| Capability | How It Helps CX Lab |
+|------------|---------------------|
+| **Visual workflow builder** | Non-engineers can see and modify the data pipeline |
+| **200+ integrations** | Native connectors for BigQuery, Slack, GitHub, Vercel, Google Sheets |
+| **Cron scheduling** | Set "every Monday at 6am" — data refreshes automatically |
+| **Error handling** | Built-in retry logic, dead-letter queues, failure alerts |
+| **Self-hosted option** | Keep sensitive data in your own infrastructure |
+| **Free tier** | Generous limits for small-to-medium workloads |
 
-> ⚠️ **Scaling note**: For v1, manual QA is fine. At scale, add automated anomaly detection (e.g., "AI adoption dropped 50% MoM" → alert before publishing).
+### n8n Workflow for CX Lab (Step-by-Step)
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  TRIGGER: Cron Schedule (Every Monday 6:00 AM UTC)                          │
+│                              ↓                                              │
+│  STEP 1: BigQuery Node                                                      │
+│  - Run SQL: Meaningful Adoption query                                       │
+│  - Run SQL: Handling Mix query                                              │
+│  - Run SQL: Intent Automation query                                         │
+│  - Output: Raw data arrays                                                  │
+│                              ↓                                              │
+│  STEP 2: Function Node (JavaScript)                                         │
+│  - Transform data to frontend-ready JSON                                    │
+│  - Calculate derived metrics (% changes, totals)                            │
+│  - Add metadata (last_updated timestamp)                                    │
+│                              ↓                                              │
+│  STEP 3: IF Node (QA Checks)                                                │
+│  - Check: Row count > 0?                                                    │
+│  - Check: No null values in key fields?                                     │
+│  - Check: Values within expected ranges?                                    │
+│  - If FAIL → Go to Error Branch                                             │
+│                              ↓                                              │
+│  STEP 4a (Success): GitHub Node                                             │
+│  - Commit JSON to repo: /data/charts.json                                   │
+│  - Trigger Vercel rebuild via webhook                                       │
+│                              ↓                                              │
+│  STEP 4b (Error): Slack Node                                                │
+│  - Send alert: "CX Lab data refresh failed"                                 │
+│  - Include error details + link to n8n execution                            │
+│                              ↓                                              │
+│  STEP 5: Slack Node (Success notification)                                  │
+│  - "✅ CX Lab data refreshed. New adoption rate: X%"                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Specific n8n Nodes Used
+
+| Node | Purpose | Configuration |
+|------|---------|---------------|
+| **Schedule Trigger** | Kicks off the workflow | Cron: `0 6 * * 1` (Mondays 6am) |
+| **Google BigQuery** | Runs SQL queries | Service account auth, project ID, query text |
+| **Function** | JavaScript transformations | Custom code to reshape data |
+| **IF** | Conditional branching | Check row counts, null values |
+| **GitHub** | Commit files to repo | OAuth, repo name, file path, commit message |
+| **HTTP Request** | Trigger Vercel deploy | POST to Vercel deploy hook URL |
+| **Slack** | Notifications | Webhook URL, message formatting |
+
+### n8n Workflow JSON (Importable)
+
+```json
+{
+  "name": "CX Lab Data Refresh",
+  "nodes": [
+    {
+      "name": "Weekly Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "parameters": {
+        "rule": { "interval": [{ "field": "cronExpression", "expression": "0 6 * * 1" }] }
+      }
+    },
+    {
+      "name": "Query BigQuery",
+      "type": "n8n-nodes-base.googleBigQuery",
+      "parameters": {
+        "operation": "executeQuery",
+        "projectId": "growth-ops-recruiting",
+        "sqlQuery": "-- Your SQL here"
+      }
+    },
+    {
+      "name": "Transform Data",
+      "type": "n8n-nodes-base.function",
+      "parameters": {
+        "functionCode": "// Transform to frontend JSON format\nreturn items.map(item => ({ json: { ...item.json, updated_at: new Date().toISOString() } }));"
+      }
+    },
+    {
+      "name": "Commit to GitHub",
+      "type": "n8n-nodes-base.github",
+      "parameters": {
+        "operation": "file:edit",
+        "owner": "your-org",
+        "repository": "cx-lab",
+        "filePath": "data/charts.json"
+      }
+    }
+  ]
+}
+```
+
+> 💡 **Pro tip**: Start with manual triggers during development. Switch to cron once the workflow is stable.
+
+---
+
+## 🤖 Deep Dive: AirOps (AI Content Generation)
+
+### What is AirOps?
+AirOps is an AI workflow platform designed for marketing and content teams. It lets you build repeatable AI "recipes" that take structured inputs and produce consistent, brand-aligned outputs — without prompt engineering every time.
+
+### Why AirOps for CX Lab?
+
+| Capability | How It Helps CX Lab |
+|------------|---------------------|
+| **Structured AI workflows** | Same input format → consistent output quality |
+| **Brand voice training** | Train on Gorgias tone/style for on-brand content |
+| **Template library** | Reusable recipes for different content types |
+| **API access** | Trigger AI generation from n8n or directly |
+| **Output formatting** | Markdown, HTML, JSON — whatever the frontend needs |
+| **Version control** | Track which AI recipe generated which content |
+
+### AirOps Use Cases for CX Lab
+
+#### 1. Chart Summary Generation
+**Input**: Chart title, data points, segment  
+**Output**: 3-paragraph plain-English summary
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  AirOps Recipe: "Chart Summary Generator"                   │
+│                                                             │
+│  INPUT:                                                     │
+│  - chart_title: "Meaningful Adoption Over Time"             │
+│  - key_stat: "34% of commercial merchants"                  │
+│  - trend: "up 12% MoM"                                      │
+│  - segment: "Commercial ($3-20M)"                           │
+│                                                             │
+│  PROMPT TEMPLATE:                                           │
+│  "You are a CX industry analyst. Write a 3-paragraph        │
+│   summary of this chart for e-commerce operators.           │
+│   Tone: authoritative but accessible. No jargon.            │
+│   Include: what the data shows, why it matters,             │
+│   one actionable takeaway."                                 │
+│                                                             │
+│  OUTPUT:                                                    │
+│  "Here's what's happening with AI adoption in support..."   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+#### 2. LinkedIn Post Generator
+**Input**: Key finding, stat, chart link  
+**Output**: Ready-to-post LinkedIn content
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  AirOps Recipe: "LinkedIn Stat Post"                        │
+│                                                             │
+│  INPUT:                                                     │
+│  - headline: "AI adoption hits 11% across e-commerce"       │
+│  - stat: "1105x growth in 18 months"                        │
+│  - link: "https://cx-lab.gorgias.com"                       │
+│                                                             │
+│  OUTPUT:                                                    │
+│  "We analyzed 600M+ support tickets. Here's what we found:  │
+│                                                             │
+│   📊 AI involvement in e-commerce support: 0.01% → 11%      │
+│   📈 That's 1105x growth in 18 months                       │
+│   🔒 100% retention among serious adopters                  │
+│                                                             │
+│   The data is clear: AI in CX isn't optional anymore.       │
+│                                                             │
+│   Full research (free, no signup): [link]                   │
+│                                                             │
+│   #ecommerce #customerexperience #AI"                       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+#### 3. Email Subject Line Generator
+**Input**: Segment, key insight  
+**Output**: 5 subject line options (A/B testable)
+
+#### 4. Methodology Explainer
+**Input**: Technical methodology details  
+**Output**: Plain-English "how we did this" section
+
+### AirOps + n8n Integration
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  n8n WORKFLOW: Content Generation Pipeline                                  │
+│                                                                             │
+│  STEP 1: BigQuery → Fresh data                                              │
+│                              ↓                                              │
+│  STEP 2: HTTP Request → AirOps API                                          │
+│          POST /api/recipes/chart-summary/run                                │
+│          Body: { chart_title, key_stats, segment }                          │
+│                              ↓                                              │
+│  STEP 3: AirOps returns generated content                                   │
+│                              ↓                                              │
+│  STEP 4: Function Node → Format for frontend                                │
+│                              ↓                                              │
+│  STEP 5: GitHub → Commit to /content/summaries.json                         │
+│                              ↓                                              │
+│  STEP 6: HTTP Request → AirOps API (LinkedIn post recipe)                   │
+│                              ↓                                              │
+│  STEP 7: Slack → "📝 New content ready for review"                          │
+│          Include: summary preview, LinkedIn draft, approval link            │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### AirOps API Call Example (from n8n)
+
+```javascript
+// n8n HTTP Request Node configuration
+{
+  "method": "POST",
+  "url": "https://api.airops.com/v1/recipes/{{recipe_id}}/run",
+  "headers": {
+    "Authorization": "Bearer {{$credentials.airops_api_key}}",
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "inputs": {
+      "chart_title": "{{ $json.chart_title }}",
+      "key_stat": "{{ $json.adoption_rate }}%",
+      "trend": "{{ $json.mom_change }}% MoM",
+      "segment": "{{ $json.gmv_band }}"
+    }
+  }
+}
+```
+
+> 💡 **Why not just GPT directly?** AirOps adds: version control, consistent prompts, brand training, output formatting, and team collaboration. Raw GPT API works, but AirOps makes it repeatable and auditable.
+
+---
+
+## 🔄 Full System Architecture (n8n + AirOps + Vercel)
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                           CX LAB AUTOMATION STACK                                   │
+├─────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                     │
+│  ┌─────────────┐                                                                    │
+│  │  BigQuery   │ ← Source of truth (aggregated, anonymized)                         │
+│  └──────┬──────┘                                                                    │
+│         │                                                                           │
+│         ▼                                                                           │
+│  ┌─────────────────────────────────────────────────────────────────┐                │
+│  │                         n8n (Orchestration)                      │               │
+│  │  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐             │               │
+│  │  │ Schedule│→ │ Query   │→ │ QA      │→ │ Branch  │             │               │
+│  │  │ Trigger │  │ BigQuery│  │ Checks  │  │ Logic   │             │               │
+│  │  └─────────┘  └─────────┘  └─────────┘  └────┬────┘             │               │
+│  │                                              │                   │               │
+│  │         ┌────────────────────────────────────┼──────────┐        │               │
+│  │         ▼                                    ▼          ▼        │               │
+│  │  ┌─────────────┐                    ┌─────────┐  ┌─────────┐    │               │
+│  │  │ Call AirOps │                    │ Commit  │  │ Alert   │    │               │
+│  │  │ for content │                    │ to Git  │  │ on Slack│    │               │
+│  │  └──────┬──────┘                    └────┬────┘  └─────────┘    │               │
+│  │         │                                │                       │               │
+│  └─────────┼────────────────────────────────┼───────────────────────┘               │
+│            │                                │                                       │
+│            ▼                                ▼                                       │
+│  ┌─────────────────┐              ┌─────────────────┐                               │
+│  │     AirOps      │              │     GitHub      │                               │
+│  │  (AI Content)   │              │  (Data + Code)  │                               │
+│  │                 │              │                 │                               │
+│  │ • Chart summaries│             │ • charts.json   │                               │
+│  │ • LinkedIn posts │             │ • summaries.json│                               │
+│  │ • Email copy     │             │ • Frontend code │                               │
+│  └────────┬────────┘              └────────┬────────┘                               │
+│           │                                │                                        │
+│           │      ┌─────────────────────────┘                                        │
+│           │      │                                                                  │
+│           ▼      ▼                                                                  │
+│  ┌─────────────────────┐                                                            │
+│  │       Vercel        │ ← Auto-deploys on GitHub push                              │
+│  │   (Hosting + CDN)   │                                                            │
+│  │                     │                                                            │
+│  │  cx-lab.gorgias.com │                                                            │
+│  └─────────────────────┘                                                            │
+│                                                                                     │
+└─────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## ⚠️ What Breaks First at Scale
+
+| Risk | Tool Affected | Mitigation |
+|------|---------------|------------|
+| Query timeout | BigQuery | Pre-aggregate tables; set query timeout limits |
+| Data drift (schema changes) | n8n | Schema validation node; alert on unexpected columns |
+| Stale data published | n8n/Vercel | Timestamp checks; "last updated" badge on frontend |
+| AI hallucinations | AirOps | Human review gate before publish; confidence thresholds |
+| Cost blowup | BigQuery/AirOps | Budget alerts; query cost monitoring; rate limits |
+| n8n workflow failures | n8n | Retry logic (3x); dead-letter queue; Slack alerts |
+| AirOps API rate limits | AirOps | Queue requests; batch processing; cache outputs |
+| Vercel build failures | Vercel | Preview deployments; rollback capability |
+
+### Monitoring Dashboard (Recommended)
+
+| Metric | Tool | Alert Threshold |
+|--------|------|-----------------|
+| n8n workflow success rate | n8n + Slack | <95% weekly |
+| BigQuery query cost | GCP Billing | >$50/month |
+| AirOps API latency | AirOps dashboard | >10s avg response |
+| Vercel build time | Vercel dashboard | >2 minutes |
+| Data freshness | Custom check | >7 days stale |
+
+> ⚠️ **Scaling note**: For v1, manual QA is fine. At scale, add automated anomaly detection (e.g., "AI adoption dropped 50% MoM" → alert before publishing). AirOps can even generate the anomaly explanation.
+
+---
+
+## 💰 Cost Estimates (Monthly)
+
+| Tool | Tier | Estimated Cost | Notes |
+|------|------|----------------|-------|
+| **n8n** | Cloud Starter | $20/mo | 5 workflows, 10k executions |
+| **n8n** | Self-hosted | $0 | Requires server (~$10/mo on Railway) |
+| **AirOps** | Starter | $49/mo | 1,000 AI runs/month |
+| **BigQuery** | On-demand | $5-20/mo | ~1TB queried/month |
+| **Vercel** | Pro | $20/mo | Unlimited deploys, analytics |
+| **GitHub** | Free | $0 | Public repos unlimited |
+| **Slack** | Free | $0 | Webhook notifications |
+| **TOTAL** | | **~$100/mo** | Scales to 10x volume |
+
+> 💡 **v1 recommendation**: Start with n8n Cloud ($20) + AirOps Starter ($49) + Vercel Pro ($20) = **$89/month** for a fully automated, AI-powered data pipeline.
 
 ---
 
@@ -495,8 +808,8 @@ This document is designed to:
 - Export cleanly to PDF
 - Serve as the source of truth for all derivative content
 
-**Last updated**: [DATE]  
-**Author**: [NAME]  
+**Last updated**: [12/26/2026]  
+**Author**: [Kam]  
 **Version**: 1.0
 
 ---
