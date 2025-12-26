@@ -1,5 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { AISummaryModal } from './AISummaryModal';
 import './InsightCard.css';
 
 interface InsightCardProps {
@@ -69,9 +70,13 @@ export function InsightCard({
   source = 'CX Lab Research, aggregated industry data',
 }: InsightCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Format full analysis with paragraph breaks
   const analysisParagraphs = fullAnalysis.split('\n\n').filter(p => p.trim());
+  
+  // Create data context for AI summary
+  const dataContext = `${aiSummary}\n\nDetailed Analysis:\n${fullAnalysis}`;
   
   return (
     <motion.article 
@@ -174,6 +179,16 @@ export function InsightCard({
             <span>Source: {source}</span>
             <span className="insight-card__source-divider">•</span>
             <motion.button 
+              className="insight-card__link insight-card__link--ai"
+              onClick={() => setIsModalOpen(true)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="insight-card__link-icon">✦</span>
+              Generate AI Summary
+            </motion.button>
+            <span className="insight-card__source-divider">•</span>
+            <motion.button 
               className="insight-card__link"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -191,6 +206,15 @@ export function InsightCard({
           </motion.footer>
         </motion.div>
       </div>
+      
+      {/* AI Summary Modal */}
+      <AISummaryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        chartTitle={title}
+        chartSubtitle={subtitle}
+        dataContext={dataContext}
+      />
     </motion.article>
   );
 }

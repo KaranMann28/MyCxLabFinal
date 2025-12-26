@@ -6,6 +6,7 @@ export { SubscribeSection } from './SubscribeSection';
 export { Footer } from './Footer';
 export { ScrollToTop } from './ScrollToTop';
 export { GorgiasLogo, GorgiasSymbol, GorgiasWordmark } from './GorgiasLogo';
+export { AISummaryModal } from './AISummaryModal';
 
 // Chart exports
 export { 
