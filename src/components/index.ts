@@ -1,0 +1,16 @@
+export { HeroSection } from './HeroSection';
+export { KeyFindings } from './KeyFindings';
+export { InsightCard } from './InsightCard';
+export { MethodologySection } from './MethodologySection';
+export { SubscribeSection } from './SubscribeSection';
+export { Footer } from './Footer';
+export { ScrollToTop } from './ScrollToTop';
+export { GorgiasLogo, GorgiasSymbol, GorgiasWordmark } from './GorgiasLogo';
+
+// Chart exports
+export { 
+  AutomationMixChart,
+  MerchantAdoptionChart,
+  AutomationCeilingChart, 
+  CostSatisfactionChart 
+} from './charts';

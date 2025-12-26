@@ -1,0 +1,61 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: var(--space-8);
+  right: var(--space-8);
+  z-index: 1000;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 48px;
+  height: 48px;
+  
+  background: var(--text-primary);
+  color: var(--bg-white);
+  
+  border: none;
+  border-radius: 50%;
+  
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  
+  transition: background-color 0.2s ease;
+}
+
+.scroll-to-top:hover {
+  background: var(--primary);
+}
+
+.scroll-to-top:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.scroll-to-top svg {
+  display: block;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: var(--space-6);
+    right: var(--space-6);
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-to-top {
+    bottom: var(--space-4);
+    right: var(--space-4);
+    width: 40px;
+    height: 40px;
+  }
+  
+  .scroll-to-top svg {
+    width: 18px;
+    height: 18px;
+  }
+}
