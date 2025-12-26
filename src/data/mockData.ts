@@ -86,8 +86,36 @@ export const summaryStats = {
   lastUpdated: 'November 2025',
 };
 
+// AI Adoption Data - Industry adoption rate over time
+export const aiAdoptionData = [
+  { month: '2024-01-01', label: 'Jan \'24', adoption: 12 },
+  { month: '2024-02-01', label: 'Feb \'24', adoption: 14 },
+  { month: '2024-03-01', label: 'Mar \'24', adoption: 17 },
+  { month: '2024-04-01', label: 'Apr \'24', adoption: 21 },
+  { month: '2024-05-01', label: 'May \'24', adoption: 25 },
+  { month: '2024-06-01', label: 'Jun \'24', adoption: 29 },
+  { month: '2024-07-01', label: 'Jul \'24', adoption: 34 },
+  { month: '2024-08-01', label: 'Aug \'24', adoption: 38 },
+  { month: '2024-09-01', label: 'Sep \'24', adoption: 42 },
+  { month: '2024-10-01', label: 'Oct \'24', adoption: 47 },
+  { month: '2024-11-01', label: 'Nov \'24', adoption: 51 },
+  { month: '2024-12-01', label: 'Dec \'24', adoption: 54 },
+  { month: '2025-01-01', label: 'Jan \'25', adoption: 57 },
+  { month: '2025-02-01', label: 'Feb \'25', adoption: 59 },
+  { month: '2025-03-01', label: 'Mar \'25', adoption: 61 },
+  { month: '2025-04-01', label: 'Apr \'25', adoption: 62 },
+  { month: '2025-05-01', label: 'May \'25', adoption: 64 },
+  { month: '2025-06-01', label: 'Jun \'25', adoption: 65 },
+  { month: '2025-07-01', label: 'Jul \'25', adoption: 66 },
+  { month: '2025-08-01', label: 'Aug \'25', adoption: 67 },
+  { month: '2025-09-01', label: 'Sep \'25', adoption: 67 },
+  { month: '2025-10-01', label: 'Oct \'25', adoption: 67 },
+  { month: '2025-11-01', label: 'Nov \'25', adoption: 67 },
+];
+
 // Type exports
 export type AutomationMixDataPoint = typeof automationMixData[number];
 export type MerchantAdoptionDataPoint = typeof merchantAdoptionData[number];
 export type AutomationCeilingDataPoint = typeof automationCeilingData[number];
 export type CostSatisfactionDataPoint = typeof costSatisfactionData[number];
+export type AIAdoptionDataPoint = typeof aiAdoptionData[number];

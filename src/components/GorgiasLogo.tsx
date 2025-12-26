@@ -76,8 +76,6 @@ const textVariants = {
 
 // Gorgias Symbol (icon only)
 function GorgiasSymbol({ color, size, animated }: { color: string; size: number; animated: boolean }) {
-  const scale = size / 65;
-  
   if (animated) {
     return (
       <motion.svg 

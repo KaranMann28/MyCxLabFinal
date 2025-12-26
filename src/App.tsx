@@ -26,7 +26,8 @@ const pageVariants = {
 };
 
 function App() {
-  const { t } = useLanguage();
+  // Language context available for future i18n implementation
+  useLanguage();
   
   return (
     <motion.div 

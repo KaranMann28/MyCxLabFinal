@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { GorgiasLogo } from './GorgiasLogo';
 import './Footer.css';
 
 const containerVariants = {
