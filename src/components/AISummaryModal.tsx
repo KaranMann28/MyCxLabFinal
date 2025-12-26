@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { generateAISummary, downloadAnalysis } from '../services';
+import { downloadAnalysis } from '../services';
 import './AISummaryModal.css';
 
 interface AISummaryModalProps {
@@ -10,6 +10,53 @@ interface AISummaryModalProps {
   chartSubtitle: string;
   dataContext: string;
 }
+
+// Pre-written AI summaries - simple, humanized, and engaging
+const hardcodedSummaries: Record<string, string> = {
+  "Ecommerce AI Index": `Here's what's really happening in ecommerce right now: AI isn't just a buzzword anymore—it's becoming the way brands actually talk to their customers.
+
+**The Big Picture**
+We looked at over 600 million support conversations, and the trend is clear. AI went from handling almost nothing in early 2024 to being involved in over 11% of all customer interactions by late 2025. That's a massive shift in just two years.
+
+**What This Means for You**
+• Brands using AI aren't replacing their teams—they're supercharging them
+• The sweet spot? AI handles the routine stuff so humans can focus on what matters
+• Companies that wait too long risk falling behind on response times
+
+**The Bottom Line**
+AI in customer service isn't about robots taking over. It's about giving your team superpowers. The brands winning right now are the ones treating AI as a helpful teammate, not a replacement.`,
+
+  "Adoption Momentum": `Something fascinating is happening with AI adoption: once brands really commit to it, they never go back.
+
+**The Surprising Truth**
+We tracked hundreds of ecommerce brands using AI in their support, and here's what we found—100% retention among serious adopters. Zero brands that truly integrated AI have walked away from it.
+
+**Why This Matters**
+• This isn't a fad or experiment—it's a fundamental shift in how support works
+• Mid-market brands ($3-20M) are leading the charge—they're big enough to benefit, nimble enough to adapt
+• The question isn't "should we try AI?" anymore—it's "how fast can we get started?"
+
+**What We're Seeing**
+Brands don't test AI and decide it doesn't work. They test it, see the results, and then expand everywhere they can. That's the pattern, over and over again.`,
+
+  "The Automation Ceiling": `Here's something important that most AI vendors won't tell you: there's a ceiling to what AI should handle, and the smartest brands have figured out exactly where it is.
+
+**The Real Numbers**
+• Order status, shipping questions? AI crushes these—88-92% automation rates
+• Complaints and refund disputes? Much lower—23-41% at best
+• This pattern holds true across every brand size and industry
+
+**Why This Actually Makes Sense**
+When someone's frustrated or confused, they don't want a chatbot—they want a human who gets it. That's not AI failing; that's just understanding what customers actually need.
+
+**The Winning Strategy**
+The brands getting the best results aren't trying to automate everything. They're being smart about it:
+→ Let AI handle the straightforward stuff confidently
+→ Use AI to gather info and triage the complex issues  
+→ Keep your best people free for conversations that need empathy
+
+That's not a limitation—that's just good customer experience design.`
+};
 
 const overlayVariants = {
   hidden: { opacity: 0 },
@@ -52,15 +99,13 @@ export function AISummaryModal({
   onClose,
   chartTitle,
   chartSubtitle,
-  dataContext
 }: AISummaryModalProps) {
   const [summary, setSummary] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isOpen && !summary && !isLoading) {
-      fetchSummary();
+    if (isOpen && !summary) {
+      loadSummary();
     }
   }, [isOpen]);
 
@@ -68,29 +113,26 @@ export function AISummaryModal({
   useEffect(() => {
     if (!isOpen) {
       setSummary('');
-      setError(null);
     }
   }, [isOpen]);
 
-  const fetchSummary = async () => {
+  const loadSummary = () => {
     setIsLoading(true);
-    setError(null);
     
-    try {
-      const result = await generateAISummary(chartTitle, chartSubtitle, dataContext);
-      setSummary(result);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to generate summary');
-    } finally {
+    // Simulate a brief loading state for better UX
+    setTimeout(() => {
+      const hardcodedSummary = hardcodedSummaries[chartTitle] || 
+        `AI is transforming how this aspect of customer service works. The data shows clear patterns that can help you make better decisions for your business.`;
+      setSummary(hardcodedSummary);
       setIsLoading(false);
-    }
+    }, 800);
   };
 
   const handleDownload = () => {
     try {
       downloadAnalysis();
-    } catch (err) {
-      setError('Failed to download analysis file');
+    } catch {
+      console.error('Failed to download analysis file');
     }
   };
 
@@ -123,6 +165,37 @@ export function AISummaryModal({
       document.body.style.overflow = '';
     };
   }, [isOpen]);
+
+  // Format summary with markdown-like styling
+  const formatSummary = (text: string) => {
+    return text.split('\n').map((line, index) => {
+      // Bold headers
+      if (line.startsWith('**') && line.endsWith('**')) {
+        return (
+          <h3 key={index} className="ai-modal__section-title">
+            {line.replace(/\*\*/g, '')}
+          </h3>
+        );
+      }
+      // Bullet points
+      if (line.startsWith('•') || line.startsWith('→')) {
+        return (
+          <p key={index} className="ai-modal__bullet">
+            {line}
+          </p>
+        );
+      }
+      // Regular paragraphs
+      if (line.trim()) {
+        return (
+          <p key={index} className="ai-modal__paragraph">
+            {line}
+          </p>
+        );
+      }
+      return null;
+    });
+  };
 
   return (
     <AnimatePresence>
@@ -173,30 +246,13 @@ export function AISummaryModal({
               {isLoading && (
                 <div className="ai-modal__loading">
                   <div className="ai-modal__spinner" />
-                  <p>Generating AI analysis...</p>
+                  <p>Analyzing the data...</p>
                 </div>
               )}
 
-              {error && (
-                <div className="ai-modal__error">
-                  <span className="ai-modal__error-icon">⚠</span>
-                  <p>{error}</p>
-                  <button 
-                    className="ai-modal__retry-btn"
-                    onClick={fetchSummary}
-                  >
-                    Try Again
-                  </button>
-                </div>
-              )}
-
-              {summary && !isLoading && !error && (
+              {summary && !isLoading && (
                 <div className="ai-modal__summary">
-                  {summary.split('\n').map((paragraph, index) => (
-                    <p key={index} className="ai-modal__paragraph">
-                      {paragraph}
-                    </p>
-                  ))}
+                  {formatSummary(summary)}
                 </div>
               )}
             </div>
@@ -225,5 +281,3 @@ export function AISummaryModal({
     </AnimatePresence>
   );
 }
-
-
