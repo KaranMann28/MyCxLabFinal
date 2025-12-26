@@ -145,10 +145,12 @@ export function AISummaryModal({
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  // Prevent body scroll when modal is open
+  // Prevent body scroll when modal is open and scroll to top
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      // Scroll page to top so modal is visible
+      window.scrollTo({ top: 0, behavior: 'instant' });
     } else {
       document.body.style.overflow = '';
     }
