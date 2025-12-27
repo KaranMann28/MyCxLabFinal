@@ -45,24 +45,24 @@ export function KeyFindings() {
   
   const findings = [
     {
-      value: '$57.4M',
-      label: 'AI-Influenced Revenue',
-      subtext: 'From $3.4B total GMV analyzed',
+      value: '−33%',
+      label: 'Ticket Volume',
+      subtext: 'Fewer tickets, more impact',
     },
     {
-      value: '0.70 pts',
+      value: '7×',
+      label: 'Revenue Influence',
+      subtext: '0.26% → 1.84% of GMV',
+    },
+    {
+      value: '~50%',
+      label: 'AI Ticket Share',
+      subtext: 'Rapid automation adoption',
+    },
+    {
+      value: '0.8 pts',
       label: 'The CSAT Gap',
-      subtext: 'Human 4.48 vs AI 3.77',
-    },
-    {
-      value: '2.3%',
-      label: 'Peak Influence Rate',
-      subtext: 'During normal shopping periods',
-    },
-    {
-      value: '67%',
-      label: 'AI Ticket Growth',
-      subtext: 'From 16% to 27% share',
+      subtext: 'Human 4.5 vs AI 3.7',
     },
   ];
 
@@ -85,9 +85,9 @@ export function KeyFindings() {
             }
           }}
         >
-          <h2 className="key-findings__title">The Headline Numbers</h2>
+          <h2 className="key-findings__title">Two Trends Defining 2025</h2>
           <p className="key-findings__subtitle">
-            What we learned from analyzing $3.4B in GMV and 284M support interactions
+            The Efficiency Multiplier meets The AI Satisfaction Gap
           </p>
         </motion.header>
         
@@ -135,8 +135,8 @@ export function KeyFindings() {
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
         >
-          AI is becoming a revenue driver—not just a cost center. But the satisfaction gap 
-          reminds us: automation gets smarter, but it won't replace human connection.
+          The growth playbook is shifting from "handle more tickets" to "make every ticket count." 
+          But automation scale doesn't automatically mean better CX.
           <a href="#methodology"> View our methodology</a>
         </motion.p>
       </div>
