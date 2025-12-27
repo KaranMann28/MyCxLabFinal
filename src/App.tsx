@@ -90,11 +90,11 @@ function App() {
                 <InsightCard
                   title="The Efficiency Multiplier"
                   subtitle="Less Volume, More Impact"
-                  source="CX Lab Research, GMV and ticket volume analysis Jan–Dec 2025"
-                  aiSummary="Leading ecommerce brands reduced support volume by 33% while scaling revenue dramatically. Support-influenced GMV grew from 0.26% to 1.84%—a 7× increase. Growth is no longer about handling more tickets. It's about making every ticket count."
-                  fullAnalysis={`What the data shows: When analyzing ticket volume alongside GMV and revenue influence, a clear inverse relationship emerges. As monthly support tickets declined from ~33M to ~22M (a 33% reduction), both GMV and the revenue impact of support interactions rose sharply. Revenue influenced by support grew from 0.26% to 1.84% of GMV—approximately 7× more influence.
+                  source="CX Lab Research, GMV and ticket volume analysis Jan to Dec 2025"
+                  aiSummary="Leading ecommerce brands reduced support volume by 33% while scaling revenue dramatically. Support-influenced GMV grew from 0.26% to 1.84%, a 7x increase. Growth is no longer about handling more tickets. It's about making every ticket count."
+                  fullAnalysis={`What the data shows: When we look at ticket volume alongside GMV and revenue influence, a clear pattern emerges. As monthly support tickets declined from around 33M to 22M (a 33% reduction), both GMV and the revenue impact of support interactions rose sharply. Revenue influenced by support grew from 0.26% to 1.84% of GMV, roughly 7x more influence.
 
-What this means: The most successful brands are increasing the value of each interaction, rather than scaling raw ticket-handling capacity. Efficiency, not headcount, has become the modern growth lever.
+What this means: The most successful brands are increasing the value of each interaction, rather than just scaling how many tickets they handle. Efficiency, not headcount, has become the modern growth lever.
 
 Why this matters: With customer acquisition costs rising across ecommerce, operational efficiency is now a competitive advantage. The growth playbook is shifting from "handle more tickets" to "make every ticket count." Brands achieving this balance are seeing support transform from a cost center into a revenue driver.`}
                 >
@@ -104,14 +104,14 @@ Why this matters: With customer acquisition costs rising across ecommerce, opera
                 {/* Finding 2: The AI Satisfaction Gap */}
                 <InsightCard
                   title="The AI Satisfaction Gap"
-                  subtitle="Scale ≠ Satisfaction"
+                  subtitle="Scale Doesn't Equal Satisfaction"
                   source="CX Lab Research, CSAT comparison across human and AI channels"
-                  aiSummary="AI now handles ~50% of support tickets, up from ~33%. But AI CSAT remains flat at 3.7/5, compared to 4.5/5 for human agents—a persistent 0.8-point gap. Technology scale does not automatically translate into better customer experience."
-                  fullAnalysis={`What the data shows: AI involvement in support handling increased from approximately 33% to 50% of tickets—a 50% increase in adoption. Yet AI CSAT has remained flat at 3.7/5, while human agents consistently score 4.5/5. AI success rates have fluctuated between 44% and 35%, highlighting a growing mismatch between automation coverage and effectiveness.
+                  aiSummary="AI now handles around 50% of support tickets, up from 33%. But AI CSAT remains flat at 3.7 out of 5, compared to 4.5 out of 5 for human agents. That's a persistent 0.8-point gap. Technology scale does not automatically translate into better customer experience."
+                  fullAnalysis={`What the data shows: AI involvement in support handling increased from approximately 33% to 50% of tickets, a 50% increase in adoption. Yet AI CSAT has remained flat at 3.7 out of 5, while human agents consistently score 4.5 out of 5. AI success rates have fluctuated between 44% and 35%, highlighting a growing mismatch between automation coverage and effectiveness.
 
-What this means: The industry is optimizing primarily for cost efficiency, not customer experience. Automation coverage is increasing faster than automation effectiveness. While AI handles more volume, customers still prefer—and rate higher—human interactions.
+What this means: The industry is optimizing primarily for cost efficiency, not customer experience. Automation coverage is increasing faster than automation effectiveness. While AI handles more volume, customers still prefer human interactions, and they rate them higher.
 
-Why this matters: Merchants investing heavily in AI must understand the trade-off. Automation reduces operational costs, but it does not inherently improve customer satisfaction. The data shows clearly that automation alone is not a guarantee of better CX. The winning strategy isn't replacing humans—it's using AI to amplify what humans do best.`}
+Why this matters: Merchants investing heavily in AI must understand the trade-off. Automation reduces operational costs, but it does not inherently improve customer satisfaction. The data shows clearly that automation alone is not a guarantee of better CX. The winning strategy isn't replacing humans. It's using AI to amplify what humans do best.`}
                 >
                   <AISatisfactionGapChart />
                 </InsightCard>

@@ -40,7 +40,7 @@ export function MethodologySection() {
           <p className="methodology__intro">
             CX Lab measures trends in ecommerce customer experience using aggregated, 
             anonymized data from across the online retail sector. We believe AI will never 
-            replace human connection—but smarter automation frees your team to focus on 
+            replace human connection, but smarter automation frees your team to focus on 
             conversations that matter most.
           </p>
         </motion.header>
@@ -77,7 +77,7 @@ export function MethodologySection() {
                 transition={{ duration: 0.2 }}
               >
                 <strong>Monthly Ticket Evolution</strong>
-                <span>Support volume declined from ~33M tickets/month in 2024 to ~22M in 2025—a 33% reduction. This measures operational efficiency gains, not declining customer engagement.</span>
+                <span>Support volume declined from around 33M tickets per month in 2024 to 22M in 2025, a 33% reduction. This measures operational efficiency gains, not declining customer engagement.</span>
               </motion.div>
               <motion.div 
                 className="methodology__definition"
@@ -85,7 +85,7 @@ export function MethodologySection() {
                 transition={{ duration: 0.2 }}
               >
                 <strong>Revenue Influence Rate</strong>
-                <span>Percentage of GMV influenced by support interactions. Grew from 0.26% to 1.84%—approximately 7× more influence. Measures how support drives purchasing decisions, not just resolves issues.</span>
+                <span>Percentage of GMV influenced by support interactions. Grew from 0.26% to 1.84%, roughly 7x more influence. Measures how support drives purchasing decisions, not just resolves issues.</span>
               </motion.div>
               <motion.div 
                 className="methodology__definition"
@@ -93,7 +93,7 @@ export function MethodologySection() {
                 transition={{ duration: 0.2 }}
               >
                 <strong>AI Ticket Share</strong>
-                <span>Percentage of support volume handled by AI. Increased from ~33% to ~50%—a 50% increase in automation adoption across the industry.</span>
+                <span>Percentage of support volume handled by AI. Increased from around 33% to 50%, a 50% increase in automation adoption across the industry.</span>
               </motion.div>
               <motion.div 
                 className="methodology__definition"
@@ -101,7 +101,7 @@ export function MethodologySection() {
                 transition={{ duration: 0.2 }}
               >
                 <strong>The CSAT Gap</strong>
-                <span>The persistent 0.8-point difference between human agent satisfaction (4.5/5) and AI-handled interactions (3.7/5). This gap has remained flat despite rapid automation expansion.</span>
+                <span>The persistent 0.8-point difference between human agent satisfaction (4.5 out of 5) and AI-handled interactions (3.7 out of 5). This gap has remained flat despite rapid automation expansion.</span>
               </motion.div>
               <motion.div 
                 className="methodology__definition"
@@ -109,7 +109,7 @@ export function MethodologySection() {
                 transition={{ duration: 0.2 }}
               >
                 <strong>AI Success Rate</strong>
-                <span>Percentage of AI-handled tickets resolved without escalation. Fluctuated between 35–44%, highlighting the mismatch between automation coverage and automation effectiveness.</span>
+                <span>Percentage of AI-handled tickets resolved without escalation. Fluctuated between 35% and 44%, highlighting the mismatch between automation coverage and automation effectiveness.</span>
               </motion.div>
             </div>
           </motion.div>
@@ -136,7 +136,7 @@ export function MethodologySection() {
             className="methodology__section methodology__section--limitations" 
             variants={itemVariants}
           >
-            <h3 className="methodology__section-title">Limitations & Considerations</h3>
+            <h3 className="methodology__section-title">Limitations and Considerations</h3>
             <ul className="methodology__limitations">
               <li>
                 <strong>Correlation, not causation:</strong> We describe directional trends and 
@@ -145,7 +145,7 @@ export function MethodologySection() {
               </li>
               <li>
                 <strong>The human factor:</strong> AI will never replace human connection in customer 
-                service. The satisfaction gap isn't a technology problem to "solve"—it's a signal 
+                service. The satisfaction gap isn't a technology problem to "solve." It's a signal 
                 about where human empathy remains irreplaceable.
               </li>
               <li>

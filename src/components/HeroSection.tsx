@@ -66,14 +66,56 @@ const pulseVariants = {
   }
 };
 
-const shimmerVariants = {
-  initial: { backgroundPosition: '200% 0' },
-  animate: {
-    backgroundPosition: ['-200% 0', '200% 0'],
+const letterVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    rotateX: -90
+  },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
     transition: {
-      duration: 8,
+      delay: i * 0.03,
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  })
+};
+
+const wordVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.03,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const underlineVariants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: {
+    scaleX: 1,
+    opacity: 1,
+    transition: {
+      delay: 1.2,
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
+
+const glowVariants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: [0, 0.5, 0],
+    transition: {
+      duration: 3,
       repeat: Infinity,
-      ease: 'linear'
+      ease: 'easeInOut'
     }
   }
 };
@@ -94,10 +136,25 @@ const menuVariants = {
   }
 };
 
+// Gorgias brand colors for title click animation
+const colorPalettes = [
+  { title: '#1E1E1E', underline: '#1E1E1E' }, // Gorgias Dark
+  { title: '#E8826E', underline: '#E8826E' }, // Gorgias Coral
+  { title: '#F5A38A', underline: '#F5A38A' }, // Gorgias Salmon
+  { title: '#FFD9C7', underline: '#1E1E1E' }, // Gorgias Peach (dark underline for contrast)
+];
+
 export function HeroSection() {
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [colorIndex, setColorIndex] = useState(0);
+  
+  const handleTitleClick = () => {
+    setColorIndex((prev) => (prev + 1) % colorPalettes.length);
+  };
+  
+  const currentColors = colorPalettes[colorIndex];
   
   const handleDownload = () => {
     downloadReportSimple(language);
@@ -282,35 +339,67 @@ export function HeroSection() {
             className="hero__title-wrapper"
             variants={itemVariants}
           >
-            <motion.h1 
-              className="hero__title"
-              variants={shimmerVariants}
+            {/* Animated glow behind title */}
+            <motion.div 
+              className="hero__title-glow"
+              variants={glowVariants}
               initial="initial"
               animate="animate"
+            />
+            
+            <motion.h1 
+              className="hero__title"
+              variants={wordVariants}
+              initial="hidden"
+              animate="visible"
+              onClick={handleTitleClick}
+              style={{ cursor: 'pointer' }}
             >
-              {t('hero.title')}
+              {t('hero.title').split('').map((char, index) => (
+                <motion.span
+                  key={index}
+                  className={`hero__title-char ${char === ' ' ? 'hero__title-space' : ''}`}
+                  variants={letterVariants}
+                  custom={index}
+                  style={{ display: 'inline-block' }}
+                  animate={{ 
+                    color: theme === 'dark' ? '#F5F5F5' : currentColors.title,
+                  }}
+                  transition={{
+                    color: { duration: 0.3 },
+                  }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
             </motion.h1>
+            
             <motion.div 
-              className="hero__title-accent"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 0.8, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="hero__title-underline"
+              variants={underlineVariants}
+              initial="hidden"
+              animate={{ 
+                scaleX: 1, 
+                opacity: 1,
+                backgroundColor: theme === 'dark' ? '#F5F5F5' : currentColors.underline,
+              }}
+              transition={{
+                scaleX: { delay: 1.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+                backgroundColor: { duration: 0.3 }
+              }}
             />
           </motion.div>
           
           <motion.p 
-            className="hero__subtitle"
+            className="hero__tagline"
             variants={itemVariants}
+            whileHover={{ 
+              scale: 1.02,
+              boxShadow: '0 10px 40px -10px rgba(232, 130, 110, 0.2)'
+            }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           >
-            {t('hero.subtitle1')}<br />
-            {t('hero.subtitle2')}
-          </motion.p>
-          
-          <motion.p
-            className="hero__lead"
-            variants={itemVariants}
-          >
-            {t('hero.lead')}
+            {t('hero.tagline')}
           </motion.p>
           
           <motion.div 

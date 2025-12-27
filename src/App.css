@@ -11,6 +11,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -19,6 +21,9 @@ body {
   line-height: 1.6;
   color: var(--text-secondary);
   background-color: var(--bg-white);
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 /* Container */
@@ -26,6 +31,19 @@ body {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--space-6);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-3);
+  }
 }
 
 .container--narrow {

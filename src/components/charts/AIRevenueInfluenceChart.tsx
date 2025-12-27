@@ -84,7 +84,7 @@ export function AIRevenueInfluenceChart() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={320}>
           <ComposedChart
             data={revenueInfluenceData}
             margin={{ top: 20, right: 80, left: 20, bottom: 20 }}

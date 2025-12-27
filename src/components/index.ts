@@ -8,6 +8,7 @@ export { ScrollToTop } from './ScrollToTop';
 export { GorgiasLogo, GorgiasSymbol, GorgiasWordmark } from './GorgiasLogo';
 export { AISummaryModal } from './AISummaryModal';
 export { ScrollRevealLogo } from './ScrollRevealLogo';
+export { NewsletterModal } from './NewsletterModal';
 
 // Chart exports
 export { 

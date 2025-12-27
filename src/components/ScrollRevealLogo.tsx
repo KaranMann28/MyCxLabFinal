@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { NewsletterModal } from './NewsletterModal';
 import './ScrollRevealLogo.css';
 
 // Register ScrollTrigger plugin
@@ -17,6 +18,7 @@ export function ScrollRevealLogo({ isUnlocked, onUnlock }: ScrollRevealLogoProps
   const logoRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+  const [showNewsletter, setShowNewsletter] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current || !logoRef.current || !glowRef.current || !textRef.current) return;
@@ -91,11 +93,20 @@ export function ScrollRevealLogo({ isUnlocked, onUnlock }: ScrollRevealLogoProps
   }, []);
 
   const handleLogoClick = () => {
+    if (!isUnlocked) {
+      // Show newsletter popup when unlocking
+      setShowNewsletter(true);
+    }
     onUnlock();
+  };
+
+  const handleNewsletterClose = () => {
+    setShowNewsletter(false);
   };
 
   return (
     <div className="scroll-reveal" ref={containerRef}>
+      <NewsletterModal isOpen={showNewsletter} onClose={handleNewsletterClose} />
       <div className="scroll-reveal__glow" ref={glowRef} />
       
       <motion.div 

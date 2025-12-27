@@ -15,10 +15,8 @@ export const translations: Translations = {
   'nav.backToGorgias': { en: '← Back to Gorgias', fr: '← Retour à Gorgias' },
   
   // Hero
-  'hero.title': { en: 'CX Lab', fr: 'Labo CX' },
-  'hero.subtitle1': { en: 'How AI is reshaping customer service across ecommerce.', fr: 'Comment l\'IA transforme le service client dans l\'e-commerce.' },
-  'hero.subtitle2': { en: 'Industry benchmarks and trends from millions of support interactions.', fr: 'Benchmarks sectoriels et tendances issus de millions d\'interactions de support.' },
-  'hero.lead': { en: 'Independent research on the state of customer experience in online retail—where the industry is heading, what\'s working, and what it means for your business.', fr: 'Recherche indépendante sur l\'état de l\'expérience client dans le e-commerce—où va le secteur, ce qui fonctionne, et ce que cela signifie pour votre entreprise.' },
+  'hero.title': { en: 'Customer Experience Research Lab', fr: 'Laboratoire de Recherche CX' },
+  'hero.tagline': { en: 'Industry benchmarks and AI trends from millions of ecommerce support interactions.', fr: 'Benchmarks sectoriels et tendances IA issus de millions d\'interactions de support e-commerce.' },
   'hero.downloadReport': { en: 'Download Report', fr: 'Télécharger le Rapport' },
   'hero.exploreResearch': { en: 'Explore Research', fr: 'Explorer la Recherche' },
   'hero.scrollToExplore': { en: 'Scroll to explore', fr: 'Faites défiler pour explorer' },

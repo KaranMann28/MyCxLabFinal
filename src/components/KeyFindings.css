@@ -36,17 +36,22 @@
   text-align: center;
   overflow: hidden;
   transition: all var(--transition-base);
+  transform-style: preserve-3d;
 }
 
 .finding-card:hover {
   border-color: var(--primary);
-  box-shadow: var(--shadow-lg);
+}
+
+.finding-card__icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-3);
+  display: inline-block;
 }
 
 .finding-card__value {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: var(--font-extrabold);
-  color: var(--primary);
   letter-spacing: -0.03em;
   line-height: 1;
   margin-bottom: var(--space-3);
@@ -69,9 +74,19 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+  height: 4px;
   transform-origin: left;
+}
+
+.finding-card__particle {
+  position: absolute;
+  top: 20%;
+  right: 15%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 .key-findings__context {
@@ -107,23 +122,94 @@
   .key-findings__grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .key-findings__title {
+    font-size: var(--text-2xl);
+  }
 }
 
 @media (max-width: 768px) {
   .key-findings {
-    padding: var(--space-12) 0;
+    padding: var(--space-10) 0;
+  }
+  
+  .key-findings__header {
+    margin-bottom: var(--space-8);
+  }
+  
+  .key-findings__title {
+    font-size: var(--text-xl);
+  }
+  
+  .key-findings__subtitle {
+    font-size: var(--text-sm);
   }
   
   .key-findings__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
   }
   
   .finding-card {
-    padding: var(--space-6);
+    padding: var(--space-4);
+  }
+  
+  .finding-card__icon {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-2);
   }
   
   .finding-card__value {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
+    margin-bottom: var(--space-2);
+  }
+  
+  .finding-card__label {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-1);
+  }
+  
+  .finding-card__subtext {
+    font-size: var(--text-xs);
+  }
+  
+  .finding-card__particle {
+    display: none;
+  }
+  
+  .key-findings__context {
+    font-size: var(--text-xs);
+    margin-top: var(--space-6);
+    padding: 0 var(--space-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .key-findings {
+    padding: var(--space-8) 0;
+  }
+  
+  .key-findings__grid {
+    gap: var(--space-2);
+  }
+  
+  .finding-card {
+    padding: var(--space-3);
+  }
+  
+  .finding-card__icon {
+    font-size: 1.25rem;
+  }
+  
+  .finding-card__value {
+    font-size: 1.25rem;
+  }
+  
+  .finding-card__label {
+    font-size: var(--text-xs);
+  }
+  
+  .finding-card__accent {
+    height: 2px;
   }
 }
