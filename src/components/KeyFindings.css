@@ -23,7 +23,7 @@
 
 .key-findings__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-6);
 }
 
@@ -103,6 +103,12 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .key-findings__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .key-findings {
     padding: var(--space-12) 0;

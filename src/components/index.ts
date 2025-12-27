@@ -14,5 +14,7 @@ export {
   AutomationMixChart,
   MerchantAdoptionChart,
   AutomationCeilingChart, 
-  CostSatisfactionChart 
+  CostSatisfactionChart,
+  AIRevenueInfluenceChart,
+  AISatisfactionGapChart,
 } from './charts';

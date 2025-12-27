@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   HeroSection,
   ScrollRevealLogo,
@@ -9,11 +10,9 @@ import {
   SubscribeSection,
   Footer,
   ScrollToTop,
-  AutomationMixChart,
-  MerchantAdoptionChart,
-  AutomationCeilingChart,
+  AIRevenueInfluenceChart,
+  AISatisfactionGapChart,
 } from './components';
-import { summaryStats } from './data/mockData';
 import { useLanguage } from './context/LanguageContext';
 
 const pageVariants = {
@@ -87,50 +86,59 @@ function App() {
               <KeyFindings />
               
               <section id="insights" className="insights-section">
-                {/* Chart 1: Industry AI Adoption Index */}
+                {/* CX Lab Index Chart 1: AI Revenue Influence vs GMV */}
                 <InsightCard
-                  title="Ecommerce AI Index"
-                  subtitle="Industry Adoption Rate"
-                  source={`CX Lab Research, ${summaryStats.totalInteractions} support interactions analyzed`}
-                  aiSummary={`The ecommerce industry is undergoing a structural shift in customer service. AI involvement in support tickets has grown from near-zero to ${summaryStats.currentAiTouchedPct} in under two years—signaling that AI-assisted support is becoming the industry standard, not an exception.`}
-                  fullAnalysis={`The Trend: Across the ecommerce sector, AI is rapidly becoming embedded in customer support operations. Our analysis of ${summaryStats.totalInteractions} support interactions shows AI involvement growing from virtually nothing in early 2024 to ${summaryStats.currentAiTouchedPct} by late 2025—a ${summaryStats.growthMultiple} increase.
+                  title="AI Revenue Influence"
+                  subtitle="The Efficiency Multiplier"
+                  source="CX Lab Research, $3.4B GMV analyzed across 284M support interactions"
+                  aiSummary="AI is quietly becoming a revenue driver. Across $3.4B in analyzed GMV, AI-influenced transactions generated $57.4M in revenue — with influence rates peaking at 2.3% during June-July 2025. But here's the interesting part: November's massive $1.1B GMV spike saw influence dip to 1.8%."
+                  fullAnalysis={`The Trend: AI's role in driving revenue is becoming measurable. By tracking interactions where AI engaged customers before purchase, we can see the direct line from support automation to sales conversion. AI-influenced revenue grew from $78K in January to $20.7M in November 2025.
 
-The Nuance: Full automation remains limited at ${summaryStats.currentNoHumanPct}. The dominant model emerging across the industry is "AI-assisted human support"—where AI handles triage, drafts responses, or gathers information, but humans make final decisions. This hybrid approach is becoming the operational standard for competitive ecommerce brands.
+The Nuance: The data reveals a counterintuitive pattern. During Black Friday (November), when GMV peaked at $1.1B, AI influence rate actually decreased to 1.8%. This suggests AI provides more value during normal shopping periods when customers need guidance, not during high-intent moments like major sales events when purchase intent is already strong.
 
-What This Means for Merchants: Brands not investing in AI-assisted support risk falling behind on response times and operational efficiency. However, the data suggests the winning strategy isn't full automation—it's augmentation. The most successful implementations treat AI as a force multiplier for human agents, not a replacement.`}
+What This Means for Merchants: AI support isn't just about cost reduction—it's a revenue channel. Brands should optimize AI for discovery and decision-support moments rather than trying to maximize intervention during peak sales periods. The sweet spot appears to be helping uncertain customers, not interrupting committed buyers.`}
                 >
-                  <AutomationMixChart />
+                  <AIRevenueInfluenceChart />
                 </InsightCard>
                 
-                {/* Chart 2: Industry Adoption Momentum */}
+                {/* CX Lab Index Chart 2: The AI Satisfaction Gap */}
                 <InsightCard
-                  title="Adoption Momentum"
-                  subtitle="Once Brands Start, They Don't Stop"
-                  source="CX Lab Research, brands with meaningful AI deployment"
-                  aiSummary="A striking pattern is emerging: ecommerce brands that achieve meaningful AI deployment (50+ monthly tickets with 10%+ AI involvement) show zero churn from AI tools. This suggests AI in customer service has crossed a threshold from experiment to operational necessity."
-                  fullAnalysis={`The Trend: When we filter for "meaningful adoption"—brands processing at least 50 support tickets monthly with 10% or more AI involvement—we see 100% retention. No brand that has seriously integrated AI into their support operations has walked it back.
+                  title="The AI Satisfaction Gap"
+                  subtitle="Quality vs. Scale Trade-off"
+                  source="CX Lab Research, 11-month CSAT comparison across human and AI channels"
+                  aiSummary="Despite AI handling 67% more tickets by year-end, a persistent 0.70-point CSAT gap remains between human agents (avg 4.48) and fully automated AI (avg 3.77). The good news: automation is improving—handover rates dropped from 67% to 51%—but the quality gap hasn't closed."
+                  fullAnalysis={`The Trend: The AI satisfaction gap is stubbornly persistent. Human agents maintain a steady CSAT around 4.48, while fully automated AI interactions hover around 3.77—a gap that hasn't meaningfully narrowed despite 11 months of AI advancement. Meanwhile, AI's share of tickets grew from 16% to 27%.
 
-The Breakdown: Mid-market ecommerce brands ($3-20M revenue) represent roughly one-third of meaningful adopters. This segment appears to be the "sweet spot" for AI adoption—large enough to benefit from efficiency gains, agile enough to implement new technology quickly.
+The Breakdown: The most telling metric is the handover rate evolution. In January, 67% of AI tickets required human handover. By November, that dropped to 51%. AI is getting better at completing interactions independently (49% fully automated vs. 33% initially), but customers rate those automated completions lower.
 
-What This Means for Merchants: The lack of churn among serious adopters is a strong signal. Brands aren't experimenting with AI and deciding it doesn't work—they're experimenting and then expanding deployment. For merchants still on the sidelines, the question is shifting from "should we adopt?" to "how quickly can we implement?"`}
+What This Means for Merchants: The data suggests a strategic choice: you can prioritize scale (let AI handle more) or quality (maintain CSAT). The merchants seeing best results aren't trying to close the gap—they're accepting it and designing around it. Use AI for volume and efficiency, but preserve human capacity for moments that matter to customer loyalty.`}
                 >
-                  <MerchantAdoptionChart />
+                  <AISatisfactionGapChart />
                 </InsightCard>
                 
-                {/* Chart 3: The Automation Ceiling - Industry Benchmark */}
-                <InsightCard
-                  title="The Automation Ceiling"
-                  subtitle="Where AI Excels vs. Where Humans Win"
-                  source="CX Lab Research, aggregated industry data"
-                  aiSummary="The ecommerce industry is discovering clear boundaries for AI automation. Transactional queries (order status, shipping) automate at 88-92%, while emotional or complex issues (complaints, disputes) hit a ceiling around 23-41%. These patterns are consistent across brand size and vertical."
-                  fullAnalysis={`The Trend: A clear automation hierarchy is emerging across the ecommerce industry. Transactional, information-retrieval queries automate exceptionally well—order status inquiries hit 92% automation rates, shipping updates reach 88%. But as emotional complexity increases, automation effectiveness drops sharply: complaints max out at 41%, refund disputes at 23%.
-
-The Pattern: This isn't a technology limitation that will be solved with better AI—it's a fundamental insight about customer service. When customers are frustrated, confused, or feel wronged, they need empathy and judgment that current AI cannot reliably provide. The brands seeing the best outcomes have accepted this ceiling rather than fighting it.
-
-What This Means for Merchants: The strategic implication is clear: design your support operation around these natural boundaries. Route transactional queries to AI confidently. Use AI for triage and information gathering on complex issues. But preserve human capacity for conversations where empathy matters. The goal isn't maximum automation—it's optimal customer experience at sustainable cost.`}
+                {/* More Insights Link */}
+                <motion.div 
+                  className="more-insights-link-wrapper"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
                 >
-                  <AutomationCeilingChart />
-                </InsightCard>
+                  <Link to="/insights" className="more-insights-link">
+                    <div className="more-insights-link__content">
+                      <span className="more-insights-link__badge">Deep Dive</span>
+                      <h3 className="more-insights-link__title">Explore More Industry Insights</h3>
+                      <p className="more-insights-link__description">
+                        Discover AI adoption trends, automation benchmarks, and operational patterns across the ecommerce industry.
+                      </p>
+                    </div>
+                    <div className="more-insights-link__arrow">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </div>
+                  </Link>
+                </motion.div>
               </section>
               
               <SubscribeSection />

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { summaryStats } from '../data/mockData';
 import './MethodologySection.css';
 
 const containerVariants = {
@@ -40,9 +39,9 @@ export function MethodologySection() {
           <h2 className="methodology__title">Methodology</h2>
           <p className="methodology__intro">
             CX Lab measures trends in ecommerce customer experience using aggregated, 
-            anonymized data from across the online retail sector. Our work builds on 
-            behavioral transaction data rather than surveys, providing a more timely 
-            and accurate measurement of industry trends.
+            anonymized data from across the online retail sector. We believe AI will never 
+            replace human connection—but smarter automation frees your team to focus on 
+            conversations that matter most.
           </p>
         </motion.header>
         
@@ -51,19 +50,20 @@ export function MethodologySection() {
             <h3 className="methodology__section-title">Data Source</h3>
             <p className="methodology__section-text">
               Our dataset is built from aggregated, anonymized customer support interactions 
-              across ecommerce brands. Data points represent actual customer-brand communications, 
-              not survey responses or self-reported metrics. This approach eliminates recall bias 
-              and provides real-time visibility into industry behavior patterns.
+              and GMV data across ecommerce brands. Data points represent actual customer-brand 
+              communications and purchasing behavior—not survey responses or self-reported metrics. 
+              This approach eliminates recall bias and provides real-time visibility into the 
+              relationship between support quality and revenue outcomes.
             </p>
           </motion.div>
           
           <motion.div className="methodology__section" variants={itemVariants}>
             <h3 className="methodology__section-title">Scale & Coverage</h3>
             <p className="methodology__section-text">
-              The analysis encompasses <strong>{summaryStats.totalInteractions} support interactions</strong> from 
-              online merchants spanning a 24-month period ({summaryStats.timeframe}). This provides 
-              sufficient statistical power to identify meaningful trends across merchant sizes, 
-              verticals, and geographic regions while maintaining individual brand anonymity.
+              The analysis encompasses <strong>$3.4B in GMV</strong> and <strong>284M support interactions</strong> from 
+              online merchants spanning January–December 2025. This provides sufficient statistical 
+              power to identify meaningful correlations between AI-assisted support and revenue 
+              influence, while maintaining individual brand anonymity.
             </p>
           </motion.div>
           
@@ -75,24 +75,40 @@ export function MethodologySection() {
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <strong>AI-Assisted Rate</strong>
-                <span>Percentage of tickets where AI played any role in the resolution process—from initial triage to response drafting. Calculated as a 3-month rolling average to smooth volatility.</span>
+                <strong>AI-Influenced Revenue</strong>
+                <span>Revenue from transactions where AI engaged the customer within the support journey before purchase. Totaling $57.4M across the dataset, this measures AI's role as a revenue driver—not just a cost center.</span>
               </motion.div>
               <motion.div 
                 className="methodology__definition"
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <strong>Full Automation Rate</strong>
-                <span>Percentage of tickets resolved entirely without human agent involvement. Represents the current "automation ceiling" for different inquiry types.</span>
+                <strong>AI Influence Rate</strong>
+                <span>Percentage of GMV touched by AI-assisted support interactions. Peaked at 2.3% during June–July 2025, with interesting dips during high-intent shopping moments like Black Friday.</span>
               </motion.div>
               <motion.div 
                 className="methodology__definition"
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <strong>Meaningful Adoption</strong>
-                <span>Merchants processing 50+ tickets monthly with 10%+ AI involvement. This threshold filters out trial usage and captures brands with operational AI integration.</span>
+                <strong>The CSAT Gap</strong>
+                <span>The persistent 0.70-point difference between human agent satisfaction (~4.48/5) and fully automated AI resolution (~3.77/5). This gap hasn't meaningfully closed despite automation improvements.</span>
+              </motion.div>
+              <motion.div 
+                className="methodology__definition"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <strong>AI Share of Tickets</strong>
+                <span>Percentage of total support volume handled by AI. Grew from 16% to 27% over 11 months—a 67% increase in AI ticket handling without corresponding improvement in satisfaction scores.</span>
+              </motion.div>
+              <motion.div 
+                className="methodology__definition"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <strong>Handover Rate</strong>
+                <span>Percentage of AI-initiated tickets requiring human escalation. Dropped from 67% to 51%, indicating AI is getting better at completing interactions independently—even if customer ratings remain lower.</span>
               </motion.div>
             </div>
           </motion.div>
@@ -122,21 +138,37 @@ export function MethodologySection() {
             <h3 className="methodology__section-title">Limitations & Considerations</h3>
             <ul className="methodology__limitations">
               <li>
+                <strong>Correlation, not causation:</strong> We describe directional trends and 
+                correlations between AI involvement and revenue outcomes. Direct attribution requires 
+                controlled experiments we don't perform at scale.
+              </li>
+              <li>
+                <strong>The human factor:</strong> AI will never replace human connection in customer 
+                service. The satisfaction gap isn't a technology problem to "solve"—it's a signal 
+                about where human empathy remains irreplaceable.
+              </li>
+              <li>
                 <strong>Selection bias:</strong> Brands using digital support platforms may skew 
-                toward more tech-forward operations, potentially overstating industry-wide AI adoption 
+                toward more tech-forward operations, potentially overstating industry-wide adoption 
                 rates for the broader ecommerce market.
               </li>
               <li>
-                <strong>Channel coverage:</strong> This analysis focuses on digital support channels 
-                (chat, email, social). Phone and in-person support interactions are not represented, 
-                which may understate total support volume for some verticals.
-              </li>
-              <li>
-                <strong>Definition sensitivity:</strong> "AI-assisted" includes any AI involvement, 
-                from simple auto-responses to sophisticated intent classification. Capability depth 
-                varies significantly across implementations.
+                <strong>December partial data:</strong> CSAT data for December 2025 is incomplete. 
+                Handover rates are available, but satisfaction scores are excluded from that month's 
+                analysis.
               </li>
             </ul>
+          </motion.div>
+          
+          <motion.div className="methodology__section" variants={itemVariants}>
+            <h3 className="methodology__section-title">What This Means for Merchants</h3>
+            <p className="methodology__section-text">
+              The data suggests a clear strategic direction: use AI for efficiency and scale, 
+              but preserve human capacity for conversations where empathy matters. The goal 
+              isn't maximum automation—it's optimal customer experience at sustainable cost. 
+              The brands seeing the best outcomes aren't trying to close the satisfaction gap; 
+              they're designing around it.
+            </p>
           </motion.div>
         </div>
         
@@ -145,7 +177,7 @@ export function MethodologySection() {
           variants={itemVariants}
         >
           <p>
-            This research is updated quarterly. Last update: <strong>{summaryStats.lastUpdated}</strong>
+            This research is updated quarterly. Last update: <strong>December 2025</strong>
           </p>
           <p className="methodology__footer-note">
             Questions about our methodology? <a href="mailto:cxlab@gorgias.com">Contact the research team</a>

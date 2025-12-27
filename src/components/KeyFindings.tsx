@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { summaryStats } from '../data/mockData';
 import { useLanguage } from '../context/LanguageContext';
 import './KeyFindings.css';
 
@@ -42,23 +41,28 @@ const numberVariants = {
 };
 
 export function KeyFindings() {
-  const { t } = useLanguage();
+  useLanguage();
   
   const findings = [
     {
-      value: summaryStats.currentAiTouchedPct,
-      label: t('keyFindings.industryAiRate'),
-      subtext: t('keyFindings.shareOfSupport'),
+      value: '$57.4M',
+      label: 'AI-Influenced Revenue',
+      subtext: 'From $3.4B total GMV analyzed',
     },
     {
-      value: summaryStats.growthMultiple,
-      label: t('keyFindings.growth24Months'),
-      subtext: t('keyFindings.industryAcceleration'),
+      value: '0.70 pts',
+      label: 'The CSAT Gap',
+      subtext: 'Human 4.48 vs AI 3.77',
     },
     {
-      value: summaryStats.totalInteractions,
-      label: t('keyFindings.sampleSize'),
-      subtext: summaryStats.timeframe,
+      value: '2.3%',
+      label: 'Peak Influence Rate',
+      subtext: 'During normal shopping periods',
+    },
+    {
+      value: '67%',
+      label: 'AI Ticket Growth',
+      subtext: 'From 16% to 27% share',
     },
   ];
 
@@ -81,9 +85,9 @@ export function KeyFindings() {
             }
           }}
         >
-          <h2 className="key-findings__title">{t('keyFindings.title')}</h2>
+          <h2 className="key-findings__title">The Headline Numbers</h2>
           <p className="key-findings__subtitle">
-            {t('keyFindings.subtitle')}
+            What we learned from analyzing $3.4B in GMV and 284M support interactions
           </p>
         </motion.header>
         
@@ -131,8 +135,9 @@ export function KeyFindings() {
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
         >
-          {t('keyFindings.contextNote')} 
-          <a href="#methodology"> {t('keyFindings.viewMethodology')}</a>
+          AI is becoming a revenue driver—not just a cost center. But the satisfaction gap 
+          reminds us: automation gets smarter, but it won't replace human connection.
+          <a href="#methodology"> View our methodology</a>
         </motion.p>
       </div>
     </motion.section>

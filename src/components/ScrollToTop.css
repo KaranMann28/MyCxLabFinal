@@ -1,7 +1,7 @@
 .scroll-to-top {
   position: fixed;
-  bottom: var(--space-8);
-  right: var(--space-8);
+  bottom: calc(var(--space-6) + 6px); /* Align vertically with 60px chat button */
+  right: calc(var(--space-6) + 72px); /* Position beside the chat button (60px + 12px gap) */
   z-index: 1000;
   
   display: flex;
@@ -11,20 +11,23 @@
   width: 48px;
   height: 48px;
   
-  background: var(--text-primary);
-  color: var(--bg-white);
+  background: var(--bg-white);
+  color: var(--text-primary);
   
-  border: none;
+  border: 1px solid var(--border-color);
   border-radius: 50%;
   
   cursor: pointer;
   box-shadow: var(--shadow-lg);
   
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .scroll-to-top:hover {
-  background: var(--primary);
+  background: var(--text-primary);
+  color: var(--bg-white);
+  border-color: var(--text-primary);
+  transform: translateY(-2px);
 }
 
 .scroll-to-top:focus {
@@ -39,8 +42,8 @@
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .scroll-to-top {
-    bottom: var(--space-6);
-    right: var(--space-6);
+    bottom: calc(var(--space-4) + 6px); /* Align with 56px chat button */
+    right: calc(var(--space-4) + 68px); /* 56px button + 12px gap */
     width: 44px;
     height: 44px;
   }
@@ -48,8 +51,8 @@
 
 @media (max-width: 480px) {
   .scroll-to-top {
-    bottom: var(--space-4);
-    right: var(--space-4);
+    bottom: calc(var(--space-4) + 8px); /* Align with smaller chat button */
+    right: calc(var(--space-4) + 52px); /* Smaller gap on mobile */
     width: 40px;
     height: 40px;
   }
