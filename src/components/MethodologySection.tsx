@@ -60,10 +60,11 @@ export function MethodologySection() {
           <motion.div className="methodology__section" variants={itemVariants}>
             <h3 className="methodology__section-title">Scale & Coverage</h3>
             <p className="methodology__section-text">
-              The analysis encompasses <strong>$3.4B in GMV</strong> and <strong>284M support interactions</strong> from 
-              online merchants spanning January–December 2025. This provides sufficient statistical 
-              power to identify meaningful correlations between AI-assisted support and revenue 
-              influence, while maintaining individual brand anonymity.
+              The analysis encompasses support interactions and GMV data from online merchants 
+              spanning 2024–2025. Monthly ticket volume ranged from 22M to 33M tickets, with 
+              aggregate GMV scaling significantly over the analysis period. This provides 
+              sufficient statistical power to identify directional trends in efficiency and 
+              satisfaction, while maintaining individual brand anonymity.
             </p>
           </motion.div>
           
@@ -75,16 +76,24 @@ export function MethodologySection() {
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <strong>AI-Influenced Revenue</strong>
-                <span>Revenue from transactions where AI engaged the customer within the support journey before purchase. Totaling $57.4M across the dataset, this measures AI's role as a revenue driver—not just a cost center.</span>
+                <strong>Monthly Ticket Evolution</strong>
+                <span>Support volume declined from ~33M tickets/month in 2024 to ~22M in 2025—a 33% reduction. This measures operational efficiency gains, not declining customer engagement.</span>
               </motion.div>
               <motion.div 
                 className="methodology__definition"
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <strong>AI Influence Rate</strong>
-                <span>Percentage of GMV touched by AI-assisted support interactions. Peaked at 2.3% during June–July 2025, with interesting dips during high-intent shopping moments like Black Friday.</span>
+                <strong>Revenue Influence Rate</strong>
+                <span>Percentage of GMV influenced by support interactions. Grew from 0.26% to 1.84%—approximately 7× more influence. Measures how support drives purchasing decisions, not just resolves issues.</span>
+              </motion.div>
+              <motion.div 
+                className="methodology__definition"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <strong>AI Ticket Share</strong>
+                <span>Percentage of support volume handled by AI. Increased from ~33% to ~50%—a 50% increase in automation adoption across the industry.</span>
               </motion.div>
               <motion.div 
                 className="methodology__definition"
@@ -92,23 +101,15 @@ export function MethodologySection() {
                 transition={{ duration: 0.2 }}
               >
                 <strong>The CSAT Gap</strong>
-                <span>The persistent 0.70-point difference between human agent satisfaction (~4.48/5) and fully automated AI resolution (~3.77/5). This gap hasn't meaningfully closed despite automation improvements.</span>
+                <span>The persistent 0.8-point difference between human agent satisfaction (4.5/5) and AI-handled interactions (3.7/5). This gap has remained flat despite rapid automation expansion.</span>
               </motion.div>
               <motion.div 
                 className="methodology__definition"
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <strong>AI Share of Tickets</strong>
-                <span>Percentage of total support volume handled by AI. Grew from 16% to 27% over 11 months—a 67% increase in AI ticket handling without corresponding improvement in satisfaction scores.</span>
-              </motion.div>
-              <motion.div 
-                className="methodology__definition"
-                whileHover={{ x: 5 }}
-                transition={{ duration: 0.2 }}
-              >
-                <strong>Handover Rate</strong>
-                <span>Percentage of AI-initiated tickets requiring human escalation. Dropped from 67% to 51%, indicating AI is getting better at completing interactions independently—even if customer ratings remain lower.</span>
+                <strong>AI Success Rate</strong>
+                <span>Percentage of AI-handled tickets resolved without escalation. Fluctuated between 35–44%, highlighting the mismatch between automation coverage and automation effectiveness.</span>
               </motion.div>
             </div>
           </motion.div>
@@ -163,11 +164,12 @@ export function MethodologySection() {
           <motion.div className="methodology__section" variants={itemVariants}>
             <h3 className="methodology__section-title">What This Means for Merchants</h3>
             <p className="methodology__section-text">
-              The data suggests a clear strategic direction: use AI for efficiency and scale, 
-              but preserve human capacity for conversations where empathy matters. The goal 
-              isn't maximum automation—it's optimal customer experience at sustainable cost. 
-              The brands seeing the best outcomes aren't trying to close the satisfaction gap; 
-              they're designing around it.
+              Two strategic imperatives emerge from this data. First, optimize for efficiency: 
+              the growth playbook is shifting from "handle more tickets" to "make every ticket count." 
+              Support is becoming a revenue driver, not just a cost center. Second, understand the 
+              trade-off: automation reduces operational costs but doesn't inherently improve 
+              customer satisfaction. The winning strategy isn't replacing humans—it's using AI 
+              to amplify what humans do best.
             </p>
           </motion.div>
         </div>

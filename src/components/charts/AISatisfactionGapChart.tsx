@@ -53,10 +53,10 @@ const annotationVariants = {
 
 export function AISatisfactionGapChart() {
   const annotations = [
-    { label: 'Avg CSAT Gap', value: '0.70 pts', color: '#E8826E' },
-    { label: 'AI Share Growth', value: '16% → 27%', color: 'var(--success)' },
-    { label: 'Handover Rate', value: '67% → 51%', color: '#4B5EFC' },
-    { label: 'Fully Automated', value: '33% → 49%', color: 'var(--text-primary)' },
+    { label: 'The CSAT Gap', value: '0.8 pts', color: '#E8826E' },
+    { label: 'AI Ticket Share', value: '33% → 50%', color: 'var(--success)' },
+    { label: 'Human CSAT', value: '4.5 / 5', color: '#4B5EFC' },
+    { label: 'AI CSAT (flat)', value: '3.7 / 5', color: 'var(--text-primary)' },
   ];
 
   return (
@@ -68,7 +68,7 @@ export function AISatisfactionGapChart() {
       variants={chartVariants}
     >
       <div className="chart-description">
-        CSAT comparison between human agents and fully automated AI, with AI share of ticket volume
+        AI adoption is rising fast, but satisfaction hasn't followed — automation scale ≠ customer experience
       </div>
       
       <motion.div

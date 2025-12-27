@@ -61,10 +61,10 @@ const annotationVariants = {
 
 export function AIRevenueInfluenceChart() {
   const annotations = [
-    { label: 'Total AI-Influenced Revenue', value: '$57.4M', color: '#E8826E' },
-    { label: 'Total GMV', value: '$3.4B', color: 'var(--text-primary)' },
-    { label: 'Peak Influence Rate', value: '2.3%', color: 'var(--success)' },
-    { label: 'Total Tickets', value: '284M', color: 'var(--text-primary)' },
+    { label: 'Ticket Volume Change', value: '−33%', color: '#E8826E' },
+    { label: 'Revenue Influence Growth', value: '7×', color: 'var(--success)' },
+    { label: 'Influence Rate', value: '0.26% → 1.84%', color: 'var(--text-primary)' },
+    { label: 'Peak Influence', value: '2.3%', color: '#4B5EFC' },
   ];
 
   return (
@@ -76,7 +76,7 @@ export function AIRevenueInfluenceChart() {
       variants={chartVariants}
     >
       <div className="chart-description">
-        GMV growth alongside AI revenue influence rate — measuring how AI impacts customer purchasing decisions
+        Monthly GMV alongside support-influenced revenue rate — fewer tickets, more impact per interaction
       </div>
       
       <motion.div

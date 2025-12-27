@@ -86,32 +86,32 @@ function App() {
               <KeyFindings />
               
               <section id="insights" className="insights-section">
-                {/* CX Lab Index Chart 1: AI Revenue Influence vs GMV */}
+                {/* Finding 1: The Efficiency Multiplier */}
                 <InsightCard
-                  title="AI Revenue Influence"
-                  subtitle="The Efficiency Multiplier"
-                  source="CX Lab Research, $3.4B GMV analyzed across 284M support interactions"
-                  aiSummary="AI is quietly becoming a revenue driver. Across $3.4B in analyzed GMV, AI-influenced transactions generated $57.4M in revenue — with influence rates peaking at 2.3% during June-July 2025. But here's the interesting part: November's massive $1.1B GMV spike saw influence dip to 1.8%."
-                  fullAnalysis={`The Trend: AI's role in driving revenue is becoming measurable. By tracking interactions where AI engaged customers before purchase, we can see the direct line from support automation to sales conversion. AI-influenced revenue grew from $78K in January to $20.7M in November 2025.
+                  title="The Efficiency Multiplier"
+                  subtitle="Less Volume, More Impact"
+                  source="CX Lab Research, GMV and ticket volume analysis Jan–Dec 2025"
+                  aiSummary="Leading ecommerce brands reduced support volume by 33% while scaling revenue dramatically. Support-influenced GMV grew from 0.26% to 1.84%—a 7× increase. Growth is no longer about handling more tickets. It's about making every ticket count."
+                  fullAnalysis={`What the data shows: When analyzing ticket volume alongside GMV and revenue influence, a clear inverse relationship emerges. As monthly support tickets declined from ~33M to ~22M (a 33% reduction), both GMV and the revenue impact of support interactions rose sharply. Revenue influenced by support grew from 0.26% to 1.84% of GMV—approximately 7× more influence.
 
-The Nuance: The data reveals a counterintuitive pattern. During Black Friday (November), when GMV peaked at $1.1B, AI influence rate actually decreased to 1.8%. This suggests AI provides more value during normal shopping periods when customers need guidance, not during high-intent moments like major sales events when purchase intent is already strong.
+What this means: The most successful brands are increasing the value of each interaction, rather than scaling raw ticket-handling capacity. Efficiency, not headcount, has become the modern growth lever.
 
-What This Means for Merchants: AI support isn't just about cost reduction—it's a revenue channel. Brands should optimize AI for discovery and decision-support moments rather than trying to maximize intervention during peak sales periods. The sweet spot appears to be helping uncertain customers, not interrupting committed buyers.`}
+Why this matters: With customer acquisition costs rising across ecommerce, operational efficiency is now a competitive advantage. The growth playbook is shifting from "handle more tickets" to "make every ticket count." Brands achieving this balance are seeing support transform from a cost center into a revenue driver.`}
                 >
                   <AIRevenueInfluenceChart />
                 </InsightCard>
                 
-                {/* CX Lab Index Chart 2: The AI Satisfaction Gap */}
+                {/* Finding 2: The AI Satisfaction Gap */}
                 <InsightCard
                   title="The AI Satisfaction Gap"
-                  subtitle="Quality vs. Scale Trade-off"
-                  source="CX Lab Research, 11-month CSAT comparison across human and AI channels"
-                  aiSummary="Despite AI handling 67% more tickets by year-end, a persistent 0.70-point CSAT gap remains between human agents (avg 4.48) and fully automated AI (avg 3.77). The good news: automation is improving—handover rates dropped from 67% to 51%—but the quality gap hasn't closed."
-                  fullAnalysis={`The Trend: The AI satisfaction gap is stubbornly persistent. Human agents maintain a steady CSAT around 4.48, while fully automated AI interactions hover around 3.77—a gap that hasn't meaningfully narrowed despite 11 months of AI advancement. Meanwhile, AI's share of tickets grew from 16% to 27%.
+                  subtitle="Scale ≠ Satisfaction"
+                  source="CX Lab Research, CSAT comparison across human and AI channels"
+                  aiSummary="AI now handles ~50% of support tickets, up from ~33%. But AI CSAT remains flat at 3.7/5, compared to 4.5/5 for human agents—a persistent 0.8-point gap. Technology scale does not automatically translate into better customer experience."
+                  fullAnalysis={`What the data shows: AI involvement in support handling increased from approximately 33% to 50% of tickets—a 50% increase in adoption. Yet AI CSAT has remained flat at 3.7/5, while human agents consistently score 4.5/5. AI success rates have fluctuated between 44% and 35%, highlighting a growing mismatch between automation coverage and effectiveness.
 
-The Breakdown: The most telling metric is the handover rate evolution. In January, 67% of AI tickets required human handover. By November, that dropped to 51%. AI is getting better at completing interactions independently (49% fully automated vs. 33% initially), but customers rate those automated completions lower.
+What this means: The industry is optimizing primarily for cost efficiency, not customer experience. Automation coverage is increasing faster than automation effectiveness. While AI handles more volume, customers still prefer—and rate higher—human interactions.
 
-What This Means for Merchants: The data suggests a strategic choice: you can prioritize scale (let AI handle more) or quality (maintain CSAT). The merchants seeing best results aren't trying to close the gap—they're accepting it and designing around it. Use AI for volume and efficiency, but preserve human capacity for moments that matter to customer loyalty.`}
+Why this matters: Merchants investing heavily in AI must understand the trade-off. Automation reduces operational costs, but it does not inherently improve customer satisfaction. The data shows clearly that automation alone is not a guarantee of better CX. The winning strategy isn't replacing humans—it's using AI to amplify what humans do best.`}
                 >
                   <AISatisfactionGapChart />
                 </InsightCard>
