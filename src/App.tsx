@@ -89,10 +89,10 @@ function App() {
                 {/* Finding 1: The Efficiency Multiplier */}
                 <InsightCard
                   title="The Efficiency Multiplier"
-                  subtitle="Less Volume, More Impact"
+                  subtitle="How Top Brands 7x Their Revenue Influence"
                   source="CX Lab Research, GMV and ticket volume analysis Jan to Dec 2025"
-                  articleLink="https://www.gorgias.com/blog/ai-customer-service"
-                  articleLabel="Learn how AI transforms customer service"
+                  articleLink="https://www.gorgias.com/customers/orthofeet"
+                  articleLabel="See how Orthofeet automated 56% of tickets →"
                   aiSummary="Leading ecommerce brands reduced support volume by 33% while scaling revenue dramatically. Support-influenced GMV grew from 0.26% to 1.84%, a 7x increase. Growth is no longer about handling more tickets. It's about making every ticket count."
                   fullAnalysis={`What the data shows: When we look at ticket volume alongside GMV and revenue influence, a clear pattern emerges. As monthly support tickets declined from around 33M to 22M (a 33% reduction), both GMV and the revenue impact of support interactions rose sharply. Revenue influenced by support grew from 0.26% to 1.84% of GMV, roughly 7x more influence.
 
@@ -106,10 +106,10 @@ Why this matters: With customer acquisition costs rising across ecommerce, opera
                 {/* Finding 2: The AI Satisfaction Gap */}
                 <InsightCard
                   title="The AI Satisfaction Gap"
-                  subtitle="Why Generic Automation Falls Short"
+                  subtitle="Why Smart Brands Choose Intelligent AI"
                   source="CX Lab Research, CSAT comparison across human and AI channels"
                   articleLink="https://www.gorgias.com/blog/ai-agent"
-                  articleLabel="Discover intelligent AI that closes the gap"
+                  articleLabel="Meet AI Agent: The intelligent alternative →"
                   aiSummary="The 0.8-point CSAT gap is not about AI vs humans. It's about basic automation vs intelligent assistance. Generic chatbots focused on deflection score 3.7. But purpose-built AI that understands shopping intent, personalizes responses, and knows when to escalate? That's where the gap closes."
                   fullAnalysis={`What the data shows: Basic automation now handles around 50% of support tickets, up from 33%. But generic AI CSAT remains flat at 3.7, while human agents score 4.5. The gap exists because first-generation automation treats every customer the same. It optimizes for deflection, not resolution.
 
