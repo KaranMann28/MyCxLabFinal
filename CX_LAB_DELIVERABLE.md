@@ -22,7 +22,7 @@ AI is not just deflecting tickets. It's driving revenue. But only when deployed 
 **Repeat this to a colleague:**
 > "AI-influenced revenue grew 7x, but drops during peak sales. Optimize AI for uncertain shoppers, not committed buyers."
 
-**Deep dive:** [How AI transforms customer service](https://www.gorgias.com/blog/ai-customer-service)
+**Case study:** [See how Orthofeet automated 56% of tickets →](https://www.gorgias.com/customers/orthofeet)
 
 ---
 
@@ -49,7 +49,7 @@ Purpose-built AI for ecommerce understands product context, order history, and s
 **Repeat this to a colleague:**
 > "The CSAT gap is not AI vs humans. It's dumb bots vs intelligent AI. Purpose-built automation closes the gap."
 
-**Deep dive:** [Discover intelligent AI that closes the gap](https://www.gorgias.com/blog/ai-agent)
+**Case study:** [Discover intelligent AI that closes gaps →](https://www.gorgias.com/customers/vessel)
 
 ---
 
@@ -61,10 +61,48 @@ Purpose-built AI for ecommerce understands product context, order history, and s
 1. **Lead with shock, deliver utility** - "The 0.8-point gap" grabs attention, the solution sells the product
 2. **Educate the market** - Position the problem (basic automation) so we can position the solution (Gorgias)
 3. **Data as credibility** - $3.4B GMV analyzed gives authority to the narrative
-4. **Internal linking** - Every insight leads to Gorgias product pages
+4. **Internal linking** - Every insight links to customer success stories
 
-### What we exclude:
-Data that works against the product gets reframed or removed. The AI satisfaction gap could have been "AI is worse than humans." Instead, it's "basic AI is worse, intelligent AI is the answer."
+---
+
+## Content Curation: What We Show (and What We Don't)
+
+### ✅ Insights We Display
+
+| Insight | Why It Works | Product Alignment |
+|---------|--------------|-------------------|
+| **The Efficiency Multiplier** | 7x revenue growth is unambiguously positive | Proves AI Agent drives revenue, not just deflects tickets |
+| **The AI Satisfaction Gap** | Reframed as "basic vs intelligent" | Positions Gorgias as the intelligent alternative |
+
+### ⚠️ Insights We Reframed
+
+**Original finding:** AI CSAT (3.7) is lower than human CSAT (4.5).
+
+**Problem:** This could be interpreted as "AI is worse than humans" which undermines the product.
+
+**Reframe:** "Generic automation falls short. Intelligent AI closes the gap."
+
+**Why this works:**
+- Acknowledges the data honestly (builds credibility)
+- Blames basic automation, not AI itself (creates the problem)
+- Positions purpose-built AI as the solution (sells the product)
+- Case study proof: VESSEL improved CSAT with AI Agent
+
+### 🚫 Insights We Excluded
+
+| Finding | Reason for Exclusion |
+|---------|---------------------|
+| "Automation does not inherently improve satisfaction" | Too absoluteeven reframed, plants doubt |
+| Raw AI vs Human comparison without context | Makes AI look bad without solution framing |
+| Tickets where AI needed human rescue | Could be useful later, but needs "intelligent AI" benchmark data first |
+
+### The Rule
+
+> **If data can't be reframed to position Gorgias favorably, it goes in the archive, not the report.**
+
+Every insight must either:
+1. Directly demonstrate AI/automation value, OR
+2. Create a problem that Gorgias solves
 
 ---
 
