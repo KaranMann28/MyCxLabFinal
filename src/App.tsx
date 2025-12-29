@@ -11,7 +11,6 @@ import {
   Footer,
   ScrollToTop,
   AIRevenueInfluenceChart,
-  AISatisfactionGapChart,
 } from './components';
 import { useLanguage } from './context/LanguageContext';
 
@@ -101,25 +100,6 @@ What this means: The most successful brands are increasing the value of each int
 Why this matters: With customer acquisition costs rising across ecommerce, operational efficiency is now a competitive advantage. The growth playbook is shifting from "handle more tickets" to "make every ticket count." Brands achieving this balance are seeing support transform from a cost center into a revenue driver.`}
                 >
                   <AIRevenueInfluenceChart />
-                </InsightCard>
-                
-                {/* Finding 2: The AI Satisfaction Gap */}
-                <InsightCard
-                  title="The AI Satisfaction Gap"
-                  subtitle="Why Smart Brands Choose Intelligent AI"
-                  source="CX Lab Research, CSAT comparison across human and AI channels"
-                  articleLink="https://www.gorgias.com/customers/vessel"
-                  articleLabel="Discover intelligent AI that closes gaps →"
-                  aiSummary="The 0.8-point CSAT gap is not about AI vs humans. It's about basic automation vs intelligent assistance. Generic chatbots focused on deflection score 3.7. But purpose-built AI that understands shopping intent, personalizes responses, and knows when to escalate? That's where the gap closes."
-                  fullAnalysis={`What the data shows: Basic automation now handles around 50% of support tickets, up from 33%. But generic AI CSAT remains flat at 3.7, while human agents score 4.5. The gap exists because first-generation automation treats every customer the same. It optimizes for deflection, not resolution.
-
-The real problem: Most AI in ecommerce today is built for scale, not understanding. Keyword matching, scripted flows, and rigid decision trees cannot adapt to the nuance of real customer needs. That's why satisfaction stalls even as coverage grows.
-
-The solution: Purpose-built AI for ecommerce changes the equation. When AI understands product context, order history, and shopping intent, it knows when to answer, when to recommend, and when to hand off. Brands using intent-aware AI are seeing satisfaction scores approach human levels.
-
-What this means for merchants: The winning strategy is not choosing between AI and humans. It's deploying intelligent automation that amplifies what humans do best. The gap closes when AI becomes a knowledgeable assistant, not just a ticket deflector.`}
-                >
-                  <AISatisfactionGapChart />
                 </InsightCard>
                 
                 {/* More Insights Link */}

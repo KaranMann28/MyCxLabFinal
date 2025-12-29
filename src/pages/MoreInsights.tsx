@@ -5,6 +5,7 @@ import {
   AutomationMixChart,
   MerchantAdoptionChart,
   AutomationCeilingChart,
+  AISatisfactionGapChart,
   Footer,
   ScrollToTop,
 } from '../components';
@@ -82,7 +83,26 @@ export function MoreInsights() {
           initial="hidden"
           animate="visible"
         >
-          {/* Chart 1: Industry AI Adoption Index */}
+          {/* Chart 1: The AI Satisfaction Gap - Lead with the Problem */}
+          <InsightCard
+            title="The AI Satisfaction Gap"
+            subtitle="Why Smart Brands Choose Intelligent AI"
+            source="CX Lab Research, CSAT comparison across human and AI channels"
+            articleLink="https://www.gorgias.com/customers/vessel"
+            articleLabel="Discover intelligent AI that closes gaps →"
+            aiSummary="The 0.8-point CSAT gap is not about AI vs humans. It's about basic automation vs intelligent assistance. Generic chatbots focused on deflection score 3.7. But purpose-built AI that understands shopping intent, personalizes responses, and knows when to escalate? That's where the gap closes."
+            fullAnalysis={`What the data shows: Basic automation now handles around 50% of support tickets, up from 33%. But generic AI CSAT remains flat at 3.7, while human agents score 4.5. The gap exists because first-generation automation treats every customer the same. It optimizes for deflection, not resolution.
+
+The real problem: Most AI in ecommerce today is built for scale, not understanding. Keyword matching, scripted flows, and rigid decision trees cannot adapt to the nuance of real customer needs. That's why satisfaction stalls even as coverage grows.
+
+The solution: Purpose-built AI for ecommerce changes the equation. When AI understands product context, order history, and shopping intent, it knows when to answer, when to recommend, and when to hand off. Brands using intent-aware AI are seeing satisfaction scores approach human levels.
+
+What this means for merchants: The winning strategy is not choosing between AI and humans. It's deploying intelligent automation that amplifies what humans do best. The gap closes when AI becomes a knowledgeable assistant, not just a ticket deflector.`}
+          >
+            <AISatisfactionGapChart />
+          </InsightCard>
+          
+          {/* Chart 2: Industry AI Adoption Index */}
           <InsightCard
             title="Ecommerce AI Index"
             subtitle="Industry Adoption Rate"
@@ -97,7 +117,7 @@ What This Means for Merchants: Brands not investing in AI-assisted support risk 
             <AutomationMixChart />
           </InsightCard>
           
-          {/* Chart 2: Industry Adoption Momentum */}
+          {/* Chart 3: Industry Adoption Momentum */}
           <InsightCard
             title="Adoption Momentum"
             subtitle="Once Brands Start, They Don't Stop"
@@ -112,7 +132,7 @@ What This Means for Merchants: The lack of churn among serious adopters is a str
             <MerchantAdoptionChart />
           </InsightCard>
           
-          {/* Chart 3: The Automation Ceiling - Industry Benchmark */}
+          {/* Chart 4: The Automation Ceiling - Industry Benchmark */}
           <InsightCard
             title="The Automation Ceiling"
             subtitle="Where AI Excels vs. Where Humans Win"
