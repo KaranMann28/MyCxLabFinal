@@ -10,6 +10,8 @@ interface InsightCardProps {
   aiSummary: string;
   fullAnalysis: string;
   source?: string;
+  articleLink?: string;
+  articleLabel?: string;
 }
 
 const cardVariants = {
@@ -68,6 +70,8 @@ export function InsightCard({
   aiSummary,
   fullAnalysis,
   source = 'CX Lab Research, aggregated industry data',
+  articleLink,
+  articleLabel = 'Read the full insight',
 }: InsightCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -163,6 +167,22 @@ export function InsightCard({
                       </p>
                     ))}
                   </div>
+                  
+                  {articleLink && (
+                    <motion.a
+                      href={articleLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="insight-card__article-link"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                      whileHover={{ scale: 1.02, x: 5 }}
+                    >
+                      <span className="insight-card__article-link-icon">→</span>
+                      {articleLabel}
+                    </motion.a>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>

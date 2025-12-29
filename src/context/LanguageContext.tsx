@@ -16,7 +16,7 @@ export const translations: Translations = {
   
   // Hero
   'hero.title': { en: 'Customer Experience Research Lab', fr: 'Laboratoire de Recherche CX' },
-  'hero.tagline': { en: 'Industry benchmarks and AI trends from millions of ecommerce support interactions.', fr: 'Benchmarks sectoriels et tendances IA issus de millions d\'interactions de support e-commerce.' },
+  'hero.tagline': { en: 'AI benchmarks from millions of support interactions.', fr: 'Benchmarks IA de millions d\'interactions.' },
   'hero.downloadReport': { en: 'Download Report', fr: 'Télécharger le Rapport' },
   'hero.exploreResearch': { en: 'Explore Research', fr: 'Explorer la Recherche' },
   'hero.scrollToExplore': { en: 'Scroll to explore', fr: 'Faites défiler pour explorer' },

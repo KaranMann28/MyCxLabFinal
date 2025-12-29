@@ -76,7 +76,7 @@ export function AIRevenueInfluenceChart() {
       variants={chartVariants}
     >
       <div className="chart-description">
-        Monthly GMV alongside support-influenced revenue rate — fewer tickets, more impact per interaction
+        Monthly GMV alongside AI-influenced revenue rate. Fewer tickets, more impact per interaction.
       </div>
       
       <motion.div

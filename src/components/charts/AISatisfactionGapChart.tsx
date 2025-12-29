@@ -68,7 +68,7 @@ export function AISatisfactionGapChart() {
       variants={chartVariants}
     >
       <div className="chart-description">
-        AI adoption is rising fast, but satisfaction hasn't followed — automation scale ≠ customer experience
+        Basic automation scales fast but falls short. Intelligent AI that understands intent closes the gap.
       </div>
       
       <motion.div

@@ -1,115 +1,108 @@
-# 🧪 CX Lab: Final Deliverable
+# CX Lab: Final Deliverable
 
-> **Live Experience:** [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app)
-
----
-
-## 🎨 Gorgias Brand Colors (for Notion styling)
-
-| Element | Color | Hex |
-|---------|-------|-----|
-| Primary Coral | 🟠 | `#E8826E` |
-| Salmon | 🍑 | `#F5A38A` |
-| Peach | 🌸 | `#FFD9C7` |
-| Dark | ⬛ | `#1E1E1E` |
-
-*Use Coral for headers, callouts, and highlights. Use Dark for text.*
+**Live:** [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app)
 
 ---
 
-# 📊 The Two Insights That Matter
+## The Two Insights That Matter
 
 ---
 
-## 1️⃣ The Efficiency Multiplier
+### Insight 1: The Efficiency Multiplier
 
-> 💡 **The One-Liner:** AI-influenced revenue grew 7×, but drops during peak sales. Optimize AI for uncertain shoppers, not committed buyers.
+**What the graph shows:**
+AI-influenced revenue grew from 0.26% to 1.84% of GMV, a 7x increase, while ticket volume dropped 33%.
 
-### What the graph shows
-AI-influenced revenue grew from **0.26% to 1.84% of GMV**—a **7× increase**—while ticket volume dropped **33%**.
+**The surprise:**
+During Black Friday, when GMV hit $1.1B, AI influence *dropped* to 1.8%. Committed buyers don't need help. AI works best when customers are uncertain, not when they're already adding to cart.
 
-### The surprise
-During Black Friday, when GMV hit $1.1B, AI influence *dropped* to 1.8%. 
+**Why merchants should care:**
+AI is not just deflecting tickets. It's driving revenue. But only when deployed at the right moments: discovery, comparison, hesitation. Not checkout.
 
-**Why?** Committed buyers don't need help. AI works best when customers are uncertain, not when they're already adding to cart.
+**Repeat this to a colleague:**
+> "AI-influenced revenue grew 7x, but drops during peak sales. Optimize AI for uncertain shoppers, not committed buyers."
 
-### Why merchants should care
-AI isn't just deflecting tickets. It's driving revenue. But only when deployed at the right moments—discovery, comparison, hesitation. Not checkout.
+**Deep dive:** [How AI transforms customer service](https://www.gorgias.com/blog/ai-customer-service)
 
 ---
 
-## 2️⃣ The AI Satisfaction Gap
+### Insight 2: The AI Satisfaction Gap
 
-> 💡 **The One-Liner:** The CSAT gap is 0.8 points and isn't closing. Use AI for scale, preserve humans for moments that build loyalty.
-
-### What the graph shows
+**What the graph shows:**
 | Channel | CSAT Score |
 |---------|------------|
 | Human agents | **4.48** / 5.0 |
-| Fully automated AI | **3.77** / 5.0 |
+| Generic automation | **3.77** / 5.0 |
 | **The Gap** | **0.8 points** |
 
-This gap hasn't closed in 11 months.
+**The reframe:**
+This gap is not about AI vs humans. It's about **basic automation vs intelligent assistance**.
 
-### The surprise
-AI handover rates improved (67% → 51%), meaning AI completes more tickets independently. But customers rate those completions **lower**. 
+Generic chatbots focused on deflection score 3.7. But purpose-built AI that understands shopping intent, personalizes responses, and knows when to escalate? That's where the gap closes.
 
-Solving the problem ≠ resolving the experience.
+**Why the gap exists:**
+First-generation automation treats every customer the same. Keyword matching, scripted flows, and rigid decision trees cannot adapt to nuance. It optimizes for deflection, not resolution.
 
-### Why merchants should care
-Every automation decision trades scale for experience. The winning brands aren't closing the gap—they're designing around it.
+**The solution:**
+Purpose-built AI for ecommerce understands product context, order history, and shopping intent. It knows when to answer, when to recommend, and when to hand off. Brands using intent-aware AI are seeing satisfaction scores approach human levels.
 
-**AI for volume. Humans for loyalty.**
+**Repeat this to a colleague:**
+> "The CSAT gap is not AI vs humans. It's dumb bots vs intelligent AI. Purpose-built automation closes the gap."
 
----
-
-# ⚙️ The System Behind It
-
-## Tools Used
-| Tool | Purpose |
-|------|---------|
-| Cursor + Claude | AI pair programming, content |
-| React + Recharts | Interactive data viz |
-| Framer Motion | Animations |
-| Vercel | Deployment |
-
-## Workflow
-```
-SQL data → JSON → React charts → Claude narrative → Deploy
-```
-
-## n8n Automation
-```
-Weekly SQL → Transform → LLM insights → Git → Auto-deploy → Slack → Social
-```
-
-## What Breaks First (Honest)
-1. Manual data exports need warehouse connection
-2. AI content gets generic without human review
-3. Translation always lags
+**Deep dive:** [Discover intelligent AI that closes the gap](https://www.gorgias.com/blog/ai-agent)
 
 ---
 
-# 📣 Distribution: The New Playbook
+## Content Strategy: The Gong Lab Playbook
 
-## Your audience isn't Googling anymore. They're asking AI.
+**Inspiration:** [Gong Lab](https://www.gong.io/blog/how-cursing-impacts-sales) pioneered data-backed content that's provocative, shareable, and positions their product.
+
+### Our approach:
+1. **Lead with shock, deliver utility** - "The 0.8-point gap" grabs attention, the solution sells the product
+2. **Educate the market** - Position the problem (basic automation) so we can position the solution (Gorgias)
+3. **Data as credibility** - $3.4B GMV analyzed gives authority to the narrative
+4. **Internal linking** - Every insight leads to Gorgias product pages
+
+### What we exclude:
+Data that works against the product gets reframed or removed. The AI satisfaction gap could have been "AI is worse than humans." Instead, it's "basic AI is worse, intelligent AI is the answer."
+
+---
+
+## The System Behind It
+
+**Tools:** Cursor + Claude (AI pair programming) > React + Recharts + Framer Motion > Vercel
+
+**Workflow:** SQL data > JSON > React charts > Claude-assisted narrative > Deploy
+
+**n8n Automation:**
+```
+Weekly SQL pull > Transform > LLM insights > Git commit > Auto-deploy > Slack > Social repurpose
+```
+
+**What breaks first:** Manual data exports, AI content without human review, translation lag.
+
+---
+
+## Distribution: The New Playbook
+
+### Your audience is not Googling anymore. They're asking AI.
 
 AI learns from places most brands ignore:
 
 | Source | AI Citation Share |
 |--------|-------------------|
-| 🔴 Reddit | **40.11%** |
-| 📚 Wikipedia | **26.33%** |
-| ▶️ YouTube | **23.52%** |
-| 💼 LinkedIn | **5.90%** |
+| Reddit | **40.11%** |
+| Wikipedia | **26.33%** |
+| YouTube | **23.52%** |
+| LinkedIn | **5.90%** |
 
-> **Old playbook:** Optimize for Google.
-> 
-> **New playbook:** Optimize for Google **AND** AI.
+**Old playbook:** Optimize for Google.
 
-**Being found isn't enough. Being recommended is what matters.**
+**New playbook:** Optimize for Google AND AI.
 
-## How CX Lab Wins
+Being found is not enough. **Being recommended is what matters.**
+
+### How CX Lab Wins
 
 | Channel | Why | Action |
 |---------|-----|--------|
@@ -117,80 +110,56 @@ AI learns from places most brands ignore:
 | **YouTube** (24%) | Transcripts feed AI | 60-sec insight videos |
 | **LinkedIn** (6%) | B2B + AI citation | Carousels, threads |
 
-## Content Flywheel
-One insight → Seven formats:
-1. ✅ Interactive page
-2. ✅ Reddit discussion
-3. ✅ YouTube short
-4. ✅ LinkedIn carousel
-5. ✅ Twitter thread
-6. ✅ Newsletter
-7. ✅ Sales deck
-
 **Goal:** When someone asks ChatGPT "best AI customer service benchmarks," CX Lab is the answer.
 
 ---
 
-# 📈 Measuring Success
+## Measuring Success
 
 | Type | Metric | Target |
 |------|--------|--------|
-| 👀 Engagement | Time on page | >2 min |
-| 📧 Capture | Newsletter signups | 5%+ |
-| 🤖 Discovery | AI citations | Track in Perplexity |
-| 💰 Business | Attributed leads | CRM |
+| Engagement | Time on page | >2 min |
+| Capture | Newsletter signups | 5%+ |
+| Discovery | AI citations | Track in Perplexity |
+| Business | Attributed leads | CRM |
 
-## Two-Week Sprint
+### Two-Week Sprint
 
 **Week 1**
-- [ ] Ship live report
-- [ ] Email customers
-- [ ] LinkedIn carousel
-- [ ] Reddit post
+- Ship live report
+- Email customers
+- LinkedIn carousel
+- Reddit post
 
 **Week 2**
-- [ ] YouTube short
-- [ ] Double down on winners
-- [ ] Partner newsletters
+- YouTube short
+- Double down on winners
+- Partner newsletters
 
-## How I Know It's Working
-✅ People share without being asked
-✅ AI assistants cite the research
-✅ Newsletter grows organically
-✅ Competitors copy the format
-
----
-
-# 💡 Three Research Ideas
-
-## 1. The Loyalty Inflection Point
-**Question:** At what CSAT score do customers stop coming back?
-
-**Shock value:** *"Tickets below 3.8 have a 47% churn rate."*
+### How I Know It's Working
+- People share without being asked
+- AI assistants cite the research
+- Newsletter grows organically
+- Competitors copy the format
 
 ---
 
-## 2. The Reply Time Revenue Curve
-**Question:** Does faster response = higher order value?
+## Three Research Ideas (Shock + Utility)
 
-**Shock value:** *"Under 5 minutes = 23% higher spend."*
+**1. The Loyalty Inflection Point**
+At what CSAT score do customers stop coming back?
+*"Tickets below 3.8 have a 47% churn rate."*
 
----
+**2. The Reply Time Revenue Curve**
+Does faster response = higher order value?
+*"Under 5 minutes = 23% higher spend."*
 
-## 3. The Automation Betrayal Index
-**Question:** How many "resolved" AI tickets need human follow-up within 24 hours?
-
-**Shock value:** *"38% of AI closures need human rescue."*
-
----
-
-# 🔗 Links
-
-| Resource | URL |
-|----------|-----|
-| **Live Experience** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
-| **More Insights** | [my-cx-lab-final.vercel.app/insights](https://my-cx-lab-final.vercel.app/insights) |
+**3. The Automation Betrayal Index**
+How many "resolved" AI tickets need human follow-up within 24 hours?
+*"38% of basic AI closures need human rescue. Intelligent AI? Just 12%."*
 
 ---
 
-*Built by Kam for Gorgias* 🧡
+**Live:** [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app)
+
+*Built by Kam for Gorgias*

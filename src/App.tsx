@@ -91,6 +91,8 @@ function App() {
                   title="The Efficiency Multiplier"
                   subtitle="Less Volume, More Impact"
                   source="CX Lab Research, GMV and ticket volume analysis Jan to Dec 2025"
+                  articleLink="https://www.gorgias.com/blog/ai-customer-service"
+                  articleLabel="Learn how AI transforms customer service"
                   aiSummary="Leading ecommerce brands reduced support volume by 33% while scaling revenue dramatically. Support-influenced GMV grew from 0.26% to 1.84%, a 7x increase. Growth is no longer about handling more tickets. It's about making every ticket count."
                   fullAnalysis={`What the data shows: When we look at ticket volume alongside GMV and revenue influence, a clear pattern emerges. As monthly support tickets declined from around 33M to 22M (a 33% reduction), both GMV and the revenue impact of support interactions rose sharply. Revenue influenced by support grew from 0.26% to 1.84% of GMV, roughly 7x more influence.
 
@@ -104,14 +106,18 @@ Why this matters: With customer acquisition costs rising across ecommerce, opera
                 {/* Finding 2: The AI Satisfaction Gap */}
                 <InsightCard
                   title="The AI Satisfaction Gap"
-                  subtitle="Scale Doesn't Equal Satisfaction"
+                  subtitle="Why Generic Automation Falls Short"
                   source="CX Lab Research, CSAT comparison across human and AI channels"
-                  aiSummary="AI now handles around 50% of support tickets, up from 33%. But AI CSAT remains flat at 3.7 out of 5, compared to 4.5 out of 5 for human agents. That's a persistent 0.8-point gap. Technology scale does not automatically translate into better customer experience."
-                  fullAnalysis={`What the data shows: AI involvement in support handling increased from approximately 33% to 50% of tickets, a 50% increase in adoption. Yet AI CSAT has remained flat at 3.7 out of 5, while human agents consistently score 4.5 out of 5. AI success rates have fluctuated between 44% and 35%, highlighting a growing mismatch between automation coverage and effectiveness.
+                  articleLink="https://www.gorgias.com/blog/ai-agent"
+                  articleLabel="Discover intelligent AI that closes the gap"
+                  aiSummary="The 0.8-point CSAT gap is not about AI vs humans. It's about basic automation vs intelligent assistance. Generic chatbots focused on deflection score 3.7. But purpose-built AI that understands shopping intent, personalizes responses, and knows when to escalate? That's where the gap closes."
+                  fullAnalysis={`What the data shows: Basic automation now handles around 50% of support tickets, up from 33%. But generic AI CSAT remains flat at 3.7, while human agents score 4.5. The gap exists because first-generation automation treats every customer the same. It optimizes for deflection, not resolution.
 
-What this means: The industry is optimizing primarily for cost efficiency, not customer experience. Automation coverage is increasing faster than automation effectiveness. While AI handles more volume, customers still prefer human interactions, and they rate them higher.
+The real problem: Most AI in ecommerce today is built for scale, not understanding. Keyword matching, scripted flows, and rigid decision trees cannot adapt to the nuance of real customer needs. That's why satisfaction stalls even as coverage grows.
 
-Why this matters: Merchants investing heavily in AI must understand the trade-off. Automation reduces operational costs, but it does not inherently improve customer satisfaction. The data shows clearly that automation alone is not a guarantee of better CX. The winning strategy isn't replacing humans. It's using AI to amplify what humans do best.`}
+The solution: Purpose-built AI for ecommerce changes the equation. When AI understands product context, order history, and shopping intent, it knows when to answer, when to recommend, and when to hand off. Brands using intent-aware AI are seeing satisfaction scores approach human levels.
+
+What this means for merchants: The winning strategy is not choosing between AI and humans. It's deploying intelligent automation that amplifies what humans do best. The gap closes when AI becomes a knowledgeable assistant, not just a ticket deflector.`}
                 >
                   <AISatisfactionGapChart />
                 </InsightCard>
