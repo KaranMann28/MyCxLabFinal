@@ -106,79 +106,262 @@ Every insight must either:
 
 ---
 
-## The System Behind It
+## The System Behind It (Step-by-Step)
 
-**Tools:** Cursor + Claude (AI pair programming) > React + Recharts + Framer Motion > Vercel
+### 🔗 Access Everything
 
-**Workflow:** SQL data > JSON > React charts > Claude-assisted narrative > Deploy
+| Resource | Link |
+|----------|------|
+| **Live Site** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
+| **GitHub Repo** | [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal) |
+| **Key Components** | `/src/components/charts/` — all chart code |
+| **Data Layer** | `/src/data/mockData.ts` — structured JSON from SQL |
 
-**n8n Automation:**
+### Step 1: Data Extraction
 ```
-Weekly SQL pull > Transform > LLM insights > Git commit > Auto-deploy > Slack > Social repurpose
+SQL Query (BigQuery/Redshift) → Export CSV → Transform to JSON
+```
+- Monthly aggregation of tickets, GMV, CSAT scores
+- Filtering: Remove incomplete months (Dec CSAT), outliers
+- Output: `mockData.ts` with typed interfaces
+
+### Step 2: Chart Development
+```
+React + Recharts + Framer Motion
+```
+Key files:
+- `AIRevenueInfluenceChart.tsx` — Efficiency Multiplier (ComposedChart: Bar + Line)
+- `AISatisfactionGapChart.tsx` — CSAT Gap (dual Y-axis, excludes Dec)
+- `Charts.css` — Responsive styling, dark mode support
+
+### Step 3: Narrative Layer
+```
+InsightCard component wraps each chart with:
+- Title + Subtitle (reframed for product positioning)
+- Quick Take (AI summary)
+- Full Analysis (expandable)
+- Source + CTA links to case studies
 ```
 
-**What breaks first:** Manual data exports, AI content without human review, translation lag.
+### Step 4: Content Curation
+AI pair programming (Claude in Cursor) to:
+- Draft narratives from data
+- Reframe anti-AI findings to pro-intelligent-AI
+- Remove double-dashes and AI-sounding language
+- Human review for tone and accuracy
+
+### Step 5: Deploy
+```bash
+npm run build && npx vercel --prod --yes
+```
+- Vercel auto-deploys from GitHub main branch
+- Preview URLs for each commit
+
+### n8n Automation Flow (Future State)
+```
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│ Weekly SQL  │ →  │ Transform   │ →  │ LLM Draft   │
+│ Scheduled   │    │ to JSON     │    │ Insights    │
+└─────────────┘    └─────────────┘    └─────────────┘
+                                            ↓
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│ Slack       │ ←  │ Auto-deploy │ ←  │ Git Commit  │
+│ Notification│    │ Vercel      │    │ via API     │
+└─────────────┘    └─────────────┘    └─────────────┘
+                                            ↓
+                                   ┌─────────────┐
+                                   │ Repurpose   │
+                                   │ LinkedIn,   │
+                                   │ Reddit, YT  │
+                                   └─────────────┘
+```
+
+### What Breaks First (Honest Assessment)
+1. **Manual data exports** — Need direct SQL connection or scheduled exports
+2. **AI content drift** — LLM narratives need human review before publish
+3. **Translation lag** — French version needs manual sync
+4. **Chart responsiveness** — Complex charts need mobile-specific views
 
 ---
 
-## Distribution: The New Playbook
+## Distribution: The Concrete Plan
 
-### Your audience is not Googling anymore. They're asking AI.
+### Why This Matters Now
 
-AI learns from places most brands ignore:
+Your audience is not Googling anymore. They're asking AI.
 
-| Source | AI Citation Share |
-|--------|-------------------|
-| Reddit | **40.11%** |
-| Wikipedia | **26.33%** |
-| YouTube | **23.52%** |
-| LinkedIn | **5.90%** |
+| Source | AI Citation Share | What This Means |
+|--------|-------------------|-----------------|
+| Reddit | **40.11%** | AI's #1 learning source |
+| Wikipedia | **26.33%** | Authority signals matter |
+| YouTube | **23.52%** | Transcripts feed LLMs |
+| LinkedIn | **5.90%** | B2B conversations get indexed |
 
-**Old playbook:** Optimize for Google.
+**Goal:** When someone asks ChatGPT "AI customer service benchmarks," CX Lab is the answer.
 
-**New playbook:** Optimize for Google AND AI.
+---
 
-Being found is not enough. **Being recommended is what matters.**
+### 📋 Week 1 Distribution Checklist
 
-### How CX Lab Wins
+#### LinkedIn (B2B + AI Citation)
 
-| Channel | Why | Action |
-|---------|-----|--------|
-| **Reddit** (40%) | AI's #1 source | Post insights as discussions in r/ecommerce |
-| **YouTube** (24%) | Transcripts feed AI | 60-sec insight videos |
-| **LinkedIn** (6%) | B2B + AI citation | Carousels, threads |
+**Target Accounts to Engage:**
+| Name | Role | Why | How to Find |
+|------|------|-----|-------------|
+| Eli Weiss | VP CX, Jones Road | 180K followers, CX thought leader | [linkedin.com/in/eliweisss](https://linkedin.com/in/eliweisss) |
+| Nik Sharma | DTC Newsletter | 120K followers, ecom focus | [linkedin.com/in/maborisov](https://linkedin.com/in/niksharmaldq) |
+| Kristen LaFrance | Resilient Retail | CX/retention expert | [linkedin.com/in/kristenlafrance](https://linkedin.com/in/kristenlafrance) |
+| Yaw Aning | Malomo | Post-purchase CX | Search "Yaw Aning Malomo" |
+| Val Geisler | Klaviyo/Fix My Churn | Email + retention | Search "Val Geisler" |
 
-**Goal:** When someone asks ChatGPT "best AI customer service benchmarks," CX Lab is the answer.
+**Action:**
+1. Post carousel with 2 key stats (7x revenue, 0.8 gap)
+2. Tag 2-3 relevant people with a question
+3. Comment on their recent posts first (warm up)
+
+**Tool:** [Taplio](https://taplio.com) or [Shield](https://shieldapp.ai) — schedule posts, track engagement
+
+---
+
+#### Reddit (40% of AI Citations)
+
+**Target Subreddits:**
+| Subreddit | Members | Post Angle |
+|-----------|---------|------------|
+| r/ecommerce | 180K | "We analyzed 600M support tickets. Here's what we found about AI." |
+| r/shopify | 220K | "AI customer service benchmark data for Shopify brands" |
+| r/Entrepreneur | 2M | "The data on AI support: 7x revenue influence, but satisfaction lags" |
+| r/CustomerSuccess | 30K | "CSAT gap between human and AI support — here's the data" |
+| r/artificial | 1.3M | "Real data on AI in customer service (not hype)" |
+
+**Action:**
+1. Post as text post (not link) with key findings
+2. Include methodology link at bottom
+3. Engage authentically in comments
+4. Don't shill — provide value, mention Gorgias only if asked
+
+**Tool:** [Later for Reddit](https://later.com) or manual — Reddit hates automation
+
+---
+
+#### YouTube (24% of AI Citations)
+
+**Content Format:** 60-90 second insight videos
+
+**Video 1:** "AI customer service is driving 7x more revenue. Here's the data."
+**Video 2:** "The 0.8-point satisfaction gap nobody's talking about"
+
+**Distribution:**
+- YouTube Shorts
+- TikTok (same video)
+- LinkedIn native video
+- Twitter/X
+
+**Tool:** [Descript](https://descript.com) — edit with AI, auto-captions
+**Tool:** [OpusClip](https://opus.pro) — auto-clip long videos into shorts
+
+---
+
+#### Newsletter Partnerships
+
+**Target Newsletters:**
+| Newsletter | Audience | Contact Method |
+|------------|----------|----------------|
+| **The Hustle** | 2.5M | Paid placement or pitch |
+| **Morning Brew** | 4M | Pitch to commerce editor |
+| **DTC Newsletter** (Nik Sharma) | 150K | DM on Twitter/LinkedIn |
+| **Retention.blog** | 15K | Email founder directly |
+| **CX Insider** | 10K | Pitch unique data |
+| **Eli's CX Newsletter** | 20K | Relationship-based |
+
+**Action:**
+1. Draft 3-paragraph pitch with 1 unique stat
+2. Offer exclusive data angle for their audience
+3. Follow up once after 5 days
+
+**Tool:** [Hunter.io](https://hunter.io) — find email addresses
+**Tool:** [Apollo.io](https://apollo.io) — contact database + sequences
+
+---
+
+#### Influencer/Creator Outreach
+
+**How to Source:**
+1. **SparkToro** ([sparktoro.com](https://sparktoro.com)) — Find who your audience follows
+   - Search: "ecommerce customer service"
+   - Export top 50 accounts
+2. **Followerwonk** — Twitter/X audience analysis
+3. **Manual LinkedIn search** — "Head of CX" + "ecommerce"
+
+**Outreach Template:**
+```
+Subject: Quick data for your audience (no ask)
+
+Hey [Name],
+
+We just published benchmark data from 600M ecommerce support tickets. 
+Two findings your audience might care about:
+
+1. AI-influenced revenue grew 7x (0.26% → 1.84% of GMV)
+2. The CSAT gap: Human 4.5 vs AI 3.7 — but intelligent AI is closing it
+
+Happy to share the full data if useful. No strings.
+
+[Link to CX Lab]
+
+— Kam
+```
+
+---
+
+### 📊 Tracking & Measurement
+
+| Channel | Tool | Metric |
+|---------|------|--------|
+| LinkedIn | Shield / Taplio | Impressions, engagement rate |
+| Reddit | Manual + Reddit Analytics | Upvotes, comments, traffic |
+| YouTube | YouTube Studio | Views, watch time, CTR |
+| Newsletter | Beehiiv / ConvertKit | Open rate, click rate |
+| Overall | Google Analytics 4 | Traffic by source, time on page |
+| AI Citations | Perplexity.ai searches | Manual tracking |
+
+---
+
+### Week 1 vs Week 2
+
+**Week 1: Launch & Seed**
+- [ ] Ship live report ✅
+- [ ] Email 15,000 Gorgias customers
+- [ ] LinkedIn carousel + 5 comments on target accounts
+- [ ] Reddit post in r/ecommerce + r/shopify
+- [ ] DM 3 newsletter owners
+
+**Week 2: Amplify Winners**
+- [ ] YouTube short (top-performing insight)
+- [ ] Double down on channel with best engagement
+- [ ] Partner newsletter placements go live
+- [ ] Create Twitter/X thread from best Reddit comments
+- [ ] Track Perplexity citations
 
 ---
 
 ## Measuring Success
 
-| Type | Metric | Target |
-|------|--------|--------|
-| Engagement | Time on page | >2 min |
-| Capture | Newsletter signups | 5%+ |
-| Discovery | AI citations | Track in Perplexity |
-| Business | Attributed leads | CRM |
-
-### Two-Week Sprint
-
-**Week 1**
-- Ship live report
-- Email customers
-- LinkedIn carousel
-- Reddit post
-
-**Week 2**
-- YouTube short
-- Double down on winners
-- Partner newsletters
+| Type | Metric | Target | Tool |
+|------|--------|--------|------|
+| Engagement | Time on page | >2 min | GA4 |
+| Capture | Newsletter signups | 5%+ | Beehiiv |
+| Social | LinkedIn impressions | 50K+ | Shield |
+| Reddit | Upvotes | 100+ | Manual |
+| Discovery | AI citations | Track weekly | Perplexity |
+| Business | Demo requests | 10+ | CRM |
 
 ### How I Know It's Working
 - People share without being asked
 - AI assistants cite the research
 - Newsletter grows organically
 - Competitors copy the format
+- Sales team uses insights in calls
 
 ---
 
