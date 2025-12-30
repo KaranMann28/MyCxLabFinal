@@ -14,25 +14,81 @@ This section contains everything the team needs to review the technical implemen
 
 ## 📸 Screenshots (Embedded Under Correct Sections)
 
-### Hero Section
-![Hero Section](public/screenshots/screenshot-hero-section.png)
-*Title animation with Framer Motion, responsive tagline, CTAs*
+> **For easy editor feedback:** Screenshots are organized by page section. Reference these when adding Notion comments.
 
-### Key Findings Cards
-![Key Findings](public/screenshots/cxlab-keyfindings-section.png)
-*Two Trends Defining 2025 - animated stat cards*
+---
 
-### Efficiency Multiplier Chart
-![Efficiency Multiplier](public/screenshots/cxlab-efficiency-multiplier-chart.png)
-*GMV vs AI Influence Rate - the 7x growth story*
+### 🏠 MAIN PAGE (Homepage)
 
-### Methodology Section
-![Methodology](public/screenshots/cxlab-methodology.png)
-*Data source transparency, metrics explanation*
+#### 1. Hero Section
+![Hero Section](public/screenshots/cxlab-1-hero.png)
+*Title animation with Framer Motion, "Customer Experience Research Lab" with color-cycling click animation, responsive tagline, CTAs*
 
-### Full Page View
-![Full Page](public/screenshots/cxlab-full-page.png)
-*Complete responsive layout*
+#### 2. Research Lock/Key Findings
+![Research Lock & Key Findings](public/screenshots/cxlab-2-research-unlock.png)
+*"The Research" section with unlock animation, Two Trends Defining 2025 stat cards*
+
+#### 3. Efficiency Multiplier Chart (Main Insight)
+![Efficiency Multiplier](public/screenshots/cxlab-3-efficiency-chart.png)
+*GMV vs AI Influence Rate - the 7x growth story, with annotations*
+
+#### 4. Full Analysis (Expanded)
+![Full Analysis](public/screenshots/cxlab-4-full-analysis.png)
+*Expandable "Read more" section showing complete insight analysis*
+
+#### 5. Explore More Research Link
+![Explore More Research](public/screenshots/cxlab-5-explore-more.png)
+*Link to "More Insights" page for additional charts*
+
+#### 6. Methodology Section
+![Methodology](public/screenshots/cxlab-6-methodology.png)
+*Data source transparency, metrics explanation, "What This Means for Merchants"*
+
+#### 7. Limitations & AI Evolution
+![Limitations](public/screenshots/cxlab-7-limitations.png)
+*Research limitations, correlation ≠ causation disclaimer, pro-AI framing*
+
+#### 8. Footer
+![Footer](public/screenshots/cxlab-8-footer.png)
+*CX Lab footer with Gorgias branding, privacy statement*
+
+---
+
+### 📊 MORE INSIGHTS PAGE (/insights)
+
+#### 1. AI Satisfaction Gap Chart (Lead Insight)
+![AI Satisfaction Gap](public/screenshots/cxlab-more-1-hero.png)
+*The AI Satisfaction Gap chart - positioned first on More Insights page, reframed to position intelligent AI as the solution*
+
+#### 2. Quick Take & Read Full Research
+![Quick Take](public/screenshots/cxlab-more-2-satisfaction-quicktake.png)
+*Quick Take summary, "Read Full Research" deep dive link, Ecommerce AI Index chart intro*
+
+#### 3. AI Index & Adoption Momentum Charts
+![AI Index & Adoption](public/screenshots/cxlab-more-3-ai-index.png)
+*Industry AI Rate metrics (11.05%, 1105x growth), Adoption Momentum chart showing 100% retention*
+
+#### 4. Adoption Momentum & Automation Ceiling Charts
+![Adoption & Automation](public/screenshots/cxlab-more-4-adoption-momentum.png)
+*All Segments vs Mid-Market comparison, Automation Ceiling horizontal bar chart*
+
+#### 5. Automation Ceiling Quick Take & CTA
+![Automation Ceiling & CTA](public/screenshots/cxlab-more-5-automation-ceiling.png)
+*Peak Automation 92%, Floor 23%, "Want to see how your brand compares?" CTA*
+
+---
+
+### 📖 DEEP DIVE ARTICLE PAGES (/research/:slug)
+
+> Deep dive articles are Ramp-inspired long-form content pages with:
+> - Hero section with title, subtitle, read time
+> - Sticky table of contents sidebar
+> - Chart integration
+> - Methodology transparency
+> - CTA to case study
+> - Social share buttons
+
+*(Screenshots available at `/research/efficiency-multiplier` and `/research/ai-satisfaction-gap`)*
 
 ---
 
