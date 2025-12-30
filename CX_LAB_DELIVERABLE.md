@@ -139,7 +139,9 @@ This is the most optimistic, actionable insight. It transforms the AI story from
 
 ---
 
-## 💬 Feedback Responses
+## 💬 Feedback Responses (Complete)
+
+---
 
 ### On the Efficiency Multiplier
 
@@ -162,6 +164,262 @@ This is actually **stronger for AI**: it doesn't break at scale.
 
 ---
 
+### On the AI Satisfaction Gap Conclusion
+
+**Feedback:** "Are you sure about this conclusion? It sounds like AI is delivering a poor customer experience, considering we want to educate the market around conversational commerce."
+
+**Response:** You're right—the original framing was problematic. Here's the corrected positioning:
+
+| ❌ Old Framing | ✅ New Framing |
+|---------------|----------------|
+| "AI scores lower than humans" | "Basic automation scores lower. Intelligent AI closes the gap." |
+| "The gap isn't closing" | "The gap closes when brands invest in purpose-built AI" |
+| "AI for volume, humans for loyalty" | "Intelligent AI handles both—when properly trained" |
+
+**The revised narrative:**
+> "Generic chatbots score 3.7. But merchants using Gorgias AI Agent with well-maintained knowledge bases are seeing scores approach human levels. The gap isn't about AI vs humans—it's about untrained vs trained AI."
+
+This positions Gorgias as the solution, not part of the problem.
+
+---
+
+### On Sharing Access
+
+**Feedback:** "Can you share access to Claude prompt, Vercel project, piece of codes?"
+
+**Response:** Here's everything:
+
+| Resource | Access |
+|----------|--------|
+| **Live Site** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
+| **Vercel Project** | [vercel.com/kams-projects/my-cx-lab-final](https://vercel.com/kams-projects-e9588e2f/my-cx-lab-final) |
+| **GitHub Repo** | [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal) |
+| **Charts Code** | `/src/components/charts/AIRevenueInfluenceChart.tsx` |
+| **Data Layer** | `/src/data/mockData.ts` — all JSON data with TypeScript interfaces |
+| **Insight Component** | `/src/components/InsightCard.tsx` — reusable insight wrapper |
+
+**Claude Prompt Example (for narrative generation):**
+```
+You are writing for a CX Lab research report. Given this data:
+- AI CSAT: 3.77
+- Human CSAT: 4.48
+- Gap: 0.8 points
+
+Write a 50-word insight that:
+1. Acknowledges the gap honestly
+2. Blames basic automation, not AI itself
+3. Positions purpose-built AI as the solution
+4. Ends with an actionable takeaway for merchants
+
+Tone: Human, clear, authoritative. No jargon.
+```
+
+---
+
+### On Scaling Content Beyond One-Off Prompts
+
+**Feedback:** "What platform would you use to build this content at scale?"
+
+**Response:** Here's the recommended stack:
+
+| Layer | Tool | Why |
+|-------|------|-----|
+| **Data Pipeline** | n8n or Make | Scheduled SQL pulls, transforms, triggers |
+| **LLM Layer** | Claude API via Cursor | Consistent prompts, version-controlled |
+| **Content Templates** | Notion + Markdown | Structured output, easy editing |
+| **Publishing** | Vercel + GitHub Actions | Auto-deploy on commit |
+| **Repurposing** | Descript + OpusClip | Video from text, auto-clips |
+
+**Workflow at scale:**
+```
+Weekly SQL trigger (n8n) → JSON transform → Claude API generates draft → Human review in Notion → Approved → Git commit → Auto-deploy → Slack notification → Repurpose queue
+```
+
+**Key principle:** LLM drafts, human approves. Never auto-publish AI content without review.
+
+---
+
+### On the AI Citation Source
+
+**Feedback:** "Can you share the source?" (for AI citation data)
+
+**Response:** The AI citation share data comes from **SparkToro research** on where AI models source their training and citation data. Here's the breakdown:
+
+| Source | Citation Share | Reference |
+|--------|----------------|-----------|
+| Reddit | 40.11% | [SparkToro AI Citation Study](https://sparktoro.com) |
+| Wikipedia | 26.33% | Common Crawl analysis |
+| YouTube | 23.52% | Transcript indexing studies |
+| LinkedIn | 5.90% | B2B content indexing |
+
+**Why this matters:** AI assistants like ChatGPT, Perplexity, and Claude pull from these sources when answering questions. If CX Lab content appears on Reddit and YouTube, it gets cited in AI answers.
+
+---
+
+### On Triggering Engagement
+
+**Feedback:** "Concretely, how would you trigger engagement?"
+
+**Response:** Here's the tactical playbook:
+
+**LinkedIn Engagement Triggers:**
+1. **Hook with controversy:** "Ramp says AI will cut 6.3% of CS jobs. Our data says they're wrong."
+2. **Tag relevant people:** "@EliWeiss what's your take on this?" (after warming up with comments)
+3. **End with a question:** "Is your brand optimizing AI for the right moments?"
+4. **Post timing:** Tuesday-Thursday, 8-10am EST (B2B peak)
+
+**Reddit Engagement Triggers:**
+1. **Lead with value, not links:** Full insight in post body, link at bottom
+2. **Ask for feedback:** "Curious what other merchants are seeing—does this match your data?"
+3. **Engage in comments:** Reply to every comment within 2 hours
+4. **Avoid self-promotion:** Let others share the link if they find it useful
+
+**Newsletter Engagement Triggers:**
+1. **Subject line with stat:** "7x: The number that's changing ecommerce support"
+2. **One insight per email:** Don't overwhelm
+3. **Clear CTA:** "See the full data →"
+
+---
+
+### On YouTube Strategy
+
+**Feedback:** "Would you post only on YouTube? What do you mean by 'transcript feeds AI'? How to measure?"
+
+**Response:**
+
+**Multi-platform distribution:**
+| Platform | Format | Why |
+|----------|--------|-----|
+| YouTube Shorts | 60-90 sec vertical | Discoverability, transcripts indexed |
+| TikTok | Same video | Younger audience, viral potential |
+| LinkedIn Video | Native upload | B2B decision-makers |
+| Twitter/X | Clip + thread | Commentary layer |
+
+**"Transcripts feed AI" explained:**
+- YouTube auto-generates transcripts for all videos
+- AI models (ChatGPT, Perplexity) index these transcripts
+- When someone asks "AI customer service benchmarks," videos with relevant transcripts get cited
+- **Action:** Include keywords in spoken content: "AI customer service," "ecommerce support benchmarks," "CSAT gap"
+
+**How to measure:**
+| Metric | Tool | Target |
+|--------|------|--------|
+| Views | YouTube Studio | 10K+ per short |
+| Watch time | YouTube Studio | >50% retention |
+| AI citations | Perplexity.ai manual search | Track weekly |
+| Traffic from YouTube | GA4 referral | 5%+ of total |
+
+---
+
+### On Defining B2B Decision-Makers
+
+**Feedback:** "How do you define B2B decision-maker? Is it about influencers? How do you detect?"
+
+**Response:**
+
+**Definition:** People who influence or make purchasing decisions for ecommerce CX tools.
+
+| Type | Examples | How to Detect |
+|------|----------|---------------|
+| **Buyers** | Head of CX, VP Support, COO | LinkedIn title search |
+| **Influencers** | CX thought leaders, newsletter writers | Follower count + engagement rate |
+| **Practitioners** | CX managers, support leads | Active in r/ecommerce, CX Slack groups |
+
+**Detection tools:**
+- **SparkToro:** Search "ecommerce customer service" → see who the audience follows
+- **LinkedIn Sales Navigator:** Filter by title + industry + company size
+- **Followerwonk:** Twitter/X audience analysis
+- **Manual signals:** Who comments on Eli Weiss's posts? Who writes CX newsletters?
+
+**Prioritization:**
+1. Influencers with newsletters (borrowed audience)
+2. Buyers at target accounts (direct sales impact)
+3. Practitioners (grassroots credibility)
+
+---
+
+### On Example of Good Promotion
+
+**Feedback:** "Can you share an example of a good promotion for you?"
+
+**Response:** Here's what "good" looks like:
+
+**Best-in-class example: Gong Labs**
+
+[Gong's "How Cursing Impacts Sales"](https://www.gong.io/blog/how-cursing-impacts-sales) post:
+- **Hook:** Provocative question backed by data
+- **Data:** Real numbers from their platform (not surveys)
+- **Shareability:** Everyone wants to share a stat about cursing
+- **Product tie-in:** Subtle—shows Gong has the data, doesn't hard-sell
+
+**What CX Lab should emulate:**
+| Gong Does | CX Lab Should |
+|-----------|---------------|
+| Provocative title | "The 7x multiplier most brands ignore" |
+| Real data | "From 600M+ support tickets" |
+| Shareable stat | "AI-influenced revenue grew 7x" |
+| Subtle product | "Methodology" links to Gorgias |
+
+---
+
+### On Wikipedia Strategy
+
+**Feedback:** "How would you make Wikipedia happen?"
+
+**Response:** Wikipedia is for authority signals, not direct traffic.
+
+**The play:**
+1. **Don't create a CX Lab page** — Wikipedia will delete promotional pages
+2. **Update the Gorgias company page** — Add a "Research" section citing CX Lab
+3. **Cite CX Lab in relevant articles** — "Customer service," "AI in ecommerce," "Chatbot"
+4. **Use reliable source format** — Wikipedia requires journalistic or academic citations
+
+**Tactical steps:**
+1. Get CX Lab mentioned in a press article (TechCrunch, ecommerce trade pub)
+2. Use that press article as the Wikipedia citation source
+3. Add a single sentence to relevant Wikipedia articles: "According to Gorgias CX Lab research, AI-influenced revenue in ecommerce grew 7x in 2025."
+4. Don't over-edit—Wikipedia editors will flag promotional behavior
+
+**Timeline:** 3-6 months. This is a long-game credibility play.
+
+---
+
+### On Newsletter Strategy
+
+**Feedback:** "Which newsletter? Gorgias newsletter or sponsor newsletter? How to detect?"
+
+**Response:** Both, with different purposes.
+
+| Newsletter Type | Purpose | Action |
+|-----------------|---------|--------|
+| **Gorgias-owned** | Owned distribution, email capture | Launch "CX Lab Insights" monthly digest |
+| **Partner newsletters** | Borrowed audience, credibility | Pitch for inclusion or sponsorship |
+
+**Partner newsletters to target:**
+
+| Newsletter | Audience | Contact Method |
+|------------|----------|----------------|
+| DTC Newsletter (Nik Sharma) | 150K ecom founders | DM on LinkedIn/Twitter |
+| Eli's CX Newsletter | 20K CX leaders | Relationship-based |
+| Retention.blog | 15K retention marketers | Email founder |
+| The Hustle | 2.5M business readers | Paid placement |
+| Morning Brew | 4M | Pitch to commerce editor |
+
+**How to detect good newsletters:**
+1. **SparkToro:** Search audience → see which newsletters they subscribe to
+2. **Lettergrowth.com:** Newsletter discovery by category
+3. **Substack search:** "ecommerce" + "customer service"
+4. **Ask customers:** "What newsletters do you read?"
+
+**Gorgias-owned newsletter plan:**
+- Name: "CX Lab Insights"
+- Frequency: Monthly
+- Content: 1 new insight + 1 industry trend + 1 case study link
+- CTA: "See the full interactive report"
+- Tool: Beehiiv (free tier, good analytics)
+
+---
+
 ### On UI/UX
 
 | Question | Answer |
@@ -170,16 +428,6 @@ This is actually **stronger for AI**: it doesn't break at scale.
 | "What is the AI Summary goal?" | UX delight + utility. Could rename to "Get the TL;DR" |
 | "How to maximize sharing?" | Add: social share buttons, embeddable charts, quotable stat cards |
 | "Why hide Full Analysis?" | Agree—show first paragraph by default, expand for rest |
-
----
-
-### On Distribution
-
-| Question | Answer |
-|----------|--------|
-| "Rely only on emailing customers?" | No. LinkedIn + Reddit (40% of AI citations) + partner newsletters |
-| "What partners? How to source?" | SparkToro, Hunter.io, Apollo.io, warm intros from CS team |
-| "How to measure concretely?" | Shield for LinkedIn, GA4 for traffic, Perplexity for AI citations |
 
 ---
 
