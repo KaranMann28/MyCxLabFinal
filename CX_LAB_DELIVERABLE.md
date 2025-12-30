@@ -2,17 +2,298 @@
 
 **Live:** [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app)
 
+**GitHub:** [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal)
+
 ---
 
-## 📸 Screenshots for Notion Comments
+# 📦 COMPLETE CODE, CONTEXT & PROMPTS
 
-| Section | Screenshot | Description |
-|---------|------------|-------------|
-| Hero | ![Hero](public/screenshots/screenshot-hero-section.png) | Title animation, tagline, CTAs |
-| Key Findings | ![Key Findings](public/screenshots/cxlab-keyfindings-section.png) | Two Trends Defining 2025 cards |
-| Efficiency Multiplier | ![Chart](public/screenshots/cxlab-efficiency-multiplier-chart.png) | GMV vs AI Influence Rate |
-| Methodology | ![Methodology](public/screenshots/cxlab-methodology.png) | Data source, metrics, limitations |
-| Full Page | ![Full](public/screenshots/cxlab-full-page.png) | Complete page view |
+This section contains everything the team needs to review the technical implementation.
+
+---
+
+## 📸 Screenshots (Embedded Under Correct Sections)
+
+### Hero Section
+![Hero Section](public/screenshots/screenshot-hero-section.png)
+*Title animation with Framer Motion, responsive tagline, CTAs*
+
+### Key Findings Cards
+![Key Findings](public/screenshots/cxlab-keyfindings-section.png)
+*Two Trends Defining 2025 - animated stat cards*
+
+### Efficiency Multiplier Chart
+![Efficiency Multiplier](public/screenshots/cxlab-efficiency-multiplier-chart.png)
+*GMV vs AI Influence Rate - the 7x growth story*
+
+### Methodology Section
+![Methodology](public/screenshots/cxlab-methodology.png)
+*Data source transparency, metrics explanation*
+
+### Full Page View
+![Full Page](public/screenshots/cxlab-full-page.png)
+*Complete responsive layout*
+
+---
+
+---
+
+## 💻 COMPLETE SOURCE CODE
+
+### 1. AIRevenueInfluenceChart.tsx (Efficiency Multiplier)
+
+**File:** `/src/components/charts/AIRevenueInfluenceChart.tsx`
+
+```typescript
+import { motion } from 'framer-motion';
+import {
+  ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid,
+  Tooltip, ResponsiveContainer, Legend,
+} from 'recharts';
+import './Charts.css';
+
+// REAL DATA FROM SQL QUERY
+const revenueInfluenceData = [
+  { month: "2025-01-01", label: "Jan '25", totalTickets: 27330412, gmvWeb: 30500017.52, gmvInfluenced: 78081.34, gmvInfluencedRate: 0.256 },
+  { month: "2025-02-01", label: "Feb '25", totalTickets: 23175921, gmvWeb: 34447183.44, gmvInfluenced: 213505.13, gmvInfluencedRate: 0.62 },
+  { month: "2025-03-01", label: "Mar '25", totalTickets: 25808854, gmvWeb: 57395546.22, gmvInfluenced: 366045.62, gmvInfluencedRate: 0.638 },
+  { month: "2025-04-01", label: "Apr '25", totalTickets: 22350919, gmvWeb: 70967747.0, gmvInfluenced: 494673.23, gmvInfluencedRate: 0.697 },
+  { month: "2025-05-01", label: "May '25", totalTickets: 26201993, gmvWeb: 101487978.2, gmvInfluenced: 1250228.91, gmvInfluencedRate: 1.232 },
+  { month: "2025-06-01", label: "Jun '25", totalTickets: 23767130, gmvWeb: 71726642.8, gmvInfluenced: 1677029.0, gmvInfluencedRate: 2.338 },
+  { month: "2025-07-01", label: "Jul '25", totalTickets: 24392137, gmvWeb: 161646054.2, gmvInfluenced: 3790241.05, gmvInfluencedRate: 2.345 },
+  { month: "2025-08-01", label: "Aug '25", totalTickets: 23247191, gmvWeb: 282801163.22, gmvInfluenced: 5501281.69, gmvInfluencedRate: 1.945 },
+  { month: "2025-09-01", label: "Sep '25", totalTickets: 21115642, gmvWeb: 351129323.99, gmvInfluenced: 6257018.46, gmvInfluencedRate: 1.782 },
+  { month: "2025-10-01", label: "Oct '25", totalTickets: 22217845, gmvWeb: 470351213.57, gmvInfluenced: 9266605.38, gmvInfluencedRate: 1.97 },
+  { month: "2025-11-01", label: "Nov '25", totalTickets: 25301578, gmvWeb: 1127168410.09, gmvInfluenced: 20732112.71, gmvInfluencedRate: 1.839 },
+  { month: "2025-12-01", label: "Dec '25", totalTickets: 19522957, gmvWeb: 657234517.43, gmvInfluenced: 9609075.67, gmvInfluencedRate: 1.462 },
+];
+
+export function AIRevenueInfluenceChart() {
+  const annotations = [
+    { label: 'Ticket Volume Change', value: '−33%', color: '#E8826E' },
+    { label: 'Revenue Influence Growth', value: '7×', color: 'var(--success)' },
+    { label: 'Influence Rate', value: '0.26% → 1.84%', color: 'var(--text-primary)' },
+    { label: 'Peak Influence', value: '2.3%', color: '#4B5EFC' },
+  ];
+
+  return (
+    <motion.div className="chart-container">
+      <ResponsiveContainer width="100%" height={320}>
+        <ComposedChart data={revenueInfluenceData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="label" />
+          <YAxis yAxisId="left" tickFormatter={(v) => `$${(v/1e9).toFixed(1)}B`} />
+          <YAxis yAxisId="right" orientation="right" tickFormatter={(v) => `${v}%`} />
+          <Bar yAxisId="left" dataKey="gmvWeb" fill="#4B5EFC" />
+          <Line yAxisId="right" dataKey="gmvInfluencedRate" stroke="#E8826E" strokeWidth={3} />
+        </ComposedChart>
+      </ResponsiveContainer>
+    </motion.div>
+  );
+}
+```
+
+---
+
+### 2. AISatisfactionGapChart.tsx
+
+**File:** `/src/components/charts/AISatisfactionGapChart.tsx`
+
+```typescript
+// REAL DATA FROM SQL QUERY - CSAT by channel
+const satisfactionGapData = [
+  { label: "Jan '25", humanTickets: 877372, aiTickets: 169122, csatHuman: 4.46, csatAiFully: 3.70, handoverPercent: 66.7 },
+  { label: "Feb '25", humanTickets: 724308, aiTickets: 140891, csatHuman: 4.50, csatAiFully: 3.72, handoverPercent: 67.2 },
+  { label: "Mar '25", humanTickets: 774920, aiTickets: 174529, csatHuman: 4.51, csatAiFully: 3.80, handoverPercent: 65.8 },
+  { label: "Apr '25", humanTickets: 760450, aiTickets: 183880, csatHuman: 4.51, csatAiFully: 3.72, handoverPercent: 61.2 },
+  { label: "May '25", humanTickets: 784685, aiTickets: 214410, csatHuman: 4.49, csatAiFully: 3.75, handoverPercent: 59.9 },
+  { label: "Jun '25", humanTickets: 778478, aiTickets: 222010, csatHuman: 4.49, csatAiFully: 3.77, handoverPercent: 54.9 },
+  { label: "Jul '25", humanTickets: 829644, aiTickets: 246991, csatHuman: 4.48, csatAiFully: 3.71, handoverPercent: 50.2 },
+  { label: "Aug '25", humanTickets: 773912, aiTickets: 242987, csatHuman: 4.47, csatAiFully: 3.80, handoverPercent: 57.0 },
+  { label: "Sep '25", humanTickets: 757223, aiTickets: 235109, csatHuman: 4.47, csatAiFully: 3.82, handoverPercent: 59.4 },
+  { label: "Oct '25", humanTickets: 774497, aiTickets: 257157, csatHuman: 4.47, csatAiFully: 3.87, handoverPercent: 54.5 },
+  { label: "Nov '25", humanTickets: 864039, aiTickets: 318819, csatHuman: 4.48, csatAiFully: 3.83, handoverPercent: 50.9 },
+];
+
+// Key insight: Human CSAT = 4.48, AI CSAT = 3.77, Gap = 0.8 points
+// But handover rate improved from 67% to 51% (AI completing more independently)
+```
+
+---
+
+### 3. InsightCard.tsx (Reusable Component)
+
+**File:** `/src/components/InsightCard.tsx`
+
+```typescript
+interface InsightCardProps {
+  title: string;
+  subtitle: string;
+  children: ReactNode;      // Chart component
+  aiSummary: string;        // Quick take text
+  fullAnalysis: string;     // Expandable detailed analysis
+  source?: string;
+  articleLink?: string;     // Case study link
+  articleLabel?: string;
+}
+
+// Usage:
+<InsightCard
+  title="The Efficiency Multiplier"
+  subtitle="How Top Brands 7x Their Revenue Influence"
+  source="CX Lab Research, GMV and ticket volume analysis Jan to Dec 2025"
+  articleLink="https://www.gorgias.com/customers/orthofeet"
+  articleLabel="See how Orthofeet automated 56% of tickets →"
+  aiSummary="Leading ecommerce brands reduced support volume by 33%..."
+  fullAnalysis={`What the data shows: ...`}
+>
+  <AIRevenueInfluenceChart />
+</InsightCard>
+```
+
+---
+
+### 4. mockData.ts (Full Data Layer)
+
+**File:** `/src/data/mockData.ts`
+
+```typescript
+// REAL DATA FROM BIGQUERY QUERIES
+
+// Automation Mix Index - Shows AI's growing share of ticket handling
+export const automationMixData = [
+  { month: '2024-01-01', noHumanPct: 0.0, aiTouchedPct: 0.01, totalTickets: 30340849 },
+  { month: '2024-12-01', noHumanPct: 3.23, aiTouchedPct: 3.28, totalTickets: 34216744 },
+  { month: '2025-01-01', noHumanPct: 4.13, aiTouchedPct: 4.11, totalTickets: 27330412 },
+  { month: '2025-11-01', noHumanPct: 10.5, aiTouchedPct: 11.05, totalTickets: 25301578 },
+];
+
+// Summary stats computed from real data
+export const summaryStats = {
+  totalInteractions: '600M+',
+  currentAiTouchedPct: '11.05%',
+  growthMultiple: '1100x',
+  timeframe: 'Jan 2024 - Nov 2025',
+};
+```
+
+---
+
+## 🤖 CLAUDE PROMPTS USED
+
+### Prompt 1: Narrative Generation for Insights
+
+```
+You are writing for a CX Lab research report (Ramp.com/data style). 
+
+Given this data:
+- AI CSAT: 3.77
+- Human CSAT: 4.48
+- Gap: 0.8 points
+- AI share of tickets: 16% → 27% (Jan-Nov 2025)
+- Handover rate: 67% → 51%
+
+Write a 50-word insight that:
+1. Acknowledges the gap honestly
+2. Does NOT position AI as inferior—blame "basic automation" instead
+3. Positions purpose-built AI (Gorgias) as the solution
+4. Ends with an actionable takeaway for merchants
+
+Tone: Human, clear, authoritative. No jargon. No buzzwords.
+```
+
+### Prompt 2: Reframing Negative Data
+
+```
+The data shows AI CSAT is lower than human CSAT. However, we are selling 
+AI-powered customer service (Gorgias).
+
+Reframe this insight so it:
+1. Blames "generic chatbots" or "first-generation automation" for the gap
+2. Positions "intelligent AI" or "purpose-built AI" as the solution
+3. Uses the merchant quality rate (which IS rising) as evidence
+4. Ends with: "The gap closes when brands invest in purpose-built AI"
+
+Do NOT say "AI performs worse" or "AI can't match humans."
+```
+
+### Prompt 3: Quick Take Summary
+
+```
+Write a 3-sentence Quick Take for this chart:
+
+Data: AI-influenced revenue grew from 0.26% to 1.84% of GMV (7x).
+Ticket volume dropped 33%. BFCM GMV was $1.1B.
+
+Rules:
+- First sentence: What the data shows (with numbers)
+- Second sentence: The surprising insight
+- Third sentence: Why merchants should care
+- No em dashes (they look AI-generated)
+- Under 60 words total
+```
+
+### Prompt 4: Case Study Positioning
+
+```
+Given: Orthofeet automated 56% of tickets using Gorgias AI Agent.
+
+Write a 1-sentence link label that:
+1. Mentions the brand name
+2. Includes a specific number
+3. Uses an action verb
+4. Ends with an arrow (→)
+
+Example output: "See how Orthofeet automated 56% of tickets →"
+```
+
+---
+
+## 📁 PROJECT STRUCTURE
+
+```
+MyCxLabFinal/
+├── src/
+│   ├── components/
+│   │   ├── charts/
+│   │   │   ├── AIRevenueInfluenceChart.tsx    ← Efficiency Multiplier
+│   │   │   ├── AISatisfactionGapChart.tsx     ← AI Satisfaction Gap
+│   │   │   ├── AutomationMixChart.tsx         ← Automation trends
+│   │   │   ├── MerchantAdoptionChart.tsx      ← Merchant adoption
+│   │   │   └── Charts.css                     ← Chart styles
+│   │   ├── InsightCard.tsx                    ← Reusable insight wrapper
+│   │   ├── HeroSection.tsx                    ← Title + animations
+│   │   ├── KeyFindings.tsx                    ← Stat cards
+│   │   ├── MethodologySection.tsx             ← Data transparency
+│   │   └── index.ts                           ← Component exports
+│   ├── data/
+│   │   └── mockData.ts                        ← All chart data (from SQL)
+│   ├── context/
+│   │   ├── ThemeContext.tsx                   ← Dark/light mode
+│   │   └── LanguageContext.tsx                ← i18n ready
+│   ├── pages/
+│   │   └── MoreInsights.tsx                   ← /insights page
+│   ├── App.tsx                                ← Main app
+│   └── main.tsx                               ← Entry point
+├── public/
+│   └── screenshots/                           ← All screenshots
+├── package.json
+├── vite.config.ts
+└── CX_LAB_DELIVERABLE.md                      ← This document
+```
+
+---
+
+## 🔗 ACCESS LINKS
+
+| Resource | URL |
+|----------|-----|
+| **Live Site** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
+| **Vercel Dashboard** | [vercel.com/kams-projects-e9588e2f/my-cx-lab-final](https://vercel.com/kams-projects-e9588e2f/my-cx-lab-final) |
+| **GitHub Repo** | [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal) |
+| **Charts Code** | `/src/components/charts/` |
+| **Data Layer** | `/src/data/mockData.ts` |
+| **This Deliverable** | `/CX_LAB_DELIVERABLE.md` |
 
 ---
 
