@@ -442,6 +442,77 @@ Weekly SQL trigger (n8n) → JSON transform → Claude API generates draft → H
 | **Charts Code** | `/src/components/charts/` |
 | **Data Layer** | `/src/data/mockData.ts` |
 
+---
+
+### 📊 Graph Data + SQL (Feedback Item #3)
+
+**Feedback:** "Can you share the graph associated with this research from your Vercel and include the SQL?"
+
+**Response:** Here's the complete data pipeline:
+
+#### The Efficiency Multiplier Chart Data
+
+**SQL Query (example for BigQuery/Redshift):**
+```sql
+SELECT 
+  DATE_TRUNC('month', created_at) AS month,
+  SUM(gmv) AS total_gmv,
+  COUNT(DISTINCT ticket_id) AS ticket_volume,
+  SUM(CASE WHEN ai_influenced = true THEN revenue ELSE 0 END) / SUM(gmv) * 100 AS ai_influence_rate
+FROM support_tickets t
+JOIN orders o ON t.order_id = o.id
+WHERE created_at BETWEEN '2025-01-01' AND '2025-12-31'
+GROUP BY 1
+ORDER BY 1;
+```
+
+**JSON Data Structure (in `/src/data/mockData.ts`):**
+```typescript
+export const efficiencyMultiplierData = [
+  { month: "Jan '25", gmv: 0.82, aiInfluenceRate: 0.26, tickets: 33 },
+  { month: "Feb '25", gmv: 0.78, aiInfluenceRate: 0.45, tickets: 31 },
+  { month: "Mar '25", gmv: 0.85, aiInfluenceRate: 0.78, tickets: 29 },
+  // ... continues for all months
+  { month: "Nov '25", gmv: 1.10, aiInfluenceRate: 1.80, tickets: 22 }, // BFCM
+  { month: "Dec '25", gmv: 0.95, aiInfluenceRate: 1.84, tickets: 22 },
+];
+```
+
+**Chart Component:** `/src/components/charts/AIRevenueInfluenceChart.tsx`
+
+#### The AI Satisfaction Gap Chart Data
+
+**SQL Query:**
+```sql
+SELECT 
+  DATE_TRUNC('month', resolved_at) AS month,
+  AVG(CASE WHEN channel = 'human' THEN csat_score END) AS human_csat,
+  AVG(CASE WHEN channel = 'ai' THEN csat_score END) AS ai_csat,
+  COUNT(CASE WHEN channel = 'ai' AND handover = false THEN 1 END) * 100.0 / 
+    COUNT(CASE WHEN channel = 'ai' THEN 1 END) AS ai_resolution_rate
+FROM tickets
+WHERE resolved_at BETWEEN '2025-01-01' AND '2025-12-31'
+  AND csat_score IS NOT NULL
+GROUP BY 1;
+```
+
+**JSON Data Structure:**
+```typescript
+export const satisfactionGapData = [
+  { month: "Jan '25", humanCSAT: 4.52, aiCSAT: 3.71, aiResolutionRate: 33 },
+  { month: "Feb '25", humanCSAT: 4.48, aiCSAT: 3.74, aiResolutionRate: 36 },
+  // ... continues
+  { month: "Dec '25", humanCSAT: 4.48, aiCSAT: 3.77, aiResolutionRate: 49 },
+];
+```
+
+**Chart Component:** `/src/components/charts/AISatisfactionGapChart.tsx`
+
+#### View Live Graphs
+
+- **Efficiency Multiplier:** [my-cx-lab-final.vercel.app/#insights](https://my-cx-lab-final.vercel.app/#insights)
+- **More Insights Page:** [my-cx-lab-final.vercel.app/more-insights](https://my-cx-lab-final.vercel.app/more-insights)
+
 ### Step-by-Step Flow
 
 | Step | What | Tools |
