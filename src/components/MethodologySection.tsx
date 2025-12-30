@@ -39,8 +39,8 @@ export function MethodologySection() {
           <h2 className="methodology__title">Methodology</h2>
           <p className="methodology__intro">
             CX Lab measures trends in ecommerce customer experience using aggregated, 
-            anonymized data from across the online retail sector. We believe AI will never 
-            replace human connection, but smarter automation frees your team to focus on 
+            anonymized data from across the online retail sector. Intelligent AI is transforming 
+            support from a cost center into a revenue driver, freeing teams to focus on 
             conversations that matter most.
           </p>
         </motion.header>
@@ -144,9 +144,9 @@ export function MethodologySection() {
                 controlled experiments we don't perform at scale.
               </li>
               <li>
-                <strong>The human factor:</strong> AI will never replace human connection in customer 
-                service. The satisfaction gap isn't a technology problem to "solve." It's a signal 
-                about where human empathy remains irreplaceable.
+                <strong>The AI evolution:</strong> First-generation automation created the satisfaction gap. 
+                Intelligent AI that understands context, intent, and when to escalate is closing it. 
+                The best results come from AI that amplifies human expertise, not replaces it.
               </li>
               <li>
                 <strong>Selection bias:</strong> Brands using digital support platforms may skew 
@@ -166,10 +166,10 @@ export function MethodologySection() {
             <p className="methodology__section-text">
               Two strategic imperatives emerge from this data. First, optimize for efficiency: 
               the growth playbook is shifting from "handle more tickets" to "make every ticket count." 
-              Support is becoming a revenue driver, not just a cost center. Second, understand the 
-              trade-off: automation reduces operational costs but doesn't inherently improve 
-              customer satisfaction. The winning strategy isn't replacing humans—it's using AI 
-              to amplify what humans do best.
+              Support is becoming a revenue driver, not just a cost center. Second, invest in 
+              intelligent AI: purpose-built automation that understands context and intent is 
+              closing the satisfaction gap. The winning brands are deploying AI that knows when 
+              to answer, when to recommend, and when to escalate.
             </p>
           </motion.div>
         </div>
