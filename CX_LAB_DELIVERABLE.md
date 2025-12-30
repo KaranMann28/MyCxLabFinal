@@ -901,6 +901,156 @@ Happy to share more if useful.
 
 ---
 
+---
+
+## 🔍 EXPLORE THE AI APPS DIRECTORY
+
+**Requirement:** "Spend time exploring AI app directories. Identify which AI apps could enhance the CX Lab's performance."
+
+I explored:
+- [deepgram.com/ai-apps](https://deepgram.com/ai-apps)
+- [theresanaiforthat.com](https://theresanaiforthat.com/)
+- [Y Combinator AI Companies](https://www.ycombinator.com/companies/industry/ai)
+
+### 🎯 AI Apps That Caught My Attention
+
+#### 1. **Descript** — Video + Audio Repurposing
+| What it does | Role for CX Lab | How it elevates |
+|--------------|-----------------|-----------------|
+| AI-powered video/audio editing, transcription, overdub | Turn written insights into video shorts | 60-second insight videos from text, auto-captioning, YouTube transcript optimization |
+
+**Why this matters:** YouTube transcripts are 23% of AI citations. Descript lets us create video content that gets indexed.
+
+---
+
+#### 2. **OpusClip** — Auto-Clip Generator
+| What it does | Role for CX Lab | How it elevates |
+|--------------|-----------------|-----------------|
+| AI extracts viral clips from long videos | Create 10 clips from 1 insight video | Multi-platform distribution (TikTok, Reels, Shorts) from single source |
+
+**Scale opportunity:** 1 insight → 1 long video → 10 auto-clips → 10 platforms
+
+---
+
+#### 3. **Synthesia** — AI Avatar Videos
+| What it does | Role for CX Lab | How it elevates |
+|--------------|-----------------|-----------------|
+| Generate videos with AI avatars speaking your script | Create "data explainers" without filming | Consistent brand voice, no production costs, multilingual |
+
+**Use case:** Weekly "CX Lab Minute" video series with AI presenter explaining the latest insight.
+
+---
+
+#### 4. **Perplexity Pages** — Research Publishing
+| What it does | Role for CX Lab | How it elevates |
+|--------------|-----------------|-----------------|
+| Create shareable research pages that get cited by AI | Publish insights in AI-native format | Content optimized for AI citation, not just Google |
+
+**Strategic:** If CX Lab publishes on Perplexity Pages, Perplexity AI will cite it in answers.
+
+---
+
+#### 5. **Gamma** — Presentation Generator
+| What it does | Role for CX Lab | How it elevates |
+|--------------|-----------------|-----------------|
+| AI generates beautiful presentations from text | Turn insights into sales decks | Sales team gets ready-to-use slides for prospect calls |
+
+**Use case:** "Here's what the data says about your industry" → custom deck in 30 seconds.
+
+---
+
+#### 6. **ElevenLabs** — Voice Synthesis
+| What it does | Role for CX Lab | How it elevates |
+|--------------|-----------------|-----------------|
+| Clone voices, generate natural speech | Audio versions of insights | Podcast snippets, voiceovers for videos |
+
+**Use case:** "CX Lab Audio Digest" — 5-minute audio summary for commuters.
+
+---
+
+#### 7. **Heygen** — AI Video Spokesperson
+| What it does | Role for CX Lab | How it elevates |
+|--------------|-----------------|-----------------|
+| Create talking-head videos from text | Personalized outreach at scale | "Hey [Name], I saw your post about AI in CX..." |
+
+**Use case:** Personalized video DMs to influencers: "Here's data that validates your take."
+
+---
+
+#### 8. **n8n** — Workflow Automation
+| What it does | Role for CX Lab | How it elevates |
+|--------------|-----------------|-----------------|
+| Connect any app to any app, trigger workflows | Automate the entire content pipeline | SQL pull → insight draft → approval → publish → distribute |
+
+**The backbone:** This is how we scale without adding headcount.
+
+---
+
+### 📊 AI Tools I'd Use in Week 1
+
+| Tool | Purpose | Cost | Priority |
+|------|---------|------|----------|
+| **n8n** | Automate SQL → insight pipeline | Free (self-hosted) | 🔴 Critical |
+| **Descript** | Create video versions of insights | $12/mo | 🟡 High |
+| **OpusClip** | Auto-generate social clips | $9/mo | 🟡 High |
+| **Gamma** | Sales deck generator | Free tier | 🟢 Medium |
+| **Perplexity Pages** | AI-native publishing | Free | 🟢 Medium |
+
+---
+
+### 🧪 Other Tools Worth Exploring
+
+| Tool | What it does | Potential role |
+|------|--------------|----------------|
+| **Lovable.dev** | AI builds full apps from prompts | Rapid prototyping of new CX Lab features |
+| **Cursor** | AI-powered coding | Already using — builds 10x faster |
+| **Runway** | AI video generation | B-roll for insight videos |
+| **Claude Artifacts** | Interactive embeds | Shareable calculator widgets |
+| **Vercel v0** | AI-generated UI components | New chart styles on demand |
+
+---
+
+### 🎯 The Content Flywheel with AI Tools
+
+```
+1. SQL data (BigQuery)
+      ↓
+2. n8n triggers weekly
+      ↓
+3. Claude drafts insight
+      ↓
+4. Human reviews in Notion
+      ↓
+5. Approved → Git push → Vercel deploys
+      ↓
+6. Descript creates video version
+      ↓
+7. OpusClip generates 10 clips
+      ↓
+8. Auto-post to: LinkedIn, Twitter, TikTok, YouTube Shorts
+      ↓
+9. Gamma creates sales deck
+      ↓
+10. Perplexity Pages publishes for AI citation
+```
+
+**Result:** 1 insight becomes 15+ content pieces across 10+ channels. Zero extra headcount.
+
+---
+
+### 💡 Big Idea: "CX Lab AI Agent"
+
+What if the CX Lab itself had an AI agent that could:
+- Answer questions about the data ("What's the AI influence rate for BFCM?")
+- Generate custom reports for prospects
+- Create on-demand visualizations
+
+**Tool:** Vercel AI SDK + Claude API + CX Lab data layer
+
+**Impact:** Turn passive report into interactive research assistant.
+
+---
+
 ## 📏 Measuring Success
 
 | Type | Metric | Target | Tool |
