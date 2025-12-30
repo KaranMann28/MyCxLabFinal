@@ -4,6 +4,150 @@
 
 ---
 
+## 📸 Screenshots of the CX Lab
+
+Screenshots are available in the project repository for Notion commenting:
+- `screenshot-hero-section.png` - Hero section with title and CTA
+- `cxlab-keyfindings-section.png` - Two Trends Defining 2025 (Key Findings cards)
+- `cxlab-efficiency-multiplier-chart.png` - The Efficiency Multiplier chart with Quick Take
+- `cxlab-methodology.png` - Methodology section
+- `cxlab-full-page.png` - Full page screenshot
+
+---
+
+## 💬 Feedback Responses
+
+### On the Efficiency Multiplier Insight
+
+**Feedback:** "According to data, it sounds to me that the GMV influence is pretty stable. The drop seems very minimal during BFCM."
+
+**Response:** You're absolutely right. Looking at the chart more carefully:
+- The AI influence rate holds relatively steady between 1.5% and 2.3% throughout the year
+- The BFCM "drop" (Nov-Dec) is from 2.3% to 1.8%, which is a 22% relative decline, not dramatic
+- The real story is the **starting point growth**: Jan (0.26%) → Year average (~1.8%), a 7x improvement
+
+**Reframed narrative:** Instead of emphasizing the BFCM dip, the insight should focus on:
+> "AI influence on revenue has stabilized at 7x its January baseline. Even during peak BFCM volume when GMV spiked to $1.1B, AI-influenced revenue held at 1.8%, proving that intelligent automation maintains its impact at scale."
+
+This is actually a **stronger pro-AI message**: AI doesn't break under pressure.
+
+---
+
+### On the Merchant Quality Rate Graph
+
+**Feedback:** "The merchant quality rate (= user feedback on Gorgias AI Agent knowledge base resources and execution performance) is actually going up. Curious why not using this graph instead in the CX lab? If you had to do it now, what will be the narrative around it?"
+
+**Response:** This is a powerful insight I should have included. Here's how I'd position it:
+
+**Proposed New Insight: "The Quality Flywheel"**
+
+| Metric | What It Shows |
+|--------|--------------|
+| Merchant Quality Rate | User feedback on AI Agent KB + execution |
+| Trend | Rising over time |
+| Implication | AI gets smarter as merchants invest in it |
+
+**Narrative:**
+> "The merchants who invest in their AI Agent's knowledge base see compounding returns. Quality rate is rising not because AI got better overnight, but because the best merchants are training it. This is the flywheel: better KB → better AI responses → higher quality scores → more merchant investment → better KB."
+
+**Why this works for Gorgias:**
+- Shows AI is not static, it learns
+- Credits the merchant (your customer) for the improvement
+- Creates a clear action: "Invest in your knowledge base"
+- Positions Gorgias AI Agent as trainable, not just scalable
+
+**Why I didn't include it initially:**
+I didn't have access to this specific metric in the initial data exploration. Given the data, this should replace or complement the AI Satisfaction Gap as it tells a more optimistic, actionable story.
+
+---
+
+### On UI and UX Feedback
+
+**Q: "From a UI perspective, what's your take on this first section? Do you think we can improve it or deliver value right away? How would you update it if you had more time?"**
+
+**A:** Current state delivers value immediately, but here's what I'd improve with more time:
+
+| Element | Current | With More Time |
+|---------|---------|----------------|
+| Hero | Clean, animated title | Add live metric ticker (e.g., "3.4B+ tickets analyzed") |
+| Key Findings cards | Static hover | Make cards interactive, click to filter chart data |
+| Chart | Responsive, clear | Add data point hover states, export functionality |
+| Full Analysis | Behind "Read more" button | Show first paragraph by default |
+
+**Q: "What is the goal of the Generate AI Summary here?"**
+
+**A:** The "Generate AI Summary" button serves two purposes:
+1. **UX delight**: Shows Gorgias practices what it preaches (AI-powered features)
+2. **Utility**: Provides a TL;DR for busy visitors who want the insight without reading
+
+**If it's confusing, I'd rename it:** "Get the TL;DR" or just remove it and show the Quick Take more prominently.
+
+**Q: "What would you do to maximize the sharing opportunities here from people visiting the website?"**
+
+**A:** Currently missing: easy social sharing. I'd add:
+1. **One-click share buttons** on each insight card (LinkedIn, Twitter/X, copy link)
+2. **Embeddable chart code** (the "Embed" button exists but could be more prominent)
+3. **Quotable stat cards** — pre-formatted images for each key metric (e.g., "7x revenue influence" card)
+4. **Newsletter signup incentive** — "Get the next CX Lab edition first" instead of generic "Subscribe"
+
+**Q: "This section is great, why hide it behind a button?"**
+
+**A:** You're right. The Full Analysis deserves more visibility. Options:
+- Show the first 2-3 sentences by default, expand for the rest
+- Move to a dedicated "Read the full insight" page with better SEO
+- Use an accordion that starts open on desktop, collapsed on mobile
+
+---
+
+### On Distribution Strategy
+
+**Q: "How do you maximize the exposure to our prospects? Do you want to rely only on emailing customers?"**
+
+**A:** No. Email to customers is step 1 (captive audience), but real exposure comes from:
+
+| Channel | Priority | Why |
+|---------|----------|-----|
+| LinkedIn | High | B2B decision-makers, AI citations at 6% |
+| Reddit | High | 40% of AI citations, organic credibility |
+| Partner newsletters | Medium | Borrowed audience, higher trust |
+| YouTube | Medium | Transcripts feed AI, long-tail discovery |
+| Email (customers) | Baseline | Easy win, validates interest |
+
+**Q: "What partner and how would you source them?"**
+
+**A:** See the detailed distribution plan in Section 7. Specific sourcing:
+- **SparkToro** for audience research (who do ecommerce CX people follow?)
+- **Hunter.io / Apollo.io** for finding newsletter owner emails
+- **Manual LinkedIn search** for "Head of CX" + "ecommerce" + "newsletter"
+- **Warm intros** from existing Gorgias network (customer success team knows who's active)
+
+**Q: "How would you measure that concretely?"**
+
+**A:** Tracking by channel:
+| Channel | Tool | Metric |
+|---------|------|--------|
+| LinkedIn | Shield/Taplio | Impressions, engagement rate |
+| Reddit | Manual | Upvotes, comments, referral traffic |
+| YouTube | Studio | Views, watch time |
+| Newsletter | Beehiiv/ConvertKit | Open rate, click rate |
+| AI Citations | Perplexity searches | Manual weekly check |
+| Overall | GA4 + CRM | Traffic source, demo requests |
+
+---
+
+### On the Two Graph Concepts
+
+**Q: "Please propose at least two meaningful graph concepts that could anchor the CX Lab's first edition."**
+
+**A:** Already delivered:
+1. **The Efficiency Multiplier** — GMV vs AI-influenced revenue rate (7x growth)
+2. **The AI Satisfaction Gap** — Human vs AI CSAT (0.8-point gap, reframed as basic vs intelligent AI)
+
+**Additional graph I'd add if building v2:**
+3. **The Quality Flywheel** — Merchant Quality Rate over time (shows AI improving with investment)
+
+---
+
 ## 1. Interpret the Data Before You Touch Anything Else
 
 Before building anything, I spent time understanding what the data actually said — and more importantly, what it *didn't* say.
