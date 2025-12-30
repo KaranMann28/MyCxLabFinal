@@ -92,6 +92,7 @@ function App() {
                   source="CX Lab Research, GMV and ticket volume analysis Jan to Dec 2025"
                   articleLink="https://www.gorgias.com/customers/orthofeet"
                   articleLabel="See how Orthofeet automated 56% of tickets →"
+                  deepDiveSlug="efficiency-multiplier"
                   aiSummary="Leading ecommerce brands reduced support volume by 33% while scaling revenue dramatically. Support-influenced GMV grew from 0.26% to 1.84%, a 7x increase. Growth is no longer about handling more tickets. It's about making every ticket count."
                   fullAnalysis={`What the data shows: When we look at ticket volume alongside GMV and revenue influence, a clear pattern emerges. As monthly support tickets declined from around 33M to 22M (a 33% reduction), both GMV and the revenue impact of support interactions rose sharply. Revenue influenced by support grew from 0.26% to 1.84% of GMV, roughly 7x more influence.
 

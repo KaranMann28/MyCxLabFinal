@@ -1103,6 +1103,192 @@ How many "resolved" AI tickets need human follow-up within 24 hours?
 
 ---
 
+## 📖 DEEP DIVE ARTICLES: The Full Research Experience
+
+### The Request
+You wanted a flow that orchestrates the creation of deeper research articles beyond the Quick Take—similar to [Ramp's velocity articles](https://ramp.com/velocity/business-ai-adoption-flatlines).
+
+### What I Built
+
+**New Route:** `/research/:slug`
+- `/research/efficiency-multiplier` → Full 8-min read on the 7x revenue multiplier
+- `/research/ai-satisfaction-gap` → Full 10-min read on the CSAT gap
+
+**Structure (inspired by Ramp):**
+1. **Hero Section** — Date, read time, title, subtitle, author
+2. **Table of Contents** — Sticky sidebar navigation
+3. **Key Finding** — Highlighted callout with the main stat
+4. **Analysis Sections** — What changed, why it matters, who wins
+5. **Methodology** — Transparent data sourcing
+6. **Action Section** — What should you do?
+7. **CTA** — Link to customer case study
+8. **Share Buttons** — Twitter/X, LinkedIn
+
+### The Article Generation Flow (n8n Automation)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  TRIGGER: New chart data available (weekly SQL pull)           │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  STEP 1: Extract key metrics from chart data                   │
+│  - GMV numbers, growth rates, CSAT scores                      │
+│  - Compare to previous period                                  │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  STEP 2: Generate article sections via Claude API              │
+│                                                                 │
+│  Prompt structure:                                              │
+│  "Given this data: [chart metrics]                             │
+│   Write a [section type] for a CX Lab research article.        │
+│   Requirements:                                                 │
+│   - 150-300 words                                              │
+│   - Include specific numbers                                   │
+│   - No em dashes or AI-sounding phrases                        │
+│   - End with actionable insight                                │
+│   - Position intelligent AI favorably"                         │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  STEP 3: Human review in Notion                                │
+│  - Draft lands in "Pending Review" database                    │
+│  - Editor approves or requests revision                        │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  STEP 4: Approved → Update DeepDive.tsx articles object        │
+│  - Add new article to articles{} in DeepDive.tsx               │
+│  - Git commit + push triggers Vercel deploy                    │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  STEP 5: Distribution trigger                                  │
+│  - LinkedIn post (auto-generated from key finding)             │
+│  - Newsletter queue                                            │
+│  - Reddit post draft                                           │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Claude Prompts for Each Section Type
+
+**Key Finding Section:**
+```
+You are writing the opening of a research article. Given:
+- Main metric: [X]
+- Comparison: [Y vs Z]
+- Time period: [dates]
+
+Write a 50-word "Key Finding" that:
+1. Leads with the most surprising number
+2. States what changed
+3. Hints at why it matters
+4. No em dashes, no "In conclusion"
+```
+
+**Analysis Section:**
+```
+You are writing the analysis section of a CX research article. Given:
+- Trend: [description]
+- Data: [specific numbers]
+- Context: [industry background]
+
+Write a 200-word analysis that:
+1. Opens with a strong claim
+2. Backs it with 3 specific data points
+3. Explains what's driving the trend
+4. Ends with "Here's what the data shows:"
+```
+
+**Action Section:**
+```
+You are writing the "What Should You Do?" section. Given:
+- Main insight: [summary]
+- Target reader: ecommerce merchant
+
+Write 4 action items, each starting with "If you're..." format:
+- If you're measuring X: Do Y
+- If you're using X: Consider Y
+- If you're optimizing X: Reconsider Y
+- If you're scaling X: Relax—Y
+
+Keep each item under 40 words. End with a memorable line.
+```
+
+### Code: DeepDive.tsx Structure
+
+```typescript
+// /src/pages/DeepDive.tsx
+const articles = {
+  'efficiency-multiplier': {
+    id: 'efficiency-multiplier',
+    title: 'The Efficiency Multiplier',
+    subtitle: 'How Top Ecommerce Brands Grew Revenue Influence 7x',
+    date: 'December 30, 2025',
+    readTime: '8 min read',
+    tableOfContents: [
+      { id: 'key-finding', label: 'The Key Finding' },
+      { id: 'what-changed', label: 'What Changed in 2025?' },
+      { id: 'bfcm-stress-test', label: 'The BFCM Stress Test' },
+      { id: 'who-wins', label: 'Who Wins?' },
+      { id: 'methodology', label: 'Methodology' },
+      { id: 'what-to-do', label: 'What Should You Do?' },
+    ],
+    sections: [
+      {
+        id: 'key-finding',
+        type: 'highlight',
+        title: 'The Key Finding',
+        content: 'AI-influenced revenue grew 7x while tickets dropped 33%...'
+      },
+      // ... more sections
+    ],
+    cta: {
+      label: 'See how Orthofeet automated 56% of tickets',
+      url: 'https://www.gorgias.com/customers/orthofeet'
+    }
+  },
+  'ai-satisfaction-gap': { /* ... */ }
+};
+```
+
+### How InsightCard Links to Deep Dives
+
+Each `InsightCard` now has an optional `deepDiveSlug` prop:
+
+```typescript
+<InsightCard
+  title="The Efficiency Multiplier"
+  deepDiveSlug="efficiency-multiplier"  // ← Links to /research/efficiency-multiplier
+  // ... other props
+/>
+```
+
+This renders a "Read Full Research" link that takes users to the deep dive article.
+
+### Why This Matters
+
+| Level | What User Gets | Time Investment |
+|-------|----------------|-----------------|
+| **Quick Take** | 3-sentence summary | 30 seconds |
+| **Expanded** | Full analysis paragraphs | 2 minutes |
+| **Deep Dive** | Full Ramp-style article | 8-10 minutes |
+
+This creates a content funnel:
+1. Scroll → See chart + Quick Take
+2. Curious? → Expand for more detail
+3. Really engaged? → Click "Read Full Research" for the deep dive
+
+The deep dive is where we can:
+- Add more context and nuance
+- Include methodology transparency
+- Embed customer case study links
+- Optimize for SEO with long-form content
+- Get cited by AI assistants
+
+---
+
 **Live:** [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app)
 
 *Built by Kam for Gorgias*

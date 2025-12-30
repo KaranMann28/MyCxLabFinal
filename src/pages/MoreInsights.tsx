@@ -90,6 +90,7 @@ export function MoreInsights() {
             source="CX Lab Research, CSAT comparison across human and AI channels"
             articleLink="https://www.gorgias.com/customers/vessel"
             articleLabel="Discover intelligent AI that closes gaps →"
+            deepDiveSlug="ai-satisfaction-gap"
             aiSummary="The 0.8-point CSAT gap is not about AI vs humans. It's about basic automation vs intelligent assistance. Generic chatbots focused on deflection score 3.7. But purpose-built AI that understands shopping intent, personalizes responses, and knows when to escalate? That's where the gap closes."
             fullAnalysis={`What the data shows: Basic automation now handles around 50% of support tickets, up from 33%. But generic AI CSAT remains flat at 3.7, while human agents score 4.5. The gap exists because first-generation automation treats every customer the same. It optimizes for deflection, not resolution.
 

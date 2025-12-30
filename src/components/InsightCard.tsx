@@ -1,4 +1,5 @@
 import { ReactNode, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AISummaryModal } from './AISummaryModal';
 import './InsightCard.css';
@@ -12,6 +13,7 @@ interface InsightCardProps {
   source?: string;
   articleLink?: string;
   articleLabel?: string;
+  deepDiveSlug?: string; // Link to full research article
 }
 
 const cardVariants = {
@@ -72,6 +74,7 @@ export function InsightCard({
   source = 'CX Lab Research, aggregated industry data',
   articleLink,
   articleLabel = 'Read the full insight',
+  deepDiveSlug,
 }: InsightCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -187,6 +190,28 @@ export function InsightCard({
               )}
             </AnimatePresence>
           </div>
+          
+          {/* Deep Dive Link */}
+          {deepDiveSlug && (
+            <motion.div 
+              className="insight-card__deep-dive"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35 }}
+            >
+              <Link 
+                to={`/research/${deepDiveSlug}`}
+                className="insight-card__deep-dive-link"
+              >
+                <span className="insight-card__deep-dive-icon">📖</span>
+                <span className="insight-card__deep-dive-text">
+                  <strong>Read Full Research</strong>
+                  <span>Go deeper with methodology, analysis, and actionable insights →</span>
+                </span>
+              </Link>
+            </motion.div>
+          )}
           
           {/* Source Footer */}
           <motion.footer 
