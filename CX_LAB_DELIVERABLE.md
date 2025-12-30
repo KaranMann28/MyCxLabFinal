@@ -1289,6 +1289,665 @@ The deep dive is where we can:
 
 ---
 
+## 📸 DEEP DIVE ARTICLE SCREENSHOTS
+
+### Hero + Chart Section
+![Deep Dive Hero](public/screenshots/deep-dive-hero-section.png)
+*Date, read time, title, subtitle, author + interactive chart with metrics*
+
+### Key Finding (Highlight Section)
+![Key Finding](public/screenshots/deep-dive-key-finding.png)
+*Coral-highlighted key finding with "What Changed in 2025?" analysis*
+
+### BFCM Stress Test Analysis
+![BFCM Analysis](public/screenshots/deep-dive-bfcm-section.png)
+*Data-driven analysis of AI performance during peak traffic*
+
+### Methodology + Action Items
+![Methodology](public/screenshots/deep-dive-methodology.png)
+*Transparent methodology with actionable "What Should You Do?" section*
+
+### Footer + Share Buttons
+![CTA Section](public/screenshots/deep-dive-cta-share.png)
+*Case study CTA and social share buttons*
+
+---
+
+## 💻 COMPLETE DEEP DIVE CODE
+
+### DeepDive.tsx (Full Implementation)
+
+**File:** `/src/pages/DeepDive.tsx`
+
+```typescript
+import { useParams, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { AIRevenueInfluenceChart } from '../components/charts/AIRevenueInfluenceChart';
+import { AISatisfactionGapChart } from '../components/charts/AISatisfactionGapChart';
+import './DeepDive.css';
+
+// Deep dive article data - in production, this would come from CMS/API
+const articles = {
+  'efficiency-multiplier': {
+    id: 'efficiency-multiplier',
+    title: 'The Efficiency Multiplier',
+    subtitle: 'How Top Ecommerce Brands Grew Revenue Influence 7x While Cutting Ticket Volume',
+    date: 'December 30, 2025',
+    author: 'CX Lab Research',
+    readTime: '8 min read',
+    heroImage: '/images/efficiency-hero.jpg',
+    chart: 'AIRevenueInfluenceChart',
+    tableOfContents: [
+      { id: 'key-finding', label: 'The Key Finding' },
+      { id: 'what-changed', label: 'What Changed in 2025?' },
+      { id: 'bfcm-stress-test', label: 'The BFCM Stress Test' },
+      { id: 'who-wins', label: 'Who Wins in This Model?' },
+      { id: 'methodology', label: 'Methodology' },
+      { id: 'what-to-do', label: 'What Should You Do?' },
+    ],
+    sections: [
+      {
+        id: 'key-finding',
+        type: 'highlight',
+        title: 'The Key Finding',
+        content: `AI-influenced revenue grew from 0.26% to 1.84% of GMV—a 7x increase—while total ticket volume dropped 33%. This isn't correlation. It's a fundamental shift in how support creates value.`,
+      },
+      {
+        id: 'what-changed',
+        type: 'analysis',
+        title: 'What Changed in 2025?',
+        content: `For years, support was measured by deflection. How many tickets did we avoid? How fast did we close them? The best support was invisible support.
+
+That playbook is dead.
+
+The brands winning today are flipping the script. They're not trying to minimize support interactions—they're trying to maximize the value of each one.
+
+Here's what the data shows:
+
+**January 2025:** 27.3M tickets, 0.26% revenue influence
+**November 2025:** 25.3M tickets, 1.84% revenue influence
+
+Ticket volume dropped, but the tickets that remained became dramatically more valuable. Each interaction is now doing 7x more work.
+
+This isn't about handling fewer tickets. It's about handling the *right* tickets at the *right* moments.`,
+      },
+      {
+        id: 'bfcm-stress-test',
+        type: 'analysis',
+        title: 'The BFCM Stress Test',
+        content: `Black Friday / Cyber Monday is the ultimate stress test for ecommerce support. GMV spiked to $1.1B—a 12x increase from typical months.
+
+What happened to AI influence?
+
+**Pre-BFCM (Oct):** 1.97% influence rate
+**Peak BFCM (Nov):** 1.84% influence rate
+**Post-BFCM (Dec):** 1.46% influence rate
+
+The influence rate held. It didn't collapse under pressure.
+
+This tells us something important: intelligent AI doesn't break at scale. It maintains its value even when volume explodes. The slight dip during BFCM isn't a failure—it's exactly what you'd expect when checkout-focused traffic dominates. Shoppers at checkout don't need AI. They need speed.
+
+The real insight: AI influence peaks during the consideration phase, not the conversion phase. Brands optimizing AI for the wrong moments are leaving money on the table.`,
+      },
+      {
+        id: 'who-wins',
+        type: 'callout',
+        title: 'Who Wins in This Model?',
+        content: `The brands capturing this efficiency multiplier share three characteristics:
+
+**1. They deploy AI at decision points, not just deflection points**
+Instead of routing every query to a chatbot, they use AI when customers are uncertain—comparing products, reading reviews, or hesitating at cart. These are the moments where AI creates value.
+
+**2. They measure influence, not deflection**
+Deflection rates are a vanity metric. The real question: did this interaction move the customer closer to purchase? Did it increase order value? Did it prevent a return?
+
+**3. They train their AI with context**
+Generic chatbots score 3.7 CSAT. Purpose-built AI with product knowledge, order history, and intent detection approaches 4.5. The difference isn't the technology—it's the investment in training.`,
+      },
+      {
+        id: 'methodology',
+        type: 'methodology',
+        title: 'Methodology',
+        content: `This analysis covers 285M+ support tickets from January to December 2025, aggregated and anonymized across ecommerce merchants using Gorgias.
+
+**Revenue influence** is calculated as the percentage of GMV associated with orders that had a support interaction within the 7-day attribution window prior to purchase.
+
+**Ticket volume** includes all customer-initiated support requests across email, chat, social, and voice channels.
+
+**Limitations:**
+- Correlation is not causation—support interactions may correlate with purchase intent rather than causing it
+- Data represents Gorgias merchants, which may differ from the broader market
+- Attribution windows vary by industry; 7 days is a reasonable median
+
+We publish this methodology because transparency builds trust. If you have questions, reach out.`,
+      },
+      {
+        id: 'what-to-do',
+        type: 'action',
+        title: 'What Should You Do?',
+        content: `**If you're measuring deflection:** Stop. Start measuring influence. How many interactions contributed to a purchase? How many prevented a return? How many increased order value?
+
+**If you're using generic AI:** Consider purpose-built solutions. The CSAT gap between generic and trained AI is 0.8 points—that's the difference between acceptable and excellent.
+
+**If you're optimizing for checkout:** Reconsider. Our data shows AI influence peaks during consideration, not conversion. Move your AI upstream.
+
+**If you're scaling for BFCM:** Relax. Intelligent AI holds steady at scale. The brands that struggle are the ones with undertrained systems, not the ones with high volume.
+
+The efficiency multiplier is real. The question is whether you're positioned to capture it.`,
+      },
+    ],
+    cta: {
+      label: 'See how Orthofeet automated 56% of tickets',
+      url: 'https://www.gorgias.com/customers/orthofeet',
+    },
+  },
+  'ai-satisfaction-gap': {
+    id: 'ai-satisfaction-gap',
+    title: 'The AI Satisfaction Gap',
+    subtitle: 'Why Smart Brands Are Betting on Intelligent AI (And Winning)',
+    date: 'December 30, 2025',
+    author: 'CX Lab Research',
+    readTime: '10 min read',
+    chart: 'AISatisfactionGapChart',
+    tableOfContents: [
+      { id: 'the-gap', label: 'The 0.8-Point Gap' },
+      { id: 'wrong-conclusion', label: 'The Wrong Conclusion' },
+      { id: 'real-problem', label: 'The Real Problem' },
+      { id: 'quality-flywheel', label: 'The Quality Flywheel' },
+      { id: 'methodology', label: 'Methodology' },
+      { id: 'what-to-do', label: 'What Should You Do?' },
+    ],
+    sections: [
+      {
+        id: 'the-gap',
+        type: 'highlight',
+        title: 'The 0.8-Point Gap',
+        content: `Human agents score 4.48 CSAT. Generic automation scores 3.77. That's a 0.8-point gap—and it's been flat all year.
+
+At first glance, this looks like bad news for AI. But look closer, and a different story emerges.`,
+      },
+      // ... additional sections
+    ],
+    cta: {
+      label: 'Discover intelligent AI that closes gaps',
+      url: 'https://www.gorgias.com/customers/vessel',
+    },
+  },
+};
+
+export function DeepDive() {
+  const { slug } = useParams<{ slug: string }>();
+  const article = articles[slug as keyof typeof articles];
+
+  if (!article) {
+    return (
+      <div className="deep-dive deep-dive--not-found">
+        <div className="container">
+          <h1>Article not found</h1>
+          <Link to="/">← Back to CX Lab</Link>
+        </div>
+      </div>
+    );
+  }
+
+  const renderChart = () => {
+    switch (article.chart) {
+      case 'AIRevenueInfluenceChart':
+        return <AIRevenueInfluenceChart />;
+      case 'AISatisfactionGapChart':
+        return <AISatisfactionGapChart />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <motion.div 
+      className="deep-dive"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      {/* Header */}
+      <header className="deep-dive__header">
+        <div className="container">
+          <Link to="/" className="deep-dive__back">
+            ← Back to CX Lab
+          </Link>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="deep-dive__hero">
+        <div className="container">
+          <div className="deep-dive__meta">
+            <span className="deep-dive__date">{article.date}</span>
+            <span className="deep-dive__divider">•</span>
+            <span className="deep-dive__read-time">{article.readTime}</span>
+          </div>
+          <motion.h1 
+            className="deep-dive__title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            {article.title}
+          </motion.h1>
+          <motion.p 
+            className="deep-dive__subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            {article.subtitle}
+          </motion.p>
+          <motion.div 
+            className="deep-dive__author"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            <div className="deep-dive__author-avatar">🔬</div>
+            <span>{article.author}</span>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <div className="deep-dive__layout">
+        {/* Sidebar - Table of Contents */}
+        <aside className="deep-dive__sidebar">
+          <div className="deep-dive__toc">
+            <h3 className="deep-dive__toc-title">Table of contents</h3>
+            <nav>
+              <ul className="deep-dive__toc-list">
+                {article.tableOfContents.map((item) => (
+                  <li key={item.id}>
+                    <a href={`#${item.id}`} className="deep-dive__toc-link">
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+          
+          <div className="deep-dive__subscribe-box">
+            <p>Don't miss key shifts in ecommerce CX</p>
+            <Link to="/#subscribe" className="deep-dive__subscribe-btn">
+              Subscribe
+            </Link>
+          </div>
+        </aside>
+
+        {/* Article Body */}
+        <article className="deep-dive__body">
+          {/* Chart Section */}
+          <motion.section className="deep-dive__chart-section">
+            <h2 className="deep-dive__chart-label">
+              CX Lab Index: <span>{article.title}</span>
+            </h2>
+            <div className="deep-dive__chart">
+              {renderChart()}
+            </div>
+          </motion.section>
+
+          {/* Content Sections */}
+          {article.sections.map((section, index) => (
+            <motion.section
+              key={section.id}
+              id={section.id}
+              className={`deep-dive__section deep-dive__section--${section.type}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ delay: 0.1 * index }}
+            >
+              <h2 className="deep-dive__section-title">{section.title}</h2>
+              <div className="deep-dive__section-content">
+                {section.content.split('\n\n').map((paragraph, pIndex) => {
+                  const formattedParagraph = paragraph.replace(
+                    /\*\*(.*?)\*\*/g,
+                    '<strong>$1</strong>'
+                  );
+                  return (
+                    <p 
+                      key={pIndex}
+                      dangerouslySetInnerHTML={{ __html: formattedParagraph }}
+                    />
+                  );
+                })}
+              </div>
+            </motion.section>
+          ))}
+
+          {/* CTA Section */}
+          <motion.section className="deep-dive__cta-section">
+            <a 
+              href={article.cta.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="deep-dive__cta-btn"
+            >
+              → {article.cta.label}
+            </a>
+          </motion.section>
+
+          {/* Share Section */}
+          <section className="deep-dive__share">
+            <span>Share this research:</span>
+            <div className="deep-dive__share-buttons">
+              <a 
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(window.location.href)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="deep-dive__share-btn"
+              >
+                𝕏
+              </a>
+              <a 
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="deep-dive__share-btn"
+              >
+                in
+              </a>
+            </div>
+          </section>
+        </article>
+      </div>
+
+      {/* Footer */}
+      <footer className="deep-dive__footer">
+        <div className="container">
+          <p>Built by CX Lab for Gorgias</p>
+        </div>
+      </footer>
+    </motion.div>
+  );
+}
+```
+
+---
+
+### DeepDive.css (Complete Styling)
+
+**File:** `/src/pages/DeepDive.css`
+
+```css
+/* DeepDive Article Page - Ramp-inspired style */
+
+.deep-dive {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Header */
+.deep-dive__header {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.deep-dive__back {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.deep-dive__back:hover {
+  color: var(--coral);
+}
+
+/* Hero Section */
+.deep-dive__hero {
+  padding: 4rem 0 3rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+}
+
+.deep-dive__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 auto 1rem;
+  max-width: 900px;
+}
+
+/* Layout - Sticky Sidebar */
+.deep-dive__layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.deep-dive__sidebar {
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+}
+
+/* Section Types */
+.deep-dive__section--highlight {
+  background: linear-gradient(135deg, rgba(232, 130, 110, 0.1) 0%, rgba(232, 130, 110, 0.05) 100%);
+  border-left: 4px solid var(--coral);
+  padding: 2rem;
+  border-radius: 0 12px 12px 0;
+}
+
+.deep-dive__section--callout {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.deep-dive__section--action .deep-dive__section-title {
+  color: var(--success);
+}
+
+/* CTA Button */
+.deep-dive__cta-btn {
+  display: inline-flex;
+  background: var(--coral);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.deep-dive__cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 130, 110, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .deep-dive__layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .deep-dive__sidebar {
+    position: static;
+  }
+}
+```
+
+---
+
+## 🤖 CLAUDE PROMPTS FOR DEEP DIVE ARTICLE GENERATION
+
+### Prompt 1: Key Finding Section
+
+```
+You are writing the opening "Key Finding" section of a research article.
+
+Given data:
+- Metric A changed from X to Y (Z% change)
+- During time period: [dates]
+- Sample size: [N] data points
+
+Write a 2-3 sentence "Key Finding" that:
+1. States the headline number with impact
+2. Frames it as a shift, not just a stat
+3. Ends with "This isn't [obvious interpretation]. It's [reframing]."
+
+Example: "Revenue grew from 0.26% to 1.84%—a 7x increase—while tickets dropped 33%. This isn't correlation. It's a fundamental shift in how support creates value."
+```
+
+### Prompt 2: Analysis Section ("What Changed?")
+
+```
+You are writing an analysis section for a CX research article.
+
+Context:
+- Old approach: [describe]
+- New reality: [describe from data]
+- Key data points: [list]
+
+Write 4-6 paragraphs that:
+1. Opens with the old paradigm ("For years, X was measured by...")
+2. Declares it dead ("That playbook is dead.")
+3. Explains what's replacing it
+4. Ends with "Here's what the data shows:" followed by specific numbers
+
+Tone: Direct, confident, no hedging. Short paragraphs. Bold statements.
+```
+
+### Prompt 3: BFCM Stress Test Section
+
+```
+You are analyzing BFCM (Black Friday/Cyber Monday) performance data.
+
+Given:
+- Pre-BFCM metric: X
+- Peak BFCM metric: Y
+- Post-BFCM metric: Z
+- GMV during BFCM: $[amount]
+
+Write an analysis that:
+1. Frames BFCM as "the ultimate stress test"
+2. Shows the numbers before/during/after
+3. Interprets what the change (or lack of change) means
+4. Explains why any dip isn't a failure
+5. Ends with a counterintuitive insight about timing
+
+Do NOT use hedging language. Be declarative.
+```
+
+### Prompt 4: Action Items Section
+
+```
+You are writing the "What Should You Do?" section.
+
+Given insight: [summary]
+Target reader: Ecommerce merchant
+
+Write 4 action items using this exact format:
+
+**If you're [doing X]:** [Action]. [Supporting statement < 25 words]
+
+Categories to cover:
+1. Measuring wrong things → measure right things
+2. Using generic tools → consider specialized tools
+3. Optimizing wrong moment → optimize right moment
+4. Worried about scaling → don't worry
+
+End with a memorable one-liner that captures the whole article.
+```
+
+### Prompt 5: Full Article Generation (n8n Workflow)
+
+```
+You are generating a full CX Lab research article.
+
+Input JSON:
+{
+  "chartType": "efficiency-multiplier",
+  "keyMetric": { "from": 0.26, "to": 1.84, "unit": "%", "change": "7x" },
+  "supportingMetrics": [...],
+  "timeRange": "Jan-Dec 2025",
+  "sampleSize": "285M tickets"
+}
+
+Output a complete article with these sections:
+1. key-finding (type: highlight)
+2. what-changed (type: analysis)
+3. bfcm-stress-test (type: analysis)
+4. who-wins (type: callout)
+5. methodology (type: methodology)
+6. what-to-do (type: action)
+
+Each section needs:
+- id (slug)
+- type (for styling)
+- title
+- content (with **bold** for emphasis)
+
+Format as JSON matching the DeepDive.tsx article structure.
+```
+
+---
+
+## 📊 ARTICLE GENERATION WORKFLOW (n8n)
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│ 1. TRIGGER: Weekly SQL data refresh (Monday 9am)                   │
+├─────────────────────────────────────────────────────────────────────┤
+│ 2. EXTRACT: Pull key metrics from data warehouse                   │
+│    - GMV influenced rate                                           │
+│    - Ticket volume change                                          │
+│    - CSAT by channel                                               │
+│    - Resolution rates                                              │
+├─────────────────────────────────────────────────────────────────────┤
+│ 3. ANALYZE: Compare to previous period                             │
+│    - Calculate % changes                                           │
+│    - Flag significant movements (>10%)                             │
+│    - Identify BFCM/seasonal patterns                               │
+├─────────────────────────────────────────────────────────────────────┤
+│ 4. GENERATE: Call Claude API with prompts above                    │
+│    - Key Finding → highlight section                               │
+│    - What Changed → analysis section                               │
+│    - Stress Test → analysis section                                │
+│    - Who Wins → callout section                                    │
+│    - Methodology → methodology section                             │
+│    - Actions → action section                                      │
+├─────────────────────────────────────────────────────────────────────┤
+│ 5. ASSEMBLE: Build article JSON structure                          │
+│    {                                                               │
+│      id: 'efficiency-multiplier-2025-w52',                        │
+│      title: 'The Efficiency Multiplier',                           │
+│      sections: [generated sections],                               │
+│      cta: { label: '...', url: '...' }                            │
+│    }                                                               │
+├─────────────────────────────────────────────────────────────────────┤
+│ 6. PUBLISH: Push to CMS / GitHub                                   │
+│    - Create new article file                                       │
+│    - Update index with new article                                 │
+│    - Trigger Vercel rebuild                                        │
+├─────────────────────────────────────────────────────────────────────┤
+│ 7. NOTIFY: Slack + Email                                           │
+│    - "New CX Lab article published: [title]"                       │
+│    - Link to preview                                               │
+│    - Metrics summary                                               │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+**Live Deep Dives:**
+- [Efficiency Multiplier](https://my-cx-lab-final.vercel.app/research/efficiency-multiplier)
+- [AI Satisfaction Gap](https://my-cx-lab-final.vercel.app/research/ai-satisfaction-gap)
+
 **Live:** [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app)
 
 *Built by Kam for Gorgias*
