@@ -107,7 +107,7 @@ export function KeyFindings() {
     {
       value: '0.8 pts',
       label: 'The CSAT Gap',
-      subtext: 'Human 4.5 vs AI 3.7',
+      subtext: 'Basic AI 3.7 — Intelligent AI closes it',
       icon: '⚖️',
       color: '#F59E0B',
     },
@@ -223,7 +223,7 @@ export function KeyFindings() {
           transition={{ delay: 0.6 }}
         >
           The growth playbook is shifting from "handle more tickets" to "make every ticket count." 
-          But more automation doesn't automatically mean better customer experience.
+          Intelligent AI that understands intent is closing the satisfaction gap.
           <a href="#methodology"> View our methodology</a>
         </motion.p>
       </div>
