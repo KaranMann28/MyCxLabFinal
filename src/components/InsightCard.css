@@ -273,6 +273,24 @@
   border-color: rgba(232, 130, 110, 0.3);
 }
 
+.insight-card__link--share {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  background: linear-gradient(135deg, rgba(75, 94, 252, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(75, 94, 252, 0.2);
+  color: #4B5EFC;
+  font-weight: 500;
+}
+
+.insight-card__link--share:hover {
+  background: linear-gradient(135deg, rgba(75, 94, 252, 0.2) 0%, rgba(99, 102, 241, 0.2) 100%);
+  border-color: rgba(75, 94, 252, 0.3);
+}
+
 .insight-card__link-icon {
   font-size: 0.75rem;
 }

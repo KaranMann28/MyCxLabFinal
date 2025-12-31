@@ -6,6 +6,18 @@
 
 ---
 
+## 🔗 Quick Access Links
+
+| Document | Description |
+|----------|-------------|
+| 📄 **[Technical Appendix →](./CX_LAB_TECHNICAL_APPENDIX.md)** | **Claude Opus 4.5 prompts, complete source code, SQL queries, and component architecture** |
+| 🌐 [Live Site](https://my-cx-lab-final.vercel.app) | Production deployment on Vercel |
+| 💻 [GitHub Repo](https://github.com/KaranMann28/MyCxLabFinal) | Full source code with commit history |
+
+> **For Technical Reviewers:** All Claude prompts, complete code, and data context are in the **[Technical Appendix](./CX_LAB_TECHNICAL_APPENDIX.md)**.
+
+---
+
 # 📦 COMPLETE CODE, CONTEXT & PROMPTS
 
 This section contains everything the team needs to review the technical implementation.
@@ -768,39 +780,192 @@ Weekly SQL trigger (n8n) → JSON transform → Claude API generates draft → H
 
 ---
 
-## 🛠 The System Behind It
+## 🛠 THE SYSTEM BEHIND IT: Step-by-Step Architecture
 
-### Access Everything
+> **"Explain step-by-step what you've done and give access to the different flows and pieces of code."**
 
-| Resource | Link |
-|----------|------|
-| **Live Site** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
-| **GitHub Repo** | [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal) |
-| **Charts Code** | `/src/components/charts/` |
-| **Data Layer** | `/src/data/mockData.ts` |
+This section provides complete transparency into how CX Lab works—from data extraction to deployment—with direct access to every piece of code.
 
 ---
 
-### 📊 Graph Data + SQL (Feedback Item #3)
+### 🏗️ System Architecture Diagram
 
-**Feedback:** "Can you share the graph associated with this research from your Vercel and include the SQL?"
-
-**Response:** Here's the complete data from the actual SQL visualizations:
+```mermaid
+flowchart TD
+    subgraph DataLayer[1. DATA LAYER]
+        SQL[BigQuery SQL Queries]
+        JSON[mockData.ts - Typed JSON]
+    end
+    
+    subgraph ComponentLayer[2. COMPONENT LAYER]
+        Charts[Chart Components - Recharts]
+        Cards[InsightCard - Reusable Wrapper]
+        Pages[Page Components - App.tsx, DeepDive.tsx]
+    end
+    
+    subgraph ServiceLayer[3. SERVICE LAYER]
+        OpenAI[openaiService.ts - GPT-4o-mini]
+        Context[ThemeContext + LanguageContext]
+        Animations[Framer Motion Variants]
+    end
+    
+    subgraph OutputLayer[4. OUTPUT LAYER]
+        Vercel[Vercel Auto-Deploy]
+        GitHub[GitHub Repo]
+        Live[Live Site]
+    end
+    
+    SQL -->|Weekly export| JSON
+    JSON -->|Import| Charts
+    Charts -->|Render inside| Cards
+    Cards -->|Compose| Pages
+    OpenAI -->|Generate summaries| Cards
+    Context -->|Provide state| Pages
+    Animations -->|Control transitions| Pages
+    Pages -->|Git push| GitHub
+    GitHub -->|Webhook| Vercel
+    Vercel -->|Deploy| Live
+```
 
 ---
+
+### 📋 Step-by-Step Flow: How Data Becomes Insights
+
+| Step | What Happens | File/Resource | Direct Access |
+|------|--------------|---------------|---------------|
+| **1. Data Extraction** | SQL queries pull metrics from BigQuery (600M+ tickets) | BigQuery console | Request access from data team |
+| **2. Data Transform** | Results formatted as typed TypeScript arrays | [`/src/data/mockData.ts`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/data/mockData.ts) | [View file →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/data/mockData.ts) |
+| **3. Chart Rendering** | Recharts + Framer Motion create interactive visualizations | [`/src/components/charts/`](https://github.com/KaranMann28/MyCxLabFinal/tree/main/src/components/charts) | [View folder →](https://github.com/KaranMann28/MyCxLabFinal/tree/main/src/components/charts) |
+| **4. Insight Wrapping** | InsightCard component wraps chart + narrative + CTAs | [`/src/components/InsightCard.tsx`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/components/InsightCard.tsx) | [View file →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/components/InsightCard.tsx) |
+| **5. AI Summary** | OpenAI API (GPT-4o-mini) generates dynamic summaries | [`/src/services/openaiService.ts`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/services/openaiService.ts) | [View file →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/services/openaiService.ts) |
+| **6. Page Assembly** | App.tsx orchestrates layout, animations, unlock flow | [`/src/App.tsx`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/App.tsx) | [View file →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/App.tsx) |
+| **7. Deep Dive Articles** | Ramp-style long-form research pages | [`/src/pages/DeepDive.tsx`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/pages/DeepDive.tsx) | [View file →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/pages/DeepDive.tsx) |
+| **8. Deploy** | Git push triggers Vercel auto-deploy | [`vercel.json`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/vercel.json) | [View config →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/vercel.json) |
+
+---
+
+### 📁 Complete Code Access Directory
+
+| Resource | Path | What It Contains | Lines |
+|----------|------|------------------|-------|
+| **All Chart Components** | `/src/components/charts/` | 6 chart types (AIRevenueInfluence, AISatisfactionGap, AutomationMix, MerchantAdoption, AutomationCeiling, CostSatisfaction) | ~400 |
+| **Data Layer** | `/src/data/mockData.ts` | Real data from 600M+ tickets, typed TypeScript exports | 122 |
+| **AI Service** | `/src/services/openaiService.ts` | GPT-4o-mini integration for dynamic summaries | 105 |
+| **Insight Component** | `/src/components/InsightCard.tsx` | Reusable insight wrapper with expandable analysis | ~180 |
+| **Deep Dive Pages** | `/src/pages/DeepDive.tsx` | Ramp-style long-form articles with sticky TOC | 443 |
+| **Main App** | `/src/App.tsx` | Page orchestration, unlock animation, routing | 173 |
+| **Theme Context** | `/src/context/ThemeContext.tsx` | Dark/light mode toggle | ~50 |
+| **Language Context** | `/src/context/LanguageContext.tsx` | i18n ready (EN/FR) | ~60 |
+| **CSS Variables** | `/src/styles/variables.css` | Design tokens, Gorgias brand colors | ~100 |
+
+---
+
+### 🔄 Key Code Flows Explained
+
+#### Flow 1: Data → Chart → Page
+
+```
+mockData.ts (typed arrays)
+    ↓ import
+AIRevenueInfluenceChart.tsx (Recharts + Framer Motion)
+    ↓ children prop
+InsightCard.tsx (wrapper with title, summary, CTA)
+    ↓ compose
+App.tsx (renders inside <section id="insights">)
+    ↓ build
+Vercel (static HTML/JS bundle)
+```
+
+**Key file:** `AIRevenueInfluenceChart.tsx` imports data directly:
+```typescript
+// Real data from SQL query - embedded in component
+const revenueInfluenceData = [
+  { month: "2025-01-01", label: "Jan '25", gmvInfluencedRate: 0.256 },
+  // ... 12 months of real data
+];
+```
+
+#### Flow 2: AI Summary Generation
+
+```
+User clicks "AI Summary" button
+    ↓
+InsightCard.tsx triggers openaiService.ts
+    ↓
+openaiService.ts calls OpenAI API (GPT-4o-mini)
+    ↓
+Prompt includes: chart title, subtitle, data context
+    ↓
+Response rendered in modal (AISummaryModal.tsx)
+```
+
+**Key file:** `openaiService.ts` prompt structure:
+```typescript
+const prompt = `You are an expert CX industry analyst for Gorgias CX Lab.
+Given this data: [chart metrics]
+Create a summary with:
+1. A brief 2-sentence overview
+2. Three key findings (bulleted with specific data points)
+3. One actionable insight for ecommerce merchants
+Keep it professional, data-focused, and under 200 words.`;
+```
+
+#### Flow 3: Deep Dive Article Routing
+
+```
+User clicks "Read Full Research" on InsightCard
+    ↓
+React Router navigates to /research/:slug
+    ↓
+DeepDive.tsx extracts slug from URL params
+    ↓
+Matches against articles{} object
+    ↓
+Renders: Hero → Chart → Sections → CTA → Share buttons
+```
+
+**Key file:** `DeepDive.tsx` article structure:
+```typescript
+const articles = {
+  'efficiency-multiplier': {
+    title: 'The Efficiency Multiplier',
+    sections: [
+      { id: 'key-finding', type: 'highlight', content: '...' },
+      { id: 'what-changed', type: 'analysis', content: '...' },
+      // ... more sections
+    ],
+    cta: { label: 'See how Orthofeet...', url: '...' }
+  }
+};
+```
+
+#### Flow 4: Animation System
+
+```
+App.tsx defines pageVariants + contentRevealVariants
+    ↓
+<motion.div> wraps main content
+    ↓
+AnimatePresence controls enter/exit
+    ↓
+ScrollRevealLogo triggers unlock state
+    ↓
+isUnlocked → contentRevealVariants.visible
+    ↓
+Staggered children animations (0.1s delay each)
+```
+
+---
+
+### 📊 Graph Data + SQL Queries
 
 #### Graph 1: AI Agent Resolution Growth
 
-**What the data shows:**
-
 | Metric | Jan 2025 | Oct 2025 | Change |
 |--------|----------|----------|--------|
-| **Total Tickets (Red)** | ~800K | ~850K | +6% (stable) |
-| **AI Agent Resolved (Green)** | ~150K | ~320K | **+113%** |
+| **Total Tickets** | ~800K | ~850K | +6% (stable) |
+| **AI Agent Resolved** | ~150K | ~320K | **+113%** |
 | **AI Resolution Rate** | 19% | 38% | **2x growth** |
-
-**The narrative:**
-> "AI Agent resolved tickets grew from 150K to 320K (+113%) while total ticket volume stayed flat. AI now handles 38% of all tickets, up from 19% in January. This is the efficiency multiplier in action."
 
 **SQL Query:**
 ```sql
@@ -815,19 +980,12 @@ GROUP BY 1
 ORDER BY 1;
 ```
 
----
-
 #### Graph 2: GMV + Support-Influenced Revenue
 
-**What the data shows:**
-
-| Metric | Jan-Aug 2025 | BFCM Peak (Oct 16) | Post-BFCM (Nov) |
-|--------|--------------|---------------------|-----------------|
-| **GMV (Purple)** | ~$50M-100M | **$1.2B** | $600M |
-| **Support-Influenced (Cyan)** | Near baseline | Scales with GMV | Returns to baseline |
-
-**The narrative:**
-> "GMV spiked to $1.2B during BFCM—a 12x increase from baseline. The key insight: AI Agent resolution rate held steady at 38% even under this extreme volume. When you need scale most, intelligent AI delivers."
+| Metric | Jan-Aug 2025 | BFCM Peak | Post-BFCM |
+|--------|--------------|-----------|-----------|
+| **GMV** | ~$50M-100M | **$1.2B** | $600M |
+| **Support-Influenced** | Near baseline | Scales with GMV | Returns to baseline |
 
 **SQL Query:**
 ```sql
@@ -845,117 +1003,82 @@ ORDER BY 1;
 
 ---
 
-#### Key Insights from Real Data
+### 🔗 Quick Access Links
 
-| Finding | Data Point | Implication |
-|---------|------------|-------------|
-| **AI is scaling** | 150K → 320K resolved (+113%) | AI Agent is handling more, not just deflecting |
-| **Volume is stable** | 800K total tickets (flat) | Growth isn't about more tickets |
-| **BFCM stress test passed** | 38% AI rate held at $1.2B GMV | AI doesn't break under pressure |
-| **Efficiency compounding** | 2x AI resolution rate in 10 months | The flywheel is working |
+| Resource | URL |
+|----------|-----|
+| **Live Site** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
+| **GitHub Repo** | [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal) |
+| **Vercel Dashboard** | [vercel.com/kams-projects-e9588e2f/my-cx-lab-final](https://vercel.com/kams-projects-e9588e2f/my-cx-lab-final) |
+| **Efficiency Multiplier Chart** | [Live →](https://my-cx-lab-final.vercel.app/#insights) |
+| **More Insights Page** | [Live →](https://my-cx-lab-final.vercel.app/insights) |
+| **Deep Dive: Efficiency** | [Live →](https://my-cx-lab-final.vercel.app/research/efficiency-multiplier) |
+| **Deep Dive: Satisfaction Gap** | [Live →](https://my-cx-lab-final.vercel.app/research/ai-satisfaction-gap) |
 
 ---
 
-#### View Live Graphs
-
-- **Efficiency Multiplier:** [my-cx-lab-final.vercel.app/#insights](https://my-cx-lab-final.vercel.app/#insights)
-- **More Insights Page:** [my-cx-lab-final.vercel.app/more-insights](https://my-cx-lab-final.vercel.app/more-insights)
-
-**Chart Components:**
-- `/src/components/charts/AIRevenueInfluenceChart.tsx`
-- `/src/components/charts/AISatisfactionGapChart.tsx`
-
-### Step-by-Step Flow
-
-| Step | What | Tools |
-|------|------|-------|
-| 1. Data Extraction | SQL → CSV → JSON | BigQuery/Redshift |
-| 2. Chart Development | Interactive visualizations | React + Recharts + Framer Motion |
-| 3. Narrative Layer | Insight framing + CTAs | InsightCard component |
-| 4. Content Curation | Reframe for product positioning | Claude in Cursor |
-| 5. Deploy | Build and ship | Vercel (auto-deploy from GitHub) |
-
-### n8n Automation (Future State)
+### ⚙️ Future Automation: n8n Pipeline
 
 ```
-Weekly SQL pull → Transform to JSON → LLM drafts insights → Git commit → Auto-deploy → Slack notification → Repurpose to LinkedIn/Reddit/YouTube
+┌─────────────────────────────────────────────────────────────────┐
+│  WEEKLY TRIGGER: Monday 9am                                     │
+├─────────────────────────────────────────────────────────────────┤
+│  1. SQL Pull      → BigQuery exports to JSON                    │
+│  2. Transform     → n8n formats for mockData.ts                 │
+│  3. LLM Draft     → Claude API generates new insight narrative  │
+│  4. Human Review  → Notion database for approval                │
+│  5. Git Commit    → Auto-commit to GitHub                       │
+│  6. Deploy        → Vercel webhook triggers build               │
+│  7. Notify        → Slack message with preview link             │
+│  8. Repurpose     → Queue for LinkedIn/Reddit/YouTube           │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-### What Breaks First
+---
 
-1. **Manual data exports** — Need direct SQL connection
-2. **AI content drift** — LLM narratives need human review
-3. **Translation lag** — French version needs manual sync
-4. **Chart responsiveness** — Complex charts need mobile-specific views
+### 🚨 What Breaks First (Known Limitations)
+
+| Issue | Current State | Fix |
+|-------|---------------|-----|
+| **Manual data exports** | CSV download from BigQuery | Need direct SQL connection via n8n |
+| **AI content drift** | LLM narratives may diverge from brand voice | Human review gate in workflow |
+| **Translation lag** | French version needs manual sync | Add i18n pipeline to n8n |
+| **Chart responsiveness** | Complex charts cramped on mobile | Mobile-specific chart variants |
+| **API key exposure** | OpenAI key in env vars | Move to serverless function |
 
 ---
 
 ## 📣 Distribution: The Concrete Plan
 
-### Your Audience Isn't Googling. They're Asking AI.
-
-| Source | AI Citation Share |
-|--------|-------------------|
-| Reddit | **40.11%** |
-| Wikipedia | **26.33%** |
-| YouTube | **23.52%** |
-| LinkedIn | **5.90%** |
-
-**Goal:** When someone asks ChatGPT "AI customer service benchmarks," CX Lab is the answer.
+> **Goal:** When someone asks ChatGPT "AI customer service benchmarks," CX Lab is the answer.
 
 ---
 
-### Week 1 Checklist
+### 📊 Channel Priority Matrix (AI Citation Potential)
 
-- [ ] Ship live report ✅
-- [ ] Email 15,000 Gorgias customers
-- [ ] LinkedIn carousel with Ramp tie-in
-- [ ] Reddit post in r/ecommerce + r/shopify
-- [ ] DM 3 newsletter owners (DTC Newsletter, Eli Weiss, Retention.blog)
+| Channel | AI Citation Share | Effort | Week 1 Priority | Why This Matters |
+|---------|------------------|--------|-----------------|------------------|
+| **Reddit** | 40.11% | Medium | ⭐⭐⭐⭐⭐ | Largest single source of AI training data |
+| **Wikipedia** | 26.33% | High (hard to edit) | ⭐⭐ | Long-game credibility play |
+| **YouTube** | 23.52% | High | ⭐⭐⭐ | Transcripts indexed by AI |
+| **LinkedIn** | 5.90% | Low | ⭐⭐⭐⭐ | B2B decision-makers, low effort |
+| **Newsletter** | N/A (borrowed) | Low | ⭐⭐⭐⭐⭐ | Immediate reach, trusted source |
+| **Substack** | Growing | Medium | ⭐⭐⭐ | Thought leadership positioning |
+| **Twitter/X** | ~3% | Low | ⭐⭐⭐ | Viral potential, commentary layer |
 
-### Week 2 Checklist
-
-- [ ] YouTube short (top insight)
-- [ ] Double down on winning channel
-- [ ] Partner newsletter placements go live
-- [ ] Twitter/X thread from best Reddit comments
-- [ ] Track Perplexity citations
+**Week 1 Focus:** Reddit + LinkedIn + Newsletter = 90% of effort
 
 ---
 
-### Target Influencers
+### 🎯 Target Distribution Channels (Prioritized)
 
-| Name | Role | Why |
-|------|------|-----|
-| Eli Weiss | VP CX, Jones Road | 180K followers, CX thought leader |
-| Nik Sharma | DTC Newsletter | 120K followers, ecom focus |
-| Kristen LaFrance | Resilient Retail | CX/retention expert |
-| Ara Kharazian | Ramp Economics Lab | Just published AI prediction |
-
-### Outreach Template
-
-```
-Subject: Data that validates your AI prediction
-
-Hey [Name],
-
-Saw your 2026 prediction on AI automating customer service. 
-Our data shows it's already happening—but with a twist.
-
-• Ticket volume down 33%
-• AI-influenced revenue up 7x
-• But the satisfaction gap? Still 0.8 points
-
-The question isn't "if" automation—it's "how well."
-
-Full data: [CX Lab link]
-
-Happy to share more if useful.
-
-— Kam
-```
-
----
+| Channel | Why | Week 1 Action | Success Metric |
+|---------|-----|---------------|----------------|
+| **Reddit** | 40% of AI citations | 3 posts in r/ecommerce, r/shopify, r/smallbusiness | 100+ upvotes |
+| **LinkedIn** | B2B decision-makers | Daily posts + 1 carousel | 50K impressions |
+| **Newsletters** | Borrowed audience | Pitch 5 newsletter owners | 2 placements |
+| **YouTube** | 24% of AI citations | 1 insight video (Descript) | 1K views |
+| **Substack** | Thought leadership | Guest post pitch to 3 writers | 1 acceptance |
 
 ---
 
@@ -976,6 +1099,53 @@ This is the complete distribution strategy with concrete channels, tools, and ta
 - ~25% of Reddit posts relate to product recommendations (high-intent buyers)
 - LLMs are trained on Reddit data — your posts become training data
 
+---
+
+#### 🔧 Relay.app Reddit Automation Setup (Step-by-Step)
+
+**What Relay.app does:** AI agent platform that monitors Reddit for relevant posts and auto-drafts responses.
+
+**Setup Steps (15 minutes):**
+
+1. **Create Relay.app account** — [relay.app](https://relay.app) (free tier works)
+
+2. **Import Reddit AI Agent template:**
+   - Go to Templates → Search "Reddit"
+   - Import Pietro's template OR create custom agent
+
+3. **Configure target subreddits:**
+   ```
+   r/ecommerce (324K members)
+   r/shopify (215K members)
+   r/Entrepreneur (2.3M members)
+   r/smallbusiness (680K members)
+   r/CustomerSuccess (28K members)
+   r/SaaS (89K members)
+   ```
+
+4. **Set trigger keywords:**
+   ```
+   "AI customer service"
+   "support automation"
+   "chatbot CSAT"
+   "ticket deflection"
+   "ecommerce support"
+   "help desk AI"
+   ```
+
+5. **Configure output:**
+   - Output: Draft comment → Google Sheet
+   - Human review before posting (avoid spam flags)
+   - Slack notification when new draft ready
+
+6. **Set schedule:**
+   - Monitor: Every 4 hours
+   - Draft limit: 5 comments/day max
+
+**Cost:** Free (Relay freemium covers this use case)
+
+---
+
 #### 🛠️ Core Resources (From Pietro's Playbook)
 
 | Resource | What It Does | CX Lab Application |
@@ -985,15 +1155,19 @@ This is the complete distribution strategy with concrete channels, tools, and ta
 | **Reddit Post Formula** | Structure that gets quoted by LLMs | Frame insights as "Data from X merchants shows..." |
 | **Top 10 Subreddits for LLM Citations** | Database of high-citation subs | Target these first for CX Lab posts |
 
-#### 🎯 Week 1 Reddit Strategy
+---
 
-| Day | Action | Subreddit | Post Type |
-|-----|--------|-----------|-----------|
-| Mon | Share Efficiency Multiplier insight | r/ecommerce | "We analyzed 285M support tickets..." |
-| Tue | Engage with top 3 AI/CX posts | r/shopify | Helpful comments with data |
-| Wed | Post BFCM stress test finding | r/smallbusiness | "What BFCM taught us about AI scale..." |
-| Thu | AMA offer: "Ask me about CX data" | r/Entrepreneur | Engagement driver |
-| Fri | Share The Quality Flywheel | r/CustomerSuccess | Counter-intuitive insight |
+#### 🎯 Week 1 Reddit Strategy (Day-by-Day)
+
+| Day | Time | Action | Subreddit | Post Title/Type | Success Metric |
+|-----|------|--------|-----------|-----------------|----------------|
+| Mon | 9am EST | Share Efficiency Multiplier | r/ecommerce | "We analyzed 285M support tickets. Here's what we found about AI and revenue." | 50+ upvotes |
+| Tue | 10am EST | Engage top 3 AI/CX posts | r/shopify | Helpful comments with specific data points | 10+ comment karma |
+| Wed | 9am EST | Post BFCM stress test | r/smallbusiness | "What BFCM taught us about AI at scale (from $1.1B in GMV)" | 30+ upvotes |
+| Thu | 11am EST | AMA offer | r/Entrepreneur | "I analyze 600M+ support interactions. AMA about CX data." | 20+ questions |
+| Fri | 9am EST | Quality Flywheel insight | r/CustomerSuccess | "Why AI quality isn't magic—it's investment (data inside)" | 25+ upvotes |
+
+---
 
 #### 💡 Reddit Post Template (LLM-Optimized)
 
@@ -1023,38 +1197,114 @@ What's your experience with AI in support?
 
 ---
 
-### 👹 Competitor Ads Intelligence
+#### 📝 Comment Templates (For Relay Drafts)
+
+**Template 1: Responding to "AI replacing support" posts**
+```
+We analyzed 285M support tickets this year. The data shows AI isn't replacing support—it's transforming it.
+
+Key finding: AI-influenced revenue grew 7x while ticket volume dropped 33%.
+
+The brands winning aren't eliminating agents. They're making every interaction more valuable.
+
+Full data: [link]
+```
+
+**Template 2: Responding to "chatbot CSAT is low" posts**
+```
+You're right about the gap—our data shows 0.8 points difference (Human 4.48 vs AI 3.77).
+
+But here's the twist: that's the average. Brands with well-trained AI are hitting 4.3+.
+
+The gap isn't AI vs humans. It's trained vs untrained AI.
+
+Research: [link]
+```
+
+---
+
+### 👹 Competitor Ads Intelligence Scraper
 
 **Source:** [Weekly Scraper for Competitor Ads](https://www.notion.so/Weekly-scraper-and-report-builder-for-your-competitors-ADS-25622286ebd8804ea7ffd328e1ce3b6c)
 
 **Goal:** Monitor what competitors (Zendesk, Intercom, Freshdesk) are saying in their ads so CX Lab content can counter-position.
 
+---
+
+#### 🔧 Complete Setup (Relay.app + Meta Ads Library)
+
+**Step 1: Create Google Sheet with competitor Meta Ads Library links**
+
+| Competitor | Meta Ads Library URL |
+|------------|---------------------|
+| Zendesk | `https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=zendesk` |
+| Intercom | `https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=intercom` |
+| Freshdesk | `https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=freshdesk` |
+| Kustomer | `https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=kustomer` |
+| Gladly | `https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=gladly` |
+
+**Step 2: Set up Relay.app automation**
+
+1. Go to [relay.app](https://relay.app) → Create new Workflow
+2. **Trigger:** Schedule → Every Monday at 9am
+3. **Action 1:** HTTP Request → Scrape Meta Ads Library (or use Apify connector)
+4. **Action 2:** AI Agent → Summarize ads + extract key selling points
+5. **Action 3:** Send to Slack/Email with summary
+
+**Step 3: Configure AI Agent prompt**
+
+```
+Analyze these competitor ads and extract:
+1. Number of active ads
+2. Key selling points (what claims are they making?)
+3. Message summary (what's their narrative?)
+4. How long ads have been running
+5. Apparent target audience
+
+Format as a table. Flag any claims CX Lab data can counter.
+```
+
+**Step 4: Output template (Slack/Email)**
+
+```
+📊 WEEKLY COMPETITOR ADS REPORT
+
+ZENDESK (12 active ads)
+Key claim: "Reduce tickets by 25%"
+Counter opportunity: "Our data shows 33% reduction"
+
+INTERCOM (8 active ads)  
+Key claim: "AI handles 50% of tickets"
+Counter opportunity: "Handling ≠ satisfaction. The 0.8-point gap."
+
+[Link to full Google Sheet]
+```
+
+**Cost:** Free (Relay freemium + Meta Ads Library is public)
+
+---
+
 #### What We Track Weekly
 
-| Metric | Why It Matters |
-|--------|---------------|
-| 📣 Number of active ads | Activity level |
-| 🚀 Key Selling Points | What they're emphasizing |
-| 🤑 Message summary | Their narrative |
-| 📅 How long ads run | What's working for them |
-| 🎯 Reverse-engineered audience | Who they're targeting |
+| Metric | Why It Matters | How to Extract |
+|--------|---------------|----------------|
+| 📣 Number of active ads | Activity level | Count in Ads Library |
+| 🚀 Key Selling Points | What they're emphasizing | AI summarization |
+| 🤑 Message summary | Their narrative | AI summarization |
+| 📅 How long ads run | What's working for them | "Started running" date |
+| 🎯 Reverse-engineered audience | Who they're targeting | Ad targeting info (limited) |
+
+---
 
 #### Sample Competitive Insight → Content Response
 
 | Competitor Ad | Their Claim | CX Lab Counter-Content |
 |--------------|-------------|----------------------|
-| Zendesk | "Reduce ticket volume by 25%" | "We reduced 33% — here's the data" |
-| Intercom | "AI handles 50% of tickets" | "Handling ≠ satisfying. The 0.8-point gap" |
-| Freshdesk | "Fast implementation" | "Speed vs intelligence: which matters more?" |
-
-#### 🔧 Setup (Using Relay.app)
-
-1. Create Google Sheet with competitor Meta Ads Library links
-2. Import Relay template (provided in Pietro's doc)
-3. Set weekly trigger (every Monday)
-4. Output: Slack/Email summary with competitive intelligence
-
-**Cost:** Free (Relay freemium covers this)
+| Zendesk | "Reduce ticket volume by 25%" | "We reduced 33%—here's the data from 285M tickets" |
+| Intercom | "AI handles 50% of tickets" | "Handling ≠ satisfying. The 0.8-point satisfaction gap" |
+| Freshdesk | "Fast implementation" | "Speed vs intelligence: which matters more for CSAT?" |
+| Kustomer | "Unified customer view" | "Unified view means nothing without trained AI" |
+| Gladly | "Customer-centric support" | "Customer-centric = closing the satisfaction gap" |
 
 ---
 
@@ -1078,30 +1328,108 @@ What's your experience with AI in support?
 
 ---
 
-### 👥 Influencer & Media Outreach
+### 👥 Influencer & Media Outreach (Concrete List with Sourcing)
 
-**Tier 1: Direct Outreach (Week 1)**
+> **The ask:** "Come up with a short list of influencers and how you will source them. Make it super concrete as if you were about to deliver it when you join on the first week."
 
-| Name | Platform | Followers | Angle |
-|------|----------|-----------|-------|
-| **Eli Weiss** | LinkedIn/Twitter | 180K | "Your AI takes vs our data" |
-| **Nik Sharma** | DTC Newsletter | 120K | Guest insight feature |
-| **Ara Kharazian** | Substack (Ramp) | 50K | "Data that validates your prediction" |
-| **Kristen LaFrance** | Resilient Retail | 30K | CX retention angle |
+---
 
-**Tier 2: Newsletter Placements (Week 2)**
+#### Tier 1: Direct Outreach (Week 1) — With Sourcing Methods
 
-| Newsletter | Audience | Cost | Approach |
-|------------|----------|------|----------|
-| DTC Newsletter | 180K ecommerce | Sponsor or guest | Data-backed insight |
-| Retention.blog | 40K CX pros | Guest post | The Quality Flywheel |
-| Demand Curve | 90K growth | Sponsor | Efficiency Multiplier |
+| Name | Platform | Followers | Niche | How to Source Contact | Contact Method | Outreach Angle |
+|------|----------|-----------|-------|----------------------|----------------|----------------|
+| **Eli Weiss** | LinkedIn/Twitter | 180K | CX thought leader | SparkToro search "ecommerce CX" → appears in top influencers | LinkedIn DM (warm up with 3 comments first) | "Your AI takes vs our data" |
+| **Nik Sharma** | DTC Newsletter | 120K | Ecom founder | Subscribe to newsletter → reply to edition | Reply directly to newsletter email | Guest insight feature |
+| **Ara Kharazian** | Substack (Ramp) | 50K | AI predictions | Substack profile → comment on posts | Comment on his 2026 predictions post, then DM | "Data that validates your prediction" |
+| **Kristen LaFrance** | Resilient Retail | 30K | CX/retention | Podcast guest appearances (she appears often) | Twitter DM after engaging with tweets | CX retention angle |
+| **Blake Robbins** | Benchmark | 40K | SaaS/ecom | LinkedIn (Benchmark VC partner) | LinkedIn connection request + note | VC angle on AI in CX |
+| **Cody Schneider** | Swell AI | 25K | AI marketing | Twitter/LinkedIn (frequently posts about AI) | Twitter DM | AI content distribution angle |
 
-**Sourcing Tools:**
-- **SparkToro:** Find where your audience hangs out
-- **Hunter.io:** Find influencer emails
-- **Apollo.io:** Build outreach lists
-- **Followerwonk:** Twitter influencer research
+**Step-by-step sourcing process:**
+1. **SparkToro** ($0-50/mo): Search "ecommerce customer service" → export list of who the audience follows
+2. **Hunter.io** (free tier, 50 searches/mo): Enter domain (e.g., jonesroadbeauty.com) → find email
+3. **Apollo.io** (free tier): Build outreach sequence with email addresses
+4. **Followerwonk** (free): Twitter audience overlap analysis
+
+---
+
+#### Tier 2: Newsletter Placements (Week 2) — With Contact Strategy
+
+| Newsletter | Audience Size | How to Pitch | Tool to Find Contact | Pitch Template |
+|------------|---------------|--------------|---------------------|----------------|
+| **DTC Newsletter** (Nik Sharma) | 180K ecom founders | Sponsor ($2-5K) or guest insight | Reply to newsletter OR Hunter.io for team emails | "Data piece for your readers: 7x revenue influence" |
+| **Retention.blog** | 40K CX pros | Guest post offer | Direct email on their site (Contact page) | "Guest post: The Quality Flywheel—why AI rewards investment" |
+| **Demand Curve** | 90K growth marketers | Sponsor or data partnership | Apollo.io → search Demand Curve employees | "Data partnership: CX benchmarks for your audience" |
+| **Lenny's Newsletter** | 500K product leaders | CX angle pitch | Substack reply OR lenny@lennyrachitsky.com | "Customer service data for product teams" |
+| **The Hustle** | 2.5M business readers | Press pitch | Media page → press@thehustle.co | "Research: AI influence on ecommerce revenue grew 7x" |
+| **Morning Brew** | 4M professionals | Pitch commerce editor | LinkedIn → search Morning Brew editors | "Exclusive data: The AI satisfaction gap in ecommerce" |
+
+**Newsletter Discovery Tools:**
+1. **Lettergrowth.com** — Newsletter discovery by category (search "ecommerce")
+2. **Substack search** — "ecommerce" + "customer service" + "retention"
+3. **SparkToro** — See which newsletters your audience subscribes to (Social tab)
+4. **Customer survey** — Ask Gorgias customers: "What newsletters do you read?"
+
+---
+
+#### Outreach Templates (Ready to Send)
+
+**Template 1: Influencer DM (LinkedIn)**
+```
+Hey [Name],
+
+Saw your [specific post/take] on AI in customer service.
+
+We just published research analyzing 285M support tickets that either validates or challenges some of your points:
+• AI-influenced revenue grew 7x
+• But the satisfaction gap is still 0.8 points
+
+Would love your take. Happy to share the full data.
+
+— Kam
+```
+
+**Template 2: Newsletter Pitch (Email)**
+```
+Subject: Data piece for your readers: The 7x efficiency multiplier
+
+Hey [Editor name],
+
+I run research at Gorgias CX Lab. We just published analysis of 285M+ support tickets.
+
+Key finding: AI-influenced revenue grew 7x while ticket volume dropped 33%.
+
+This would make a great data piece for [Newsletter name] readers. I can provide:
+• Exclusive chart/graphic
+• 200-word summary
+• Full methodology
+
+Interested?
+
+— Kam
+```
+
+**Template 3: Substack Comment (Public)**
+```
+Great piece on [topic]. Our data from 285M ecommerce tickets shows [related finding].
+
+The twist: [counter-intuitive insight].
+
+Full research: [CX Lab link]
+```
+
+---
+
+#### Sourcing Tools Summary
+
+| Tool | What It Does | Cost | Setup Time | Use Case |
+|------|--------------|------|------------|----------|
+| **SparkToro** | Audience intelligence — who do they follow, read, listen to | $0-50/mo | 5 min | Find influencers your audience trusts |
+| **Hunter.io** | Email finder from domain | Free (50/mo) | 2 min | Get contact emails |
+| **Apollo.io** | Sales intelligence + outreach sequences | Free tier | 15 min | Build prospect lists with emails |
+| **Followerwonk** | Twitter audience analysis | Free | 5 min | Find overlapping audiences |
+| **Lettergrowth** | Newsletter discovery | Free | 2 min | Find relevant newsletters by category |
+| **LinkedIn Sales Navigator** | Advanced people search | $80/mo | 10 min | Filter by title + industry + company size |
 
 ---
 
@@ -1176,6 +1504,141 @@ Friday: Performance review + double down
 [0:30] "The efficiency multiplier shows a 7x increase in AI-influenced revenue..."
 [1:00] "Gorgias data reveals that intelligent AI closes the satisfaction gap..."
 ```
+
+---
+
+### 📅 WEEK 1 DAY-BY-DAY ACTION CHECKLIST
+
+> **"Make it super concrete as if you were about to deliver it when you join on the first week."**
+
+This is the exact execution plan for the first 5 days.
+
+---
+
+#### MONDAY — Launch Day
+
+| Time | Action | Tool | Output | Owner |
+|------|--------|------|--------|-------|
+| 9:00 AM | Send launch email to 15K Gorgias customers | Internal CRM / Mailchimp | Announcement blast with CX Lab link | Marketing |
+| 10:00 AM | Post LinkedIn carousel (5 slides: key stats + link) | LinkedIn + Gamma | Carousel post | Kam |
+| 11:00 AM | First Reddit post in r/ecommerce | Reddit | "We analyzed 285M support tickets..." | Kam |
+| 12:00 PM | Set up Relay.app Reddit automation | Relay.app | Automation running | Kam |
+| 2:00 PM | DM Eli Weiss on LinkedIn (after commenting on 2 posts) | LinkedIn | Warm outreach | Kam |
+| 4:00 PM | Set up competitor ads scraper | Relay.app + Google Sheet | Weekly automation scheduled | Kam |
+
+**Monday Success Metrics:**
+- [ ] Email sent to 15K customers
+- [ ] LinkedIn carousel live (target: 5K impressions day 1)
+- [ ] Reddit post live in r/ecommerce (target: 20+ upvotes day 1)
+- [ ] Relay automations running
+
+---
+
+#### TUESDAY — Engagement Day
+
+| Time | Action | Tool | Output | Owner |
+|------|--------|------|--------|-------|
+| 9:00 AM | Reply to ALL comments on Reddit post | Reddit | Engagement | Kam |
+| 10:00 AM | Post in r/shopify (different angle—BFCM focus) | Reddit | Second Reddit post | Kam |
+| 11:00 AM | DM Nik Sharma (reply to his newsletter first) | Email / LinkedIn | Newsletter pitch | Kam |
+| 12:00 PM | DM Ara Kharazian (comment on his Substack post first) | Substack | Influencer outreach | Kam |
+| 2:00 PM | Review LinkedIn post performance, engage with commenters | LinkedIn | 10+ replies | Kam |
+| 4:00 PM | Draft Twitter/X thread from top Reddit comments | Notion | Thread draft ready | Kam |
+
+**Tuesday Success Metrics:**
+- [ ] 50+ total Reddit upvotes across posts
+- [ ] 3 newsletter owners contacted
+- [ ] LinkedIn engagement rate >3%
+
+---
+
+#### WEDNESDAY — Video Creation Day
+
+| Time | Action | Tool | Output | Owner |
+|------|--------|------|--------|-------|
+| 9:00 AM | Post in r/smallbusiness (third Reddit post) | Reddit | "What BFCM taught us about AI at scale..." | Kam |
+| 10:00 AM | Write YouTube Short script (60 seconds) | Notion | Script ready | Kam |
+| 11:00 AM | Record YouTube Short voiceover | Descript | Audio file | Kam |
+| 12:00 PM | Create video with Descript | Descript | 60-sec video draft | Kam |
+| 2:00 PM | Add captions and export | Descript | Final video | Kam |
+| 4:00 PM | Upload to YouTube (SEO-optimized title, description) | YouTube | Video live | Kam |
+
+**Wednesday Success Metrics:**
+- [ ] YouTube Short live
+- [ ] 3 Reddit posts total
+- [ ] 100+ total Reddit upvotes
+
+---
+
+#### THURSDAY — Tracking + AMA Day
+
+| Time | Action | Tool | Output | Owner |
+|------|--------|------|--------|-------|
+| 9:00 AM | Check Perplexity for CX Lab citations | Perplexity.ai | Baseline measurement | Kam |
+| 10:00 AM | Post AMA in r/Entrepreneur | Reddit | AMA thread live | Kam |
+| 11:00 AM | Actively engage AMA for 2 hours | Reddit | 20+ answers | Kam |
+| 2:00 PM | Create OpusClip clips from YouTube Short | OpusClip | 3-5 short clips | Kam |
+| 3:00 PM | Post first TikTok clip | TikTok | TikTok live | Kam |
+| 4:00 PM | Review all analytics: Reddit, LinkedIn, YouTube | GA4, Shield, YT Studio | Performance report | Kam |
+
+**Thursday Success Metrics:**
+- [ ] AMA complete with 20+ questions answered
+- [ ] TikTok clip live
+- [ ] First AI citation check complete
+
+---
+
+#### FRIDAY — Review + Double Down
+
+| Time | Action | Tool | Output | Owner |
+|------|--------|------|--------|-------|
+| 9:00 AM | Post The Quality Flywheel in r/CustomerSuccess | Reddit | Fifth Reddit post | Kam |
+| 10:00 AM | Compile Week 1 performance report | Notion | Dashboard | Kam |
+| 11:00 AM | Identify winning channel (highest engagement) | Analytics | Decision made | Kam |
+| 12:00 PM | Plan Week 2 based on what's working | Notion | Week 2 plan draft | Kam |
+| 2:00 PM | Follow up with newsletter owners who didn't respond | Email / LinkedIn | Second touch | Kam |
+| 4:00 PM | Review competitor ads report (first weekly output) | Slack / Email | Competitive intel | Kam |
+
+**Friday Success Metrics:**
+- [ ] 200+ total Reddit upvotes
+- [ ] 25K+ LinkedIn impressions
+- [ ] 500+ YouTube views
+- [ ] At least 1 newsletter placement confirmed
+- [ ] Week 2 plan ready
+
+---
+
+#### 📊 Week 1 Summary Targets
+
+| Metric | Target | Measurement Tool |
+|--------|--------|------------------|
+| Reddit upvotes (total) | 200+ | Reddit |
+| LinkedIn impressions | 50K | Shield Analytics |
+| YouTube Short views | 1K | YouTube Studio |
+| Newsletter signups | 100 | Beehiiv |
+| AI citations (Perplexity) | 1+ | Manual search |
+| Demo requests | 5 | CRM |
+| Influencers contacted | 5 | Tracker spreadsheet |
+| Newsletter pitches sent | 5 | Tracker spreadsheet |
+
+---
+
+#### 🛠️ Tools Summary (All Costs)
+
+| Tool | Purpose | Cost | Setup Time |
+|------|---------|------|------------|
+| **Relay.app** | Reddit automation + competitor scraper | Free | 15 min |
+| **SparkToro** | Audience research | $0-50/mo | 5 min |
+| **Hunter.io** | Email finding | Free (50/mo) | 2 min |
+| **Apollo.io** | Outreach lists | Free tier | 15 min |
+| **Descript** | Video creation | $12/mo | 10 min |
+| **OpusClip** | Auto-clip generation | $9/mo | 5 min |
+| **Beehiiv** | Newsletter hosting | Free tier | 20 min |
+| **Gamma** | Presentation/carousel | Free | 5 min |
+| **Shield** | LinkedIn analytics | Free tier | 2 min |
+| **GA4** | Website analytics | Free | Already set up |
+
+**Total Week 1 Tool Cost:** $21-71/mo (depending on SparkToro tier)
 
 ---
 

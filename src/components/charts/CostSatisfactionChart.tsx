@@ -11,12 +11,16 @@ import {
   Cell,
 } from 'recharts';
 import { costSatisfactionData } from '../../data/mockData';
+import { GorgiasSymbol } from '../GorgiasLogo';
+import { useTheme } from '../../context/ThemeContext';
 import './Charts.css';
 
 const COLORS = ['#E8826E', '#525252', '#1A1A1A'];
 
 export function CostSatisfactionChart() {
   const [showAiSummary, setShowAiSummary] = useState(false);
+  const { theme } = useTheme();
+  const logoColor = theme === 'dark' ? '#888888' : '#666666';
 
   return (
     <div className="chart-container">
@@ -180,6 +184,12 @@ export function CostSatisfactionChart() {
           </div>
         </div>
       )}
+      
+      {/* Gorgias Watermark */}
+      <div className="chart-watermark">
+        <GorgiasSymbol color={logoColor} size={18} animated={false} />
+        <span className="chart-watermark__text">CX Lab</span>
+      </div>
     </div>
   );
 }

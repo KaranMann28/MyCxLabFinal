@@ -12,6 +12,8 @@ import {
   LabelList,
 } from 'recharts';
 import { automationCeilingData } from '../../data/mockData';
+import { GorgiasSymbol } from '../GorgiasLogo';
+import { useTheme } from '../../context/ThemeContext';
 import './Charts.css';
 
 type ViewType = 'automation' | 'handover';
@@ -40,6 +42,8 @@ const annotationVariants = {
 
 export function AutomationCeilingChart() {
   const [activeView, setActiveView] = useState<ViewType>('automation');
+  const { theme } = useTheme();
+  const logoColor = theme === 'dark' ? '#888888' : '#666666';
 
   // Sort by automation rate descending
   const sortedData = [...automationCeilingData].sort(
@@ -235,6 +239,12 @@ export function AutomationCeilingChart() {
           <span>Ceiling reached</span>
         </div>
       </motion.div>
+      
+      {/* Gorgias Watermark */}
+      <div className="chart-watermark">
+        <GorgiasSymbol color={logoColor} size={18} animated={false} />
+        <span className="chart-watermark__text">CX Lab</span>
+      </div>
     </motion.div>
   );
 }

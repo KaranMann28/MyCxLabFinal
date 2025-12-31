@@ -10,6 +10,8 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
+import { GorgiasSymbol } from '../GorgiasLogo';
+import { useTheme } from '../../context/ThemeContext';
 import './Charts.css';
 
 // AI Satisfaction Gap Data - using csatAiFully (not csatAllAi)
@@ -52,6 +54,9 @@ const annotationVariants = {
 };
 
 export function AISatisfactionGapChart() {
+  const { theme } = useTheme();
+  const logoColor = theme === 'dark' ? '#888888' : '#666666';
+  
   const annotations = [
     { label: 'The CSAT Gap', value: '0.8 pts', color: '#E8826E' },
     { label: 'AI Ticket Share', value: '33% → 50%', color: 'var(--success)' },
@@ -220,6 +225,12 @@ export function AISatisfactionGapChart() {
             </span>
           </motion.div>
         ))}
+      </div>
+      
+      {/* Gorgias Watermark */}
+      <div className="chart-watermark">
+        <GorgiasSymbol color={logoColor} size={18} animated={false} />
+        <span className="chart-watermark__text">CX Lab</span>
       </div>
     </motion.div>
   );

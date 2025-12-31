@@ -1,5 +1,35 @@
 .chart-container {
   width: 100%;
+  position: relative;
+}
+
+/* Gorgias Logo Watermark */
+.chart-watermark {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+  z-index: 10;
+}
+
+.chart-watermark:hover {
+  opacity: 1;
+}
+
+.chart-watermark__logo {
+  width: 20px;
+  height: auto;
+}
+
+.chart-watermark__text {
+  font-size: 10px;
+  font-weight: var(--font-semibold);
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
 }
 
 .chart-description {

@@ -11,6 +11,8 @@ import {
   Legend,
 } from 'recharts';
 import { merchantAdoptionData } from '../../data/mockData';
+import { GorgiasSymbol } from '../GorgiasLogo';
+import { useTheme } from '../../context/ThemeContext';
 import './Charts.css';
 
 type SegmentView = 'all' | 'commercial';
@@ -39,6 +41,8 @@ const annotationVariants = {
 
 export function MerchantAdoptionChart() {
   const [activeSegment, setActiveSegment] = useState<SegmentView>('all');
+  const { theme } = useTheme();
+  const logoColor = theme === 'dark' ? '#888888' : '#666666';
 
   const avgOverall = Math.round(merchantAdoptionData.reduce((sum, d) => sum + d.overallMerchants, 0) / merchantAdoptionData.length);
   const avgCommercial = Math.round(merchantAdoptionData.reduce((sum, d) => sum + d.commercialMerchants, 0) / merchantAdoptionData.length);
@@ -197,6 +201,12 @@ export function MerchantAdoptionChart() {
             </span>
           </motion.div>
         ))}
+      </div>
+      
+      {/* Gorgias Watermark */}
+      <div className="chart-watermark">
+        <GorgiasSymbol color={logoColor} size={18} animated={false} />
+        <span className="chart-watermark__text">CX Lab</span>
       </div>
     </motion.div>
   );
