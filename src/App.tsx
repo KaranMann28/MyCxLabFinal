@@ -12,7 +12,9 @@ import {
   ScrollToTop,
   AIRevenueInfluenceChart,
   AIQualityFlywheelChart,
+  AutomationMixChart,
 } from './components';
+import { summaryStats } from './data/mockData';
 import { useLanguage } from './context/LanguageContext';
 
 const pageVariants = {
@@ -120,6 +122,21 @@ What this means: This isn't AI getting smarter on its own. This is merchants get
 Why this matters: The satisfaction gap between AI and human agents isn't fixed. It's a function of investment. The 0.8-point CSAT gap that plagued generic automation is closing for brands that treat their AI as a learning system, not a set-and-forget tool. The quality flywheel rewards those who put in the work.`}
                 >
                   <AIQualityFlywheelChart />
+                </InsightCard>
+
+                {/* Finding 3: Industry AI Adoption Index - Visible by default per feedback */}
+                <InsightCard
+                  title="Ecommerce AI Index"
+                  subtitle="Industry Adoption Rate"
+                  source={`CX Lab Research, ${summaryStats.totalInteractions} support interactions analyzed`}
+                  aiSummary={`The ecommerce industry is undergoing a structural shift in customer service. AI involvement in support tickets has grown from near-zero to ${summaryStats.currentAiTouchedPct} in under two years, signaling that AI-assisted support is becoming the industry standard, not an exception.`}
+                  fullAnalysis={`The Trend: Across the ecommerce sector, AI is rapidly becoming embedded in customer support operations. Our analysis of ${summaryStats.totalInteractions} support interactions shows AI involvement growing from virtually nothing in early 2024 to ${summaryStats.currentAiTouchedPct} by late 2025, a ${summaryStats.growthMultiple} increase.
+
+The Nuance: Full automation remains limited at ${summaryStats.currentNoHumanPct}. The dominant model emerging across the industry is "AI-assisted human support" where AI handles triage, drafts responses, or gathers information, but humans make final decisions. This hybrid approach is becoming the operational standard for competitive ecommerce brands.
+
+What This Means for Merchants: Brands not investing in AI-assisted support risk falling behind on response times and operational efficiency. However, the data suggests the winning strategy isn't full automation. It's augmentation. The most successful implementations treat AI as a force multiplier for human agents, not a replacement.`}
+                >
+                  <AutomationMixChart />
                 </InsightCard>
                 
                 {/* More Insights Link */}
