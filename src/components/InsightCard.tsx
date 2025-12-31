@@ -1,7 +1,8 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AISummaryModal } from './AISummaryModal';
+import { ShareModal } from './ShareModal';
 import './InsightCard.css';
 
 interface InsightCardProps {
@@ -78,6 +79,8 @@ export function InsightCard({
 }: InsightCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const chartRef = useRef<HTMLDivElement>(null);
   
   // Format full analysis with paragraph breaks
   const analysisParagraphs = fullAnalysis.split('\n\n').filter(p => p.trim());
@@ -114,6 +117,7 @@ export function InsightCard({
           {/* Chart */}
           <motion.div 
             className="insight-card__chart"
+            ref={chartRef}
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -248,6 +252,16 @@ export function InsightCard({
             >
               Embed
             </motion.button>
+            <span className="insight-card__source-divider">•</span>
+            <motion.button 
+              className="insight-card__link insight-card__link--share"
+              onClick={() => setIsShareModalOpen(true)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="insight-card__link-icon">📤</span>
+              Share
+            </motion.button>
           </motion.footer>
         </motion.div>
       </div>
@@ -259,6 +273,16 @@ export function InsightCard({
         chartTitle={title}
         chartSubtitle={subtitle}
         dataContext={dataContext}
+      />
+      
+      {/* Share Modal */}
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        chartTitle={title}
+        chartSubtitle={subtitle}
+        aiSummary={aiSummary}
+        chartRef={chartRef}
       />
     </motion.article>
   );
