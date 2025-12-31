@@ -62,7 +62,7 @@ export function AIQualityFlywheelChart() {
     { label: 'Quality Rate', value: '85%', color: '#22C55E' },
     { label: 'Quality Growth', value: '+10%', color: 'var(--success)' },
     { label: 'Good Ratings', value: '2× more', color: '#16A34A' },
-    { label: 'Bad Ratings', value: '−44%', color: '#E8826E' },
+    { label: 'Resolution Rate', value: '51%', color: 'var(--coral)' },
   ];
 
   return (
@@ -92,14 +92,6 @@ export function AIQualityFlywheelChart() {
                 <stop offset="5%" stopColor="#16A34A" stopOpacity={0.9} />
                 <stop offset="95%" stopColor="#16A34A" stopOpacity={0.6} />
               </linearGradient>
-              <linearGradient id="okGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#FACC15" stopOpacity={0.9} />
-                <stop offset="95%" stopColor="#FACC15" stopOpacity={0.6} />
-              </linearGradient>
-              <linearGradient id="badGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#FDA4AF" stopOpacity={0.9} />
-                <stop offset="95%" stopColor="#FDA4AF" stopOpacity={0.6} />
-              </linearGradient>
             </defs>
             
             <CartesianGrid 
@@ -124,7 +116,7 @@ export function AIQualityFlywheelChart() {
               tickFormatter={formatVolume}
               domain={[0, 'auto']}
               label={{ 
-                value: 'Rated Tickets', 
+                value: 'Good Ratings', 
                 angle: -90, 
                 position: 'insideLeft',
                 style: { fill: 'var(--text-muted)', fontSize: 12 }
@@ -158,8 +150,6 @@ export function AIQualityFlywheelChart() {
               labelStyle={{ color: 'var(--text-muted)', marginBottom: '8px', fontSize: '12px' }}
               formatter={(value: number, name: string) => {
                 if (name === 'goodTickets') return [formatVolume(value), 'Good Ratings'];
-                if (name === 'okTickets') return [formatVolume(value), 'OK Ratings'];
-                if (name === 'badTickets') return [formatVolume(value), 'Bad Ratings'];
                 if (name === 'qualityRate') return [`${value.toFixed(1)}%`, 'Quality Rate'];
                 return [value, name];
               }}
@@ -169,9 +159,7 @@ export function AIQualityFlywheelChart() {
               verticalAlign="top" 
               height={36}
               formatter={(value) => {
-                if (value === 'goodTickets') return 'Good';
-                if (value === 'okTickets') return 'OK';
-                if (value === 'badTickets') return 'Bad';
+                if (value === 'goodTickets') return 'Good Ratings';
                 if (value === 'qualityRate') return 'Quality Rate';
                 return value;
               }}
@@ -179,30 +167,9 @@ export function AIQualityFlywheelChart() {
             
             <Bar
               yAxisId="left"
-              dataKey="badTickets"
-              stackId="ratings"
-              fill="url(#badGradient)"
-              radius={[0, 0, 0, 0]}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            
-            <Bar
-              yAxisId="left"
-              dataKey="okTickets"
-              stackId="ratings"
-              fill="url(#okGradient)"
-              radius={[0, 0, 0, 0]}
-              animationDuration={800}
-              animationEasing="ease-out"
-            />
-            
-            <Bar
-              yAxisId="left"
               dataKey="goodTickets"
-              stackId="ratings"
               fill="url(#goodGradient)"
-              radius={[4, 4, 0, 0]}
+              radius={[4, 4, 4, 4]}
               animationDuration={800}
               animationEasing="ease-out"
             />
