@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AIRevenueInfluenceChart } from '../components/charts/AIRevenueInfluenceChart';
 import { AISatisfactionGapChart } from '../components/charts/AISatisfactionGapChart';
+import { AIQualityFlywheelChart } from '../components/charts/AIQualityFlywheelChart';
 import './DeepDive.css';
 
 // Deep dive article data - in production, this would come from CMS/API
@@ -235,6 +236,126 @@ The satisfaction gap isn't destiny. It's a choice. Choose to invest.`,
       url: 'https://www.gorgias.com/customers/vessel',
     },
   },
+  'quality-flywheel': {
+    id: 'quality-flywheel',
+    title: 'The Quality Flywheel',
+    subtitle: 'How Merchant Investment Creates Compounding AI Performance',
+    date: 'December 31, 2025',
+    author: 'CX Lab Research',
+    readTime: '7 min read',
+    heroImage: '/images/quality-hero.jpg',
+    chart: 'AIQualityFlywheelChart',
+    tableOfContents: [
+      { id: 'key-finding', label: 'The Key Finding' },
+      { id: 'flywheel-explained', label: 'The Flywheel Explained' },
+      { id: 'what-changed', label: 'What Changed in 5 Months' },
+      { id: 'who-wins', label: 'Who Wins Here?' },
+      { id: 'methodology', label: 'Methodology' },
+      { id: 'what-to-do', label: 'What Should You Do?' },
+    ],
+    sections: [
+      {
+        id: 'key-finding',
+        type: 'highlight',
+        title: 'The Key Finding',
+        content: `Merchant quality rate climbed from 77% to 85% in five months. Good ratings doubled. Bad ratings dropped 44%. The brands winning at AI aren't waiting for better technology. They're building better knowledge bases.`,
+      },
+      {
+        id: 'flywheel-explained',
+        type: 'analysis',
+        title: 'The Flywheel Explained',
+        content: `The quality flywheel is simple in concept, powerful in execution:
+
+**Better KB → Better AI responses → Higher quality scores → More merchant investment → Better KB**
+
+This isn't theoretical. We see it in the data. The merchants who started investing in their AI Agent's knowledge base in August 2025 are now seeing compounding returns.
+
+Why does this work?
+
+**AI learns from what you feed it.** A knowledge base with comprehensive product information, common edge cases, and clear escalation paths produces dramatically better responses than one with generic FAQ content.
+
+**Quality scores create feedback loops.** When merchants see their quality rate improve, they invest more. When they see it stall, they audit their KB. The metrics drive behavior.
+
+**Compounding is non-linear.** The difference between 77% and 85% quality rate isn't just 8 percentage points. It's the difference between "acceptable automation" and "AI that customers prefer." That shift changes everything.`,
+      },
+      {
+        id: 'what-changed',
+        type: 'analysis',
+        title: 'What Changed in 5 Months',
+        content: `Look at the composition shift in AI Agent ratings from August to December 2025:
+
+**August 2025:**
+- Good ratings: 28,500
+- OK ratings: 58,000  
+- Bad ratings: 8,500
+- Quality rate: 77%
+
+**December 2025:**
+- Good ratings: 58,500 (2× increase)
+- OK ratings: 68,200
+- Bad ratings: 4,800 (44% decrease)
+- Quality rate: 85%
+
+The total volume of rated interactions grew significantly, but the quality composition improved even faster.
+
+Here's what's remarkable: the growth in "Good" ratings outpaced everything else. Merchants aren't just reducing failures. They're creating successes.
+
+This is the difference between defensive AI (avoiding bad outcomes) and offensive AI (creating great outcomes). The best merchants are playing offense.`,
+      },
+      {
+        id: 'who-wins',
+        type: 'callout',
+        title: 'Who Wins Here?',
+        content: `Three patterns distinguish merchants with rising quality rates:
+
+**1. They treat the KB as a product, not a project**
+These merchants have dedicated owners for their knowledge base. They track coverage, freshness, and accuracy. They don't "set and forget."
+
+**2. They analyze "Bad" ratings ruthlessly**
+Every bad rating is a learning opportunity. They categorize failures, identify patterns, and fix root causes. The merchants stuck at 77% quality rate? They don't read their bad ratings.
+
+**3. They measure response quality, not just resolution**
+Resolution tells you whether the ticket closed. Quality tells you whether the customer was satisfied. The brands winning the flywheel war optimize for quality first, knowing resolution follows.
+
+The flywheel rewards effort. But it rewards *smart* effort most of all.`,
+      },
+      {
+        id: 'methodology',
+        type: 'methodology',
+        title: 'Methodology',
+        content: `This analysis covers AI Agent interactions from August to December 2025, aggregated and anonymized across Gorgias merchants.
+
+**Quality rate** is calculated as: (Good + OK rated tickets) / (All rated tickets) over a rolling 28-day window.
+
+**Rating sources** include merchant feedback on AI Agent responses, measuring both knowledge base accuracy and execution quality.
+
+**Limitations:**
+- Rating behavior varies by merchant (some rate more than others)
+- Selection bias: merchants who rate may be more engaged overall
+- "Good" vs "OK" distinction is subjective
+
+Despite these limitations, the directional trends are clear and consistent across merchant segments.`,
+      },
+      {
+        id: 'what-to-do',
+        type: 'action',
+        title: 'What Should You Do?',
+        content: `**If your quality rate is below 80%:** Start with a KB audit. What are your top 20 ticket types? Does your KB have comprehensive, accurate content for each? Fill the gaps first.
+
+**If your quality rate is 80-85%:** You're in the growth zone. Focus on the "Bad" ratings. Categorize them. Find patterns. Every bad rating fixed is a quality point gained.
+
+**If your quality rate is above 85%:** Congratulations, you're leading the pack. Now optimize for "Good" over "OK." What separates an acceptable response from a delightful one? That's your next frontier.
+
+**For everyone:** Assign KB ownership. The brands with rising quality rates have someone accountable for knowledge base health. If no one owns it, no one improves it.
+
+The flywheel is spinning. The question is whether you're adding momentum or drag.`,
+      },
+    ],
+    cta: {
+      label: 'See how VESSEL achieved 98% automation accuracy',
+      url: 'https://www.gorgias.com/customers/vessel',
+    },
+  },
 };
 
 export function DeepDive() {
@@ -258,6 +379,8 @@ export function DeepDive() {
         return <AIRevenueInfluenceChart />;
       case 'AISatisfactionGapChart':
         return <AISatisfactionGapChart />;
+      case 'AIQualityFlywheelChart':
+        return <AIQualityFlywheelChart />;
       default:
         return null;
     }

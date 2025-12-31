@@ -768,39 +768,192 @@ Weekly SQL trigger (n8n) → JSON transform → Claude API generates draft → H
 
 ---
 
-## 🛠 The System Behind It
+## 🛠 THE SYSTEM BEHIND IT: Step-by-Step Architecture
 
-### Access Everything
+> **"Explain step-by-step what you've done and give access to the different flows and pieces of code."**
 
-| Resource | Link |
-|----------|------|
-| **Live Site** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
-| **GitHub Repo** | [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal) |
-| **Charts Code** | `/src/components/charts/` |
-| **Data Layer** | `/src/data/mockData.ts` |
+This section provides complete transparency into how CX Lab works—from data extraction to deployment—with direct access to every piece of code.
 
 ---
 
-### 📊 Graph Data + SQL (Feedback Item #3)
+### 🏗️ System Architecture Diagram
 
-**Feedback:** "Can you share the graph associated with this research from your Vercel and include the SQL?"
-
-**Response:** Here's the complete data from the actual SQL visualizations:
+```mermaid
+flowchart TD
+    subgraph DataLayer[1. DATA LAYER]
+        SQL[BigQuery SQL Queries]
+        JSON[mockData.ts - Typed JSON]
+    end
+    
+    subgraph ComponentLayer[2. COMPONENT LAYER]
+        Charts[Chart Components - Recharts]
+        Cards[InsightCard - Reusable Wrapper]
+        Pages[Page Components - App.tsx, DeepDive.tsx]
+    end
+    
+    subgraph ServiceLayer[3. SERVICE LAYER]
+        OpenAI[openaiService.ts - GPT-4o-mini]
+        Context[ThemeContext + LanguageContext]
+        Animations[Framer Motion Variants]
+    end
+    
+    subgraph OutputLayer[4. OUTPUT LAYER]
+        Vercel[Vercel Auto-Deploy]
+        GitHub[GitHub Repo]
+        Live[Live Site]
+    end
+    
+    SQL -->|Weekly export| JSON
+    JSON -->|Import| Charts
+    Charts -->|Render inside| Cards
+    Cards -->|Compose| Pages
+    OpenAI -->|Generate summaries| Cards
+    Context -->|Provide state| Pages
+    Animations -->|Control transitions| Pages
+    Pages -->|Git push| GitHub
+    GitHub -->|Webhook| Vercel
+    Vercel -->|Deploy| Live
+```
 
 ---
+
+### 📋 Step-by-Step Flow: How Data Becomes Insights
+
+| Step | What Happens | File/Resource | Direct Access |
+|------|--------------|---------------|---------------|
+| **1. Data Extraction** | SQL queries pull metrics from BigQuery (600M+ tickets) | BigQuery console | Request access from data team |
+| **2. Data Transform** | Results formatted as typed TypeScript arrays | [`/src/data/mockData.ts`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/data/mockData.ts) | [View file →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/data/mockData.ts) |
+| **3. Chart Rendering** | Recharts + Framer Motion create interactive visualizations | [`/src/components/charts/`](https://github.com/KaranMann28/MyCxLabFinal/tree/main/src/components/charts) | [View folder →](https://github.com/KaranMann28/MyCxLabFinal/tree/main/src/components/charts) |
+| **4. Insight Wrapping** | InsightCard component wraps chart + narrative + CTAs | [`/src/components/InsightCard.tsx`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/components/InsightCard.tsx) | [View file →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/components/InsightCard.tsx) |
+| **5. AI Summary** | OpenAI API (GPT-4o-mini) generates dynamic summaries | [`/src/services/openaiService.ts`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/services/openaiService.ts) | [View file →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/services/openaiService.ts) |
+| **6. Page Assembly** | App.tsx orchestrates layout, animations, unlock flow | [`/src/App.tsx`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/App.tsx) | [View file →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/App.tsx) |
+| **7. Deep Dive Articles** | Ramp-style long-form research pages | [`/src/pages/DeepDive.tsx`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/pages/DeepDive.tsx) | [View file →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/src/pages/DeepDive.tsx) |
+| **8. Deploy** | Git push triggers Vercel auto-deploy | [`vercel.json`](https://github.com/KaranMann28/MyCxLabFinal/blob/main/vercel.json) | [View config →](https://github.com/KaranMann28/MyCxLabFinal/blob/main/vercel.json) |
+
+---
+
+### 📁 Complete Code Access Directory
+
+| Resource | Path | What It Contains | Lines |
+|----------|------|------------------|-------|
+| **All Chart Components** | `/src/components/charts/` | 6 chart types (AIRevenueInfluence, AISatisfactionGap, AutomationMix, MerchantAdoption, AutomationCeiling, CostSatisfaction) | ~400 |
+| **Data Layer** | `/src/data/mockData.ts` | Real data from 600M+ tickets, typed TypeScript exports | 122 |
+| **AI Service** | `/src/services/openaiService.ts` | GPT-4o-mini integration for dynamic summaries | 105 |
+| **Insight Component** | `/src/components/InsightCard.tsx` | Reusable insight wrapper with expandable analysis | ~180 |
+| **Deep Dive Pages** | `/src/pages/DeepDive.tsx` | Ramp-style long-form articles with sticky TOC | 443 |
+| **Main App** | `/src/App.tsx` | Page orchestration, unlock animation, routing | 173 |
+| **Theme Context** | `/src/context/ThemeContext.tsx` | Dark/light mode toggle | ~50 |
+| **Language Context** | `/src/context/LanguageContext.tsx` | i18n ready (EN/FR) | ~60 |
+| **CSS Variables** | `/src/styles/variables.css` | Design tokens, Gorgias brand colors | ~100 |
+
+---
+
+### 🔄 Key Code Flows Explained
+
+#### Flow 1: Data → Chart → Page
+
+```
+mockData.ts (typed arrays)
+    ↓ import
+AIRevenueInfluenceChart.tsx (Recharts + Framer Motion)
+    ↓ children prop
+InsightCard.tsx (wrapper with title, summary, CTA)
+    ↓ compose
+App.tsx (renders inside <section id="insights">)
+    ↓ build
+Vercel (static HTML/JS bundle)
+```
+
+**Key file:** `AIRevenueInfluenceChart.tsx` imports data directly:
+```typescript
+// Real data from SQL query - embedded in component
+const revenueInfluenceData = [
+  { month: "2025-01-01", label: "Jan '25", gmvInfluencedRate: 0.256 },
+  // ... 12 months of real data
+];
+```
+
+#### Flow 2: AI Summary Generation
+
+```
+User clicks "AI Summary" button
+    ↓
+InsightCard.tsx triggers openaiService.ts
+    ↓
+openaiService.ts calls OpenAI API (GPT-4o-mini)
+    ↓
+Prompt includes: chart title, subtitle, data context
+    ↓
+Response rendered in modal (AISummaryModal.tsx)
+```
+
+**Key file:** `openaiService.ts` prompt structure:
+```typescript
+const prompt = `You are an expert CX industry analyst for Gorgias CX Lab.
+Given this data: [chart metrics]
+Create a summary with:
+1. A brief 2-sentence overview
+2. Three key findings (bulleted with specific data points)
+3. One actionable insight for ecommerce merchants
+Keep it professional, data-focused, and under 200 words.`;
+```
+
+#### Flow 3: Deep Dive Article Routing
+
+```
+User clicks "Read Full Research" on InsightCard
+    ↓
+React Router navigates to /research/:slug
+    ↓
+DeepDive.tsx extracts slug from URL params
+    ↓
+Matches against articles{} object
+    ↓
+Renders: Hero → Chart → Sections → CTA → Share buttons
+```
+
+**Key file:** `DeepDive.tsx` article structure:
+```typescript
+const articles = {
+  'efficiency-multiplier': {
+    title: 'The Efficiency Multiplier',
+    sections: [
+      { id: 'key-finding', type: 'highlight', content: '...' },
+      { id: 'what-changed', type: 'analysis', content: '...' },
+      // ... more sections
+    ],
+    cta: { label: 'See how Orthofeet...', url: '...' }
+  }
+};
+```
+
+#### Flow 4: Animation System
+
+```
+App.tsx defines pageVariants + contentRevealVariants
+    ↓
+<motion.div> wraps main content
+    ↓
+AnimatePresence controls enter/exit
+    ↓
+ScrollRevealLogo triggers unlock state
+    ↓
+isUnlocked → contentRevealVariants.visible
+    ↓
+Staggered children animations (0.1s delay each)
+```
+
+---
+
+### 📊 Graph Data + SQL Queries
 
 #### Graph 1: AI Agent Resolution Growth
 
-**What the data shows:**
-
 | Metric | Jan 2025 | Oct 2025 | Change |
 |--------|----------|----------|--------|
-| **Total Tickets (Red)** | ~800K | ~850K | +6% (stable) |
-| **AI Agent Resolved (Green)** | ~150K | ~320K | **+113%** |
+| **Total Tickets** | ~800K | ~850K | +6% (stable) |
+| **AI Agent Resolved** | ~150K | ~320K | **+113%** |
 | **AI Resolution Rate** | 19% | 38% | **2x growth** |
-
-**The narrative:**
-> "AI Agent resolved tickets grew from 150K to 320K (+113%) while total ticket volume stayed flat. AI now handles 38% of all tickets, up from 19% in January. This is the efficiency multiplier in action."
 
 **SQL Query:**
 ```sql
@@ -815,19 +968,12 @@ GROUP BY 1
 ORDER BY 1;
 ```
 
----
-
 #### Graph 2: GMV + Support-Influenced Revenue
 
-**What the data shows:**
-
-| Metric | Jan-Aug 2025 | BFCM Peak (Oct 16) | Post-BFCM (Nov) |
-|--------|--------------|---------------------|-----------------|
-| **GMV (Purple)** | ~$50M-100M | **$1.2B** | $600M |
-| **Support-Influenced (Cyan)** | Near baseline | Scales with GMV | Returns to baseline |
-
-**The narrative:**
-> "GMV spiked to $1.2B during BFCM—a 12x increase from baseline. The key insight: AI Agent resolution rate held steady at 38% even under this extreme volume. When you need scale most, intelligent AI delivers."
+| Metric | Jan-Aug 2025 | BFCM Peak | Post-BFCM |
+|--------|--------------|-----------|-----------|
+| **GMV** | ~$50M-100M | **$1.2B** | $600M |
+| **Support-Influenced** | Near baseline | Scales with GMV | Returns to baseline |
 
 **SQL Query:**
 ```sql
@@ -845,117 +991,82 @@ ORDER BY 1;
 
 ---
 
-#### Key Insights from Real Data
+### 🔗 Quick Access Links
 
-| Finding | Data Point | Implication |
-|---------|------------|-------------|
-| **AI is scaling** | 150K → 320K resolved (+113%) | AI Agent is handling more, not just deflecting |
-| **Volume is stable** | 800K total tickets (flat) | Growth isn't about more tickets |
-| **BFCM stress test passed** | 38% AI rate held at $1.2B GMV | AI doesn't break under pressure |
-| **Efficiency compounding** | 2x AI resolution rate in 10 months | The flywheel is working |
+| Resource | URL |
+|----------|-----|
+| **Live Site** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
+| **GitHub Repo** | [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal) |
+| **Vercel Dashboard** | [vercel.com/kams-projects-e9588e2f/my-cx-lab-final](https://vercel.com/kams-projects-e9588e2f/my-cx-lab-final) |
+| **Efficiency Multiplier Chart** | [Live →](https://my-cx-lab-final.vercel.app/#insights) |
+| **More Insights Page** | [Live →](https://my-cx-lab-final.vercel.app/insights) |
+| **Deep Dive: Efficiency** | [Live →](https://my-cx-lab-final.vercel.app/research/efficiency-multiplier) |
+| **Deep Dive: Satisfaction Gap** | [Live →](https://my-cx-lab-final.vercel.app/research/ai-satisfaction-gap) |
 
 ---
 
-#### View Live Graphs
-
-- **Efficiency Multiplier:** [my-cx-lab-final.vercel.app/#insights](https://my-cx-lab-final.vercel.app/#insights)
-- **More Insights Page:** [my-cx-lab-final.vercel.app/more-insights](https://my-cx-lab-final.vercel.app/more-insights)
-
-**Chart Components:**
-- `/src/components/charts/AIRevenueInfluenceChart.tsx`
-- `/src/components/charts/AISatisfactionGapChart.tsx`
-
-### Step-by-Step Flow
-
-| Step | What | Tools |
-|------|------|-------|
-| 1. Data Extraction | SQL → CSV → JSON | BigQuery/Redshift |
-| 2. Chart Development | Interactive visualizations | React + Recharts + Framer Motion |
-| 3. Narrative Layer | Insight framing + CTAs | InsightCard component |
-| 4. Content Curation | Reframe for product positioning | Claude in Cursor |
-| 5. Deploy | Build and ship | Vercel (auto-deploy from GitHub) |
-
-### n8n Automation (Future State)
+### ⚙️ Future Automation: n8n Pipeline
 
 ```
-Weekly SQL pull → Transform to JSON → LLM drafts insights → Git commit → Auto-deploy → Slack notification → Repurpose to LinkedIn/Reddit/YouTube
+┌─────────────────────────────────────────────────────────────────┐
+│  WEEKLY TRIGGER: Monday 9am                                     │
+├─────────────────────────────────────────────────────────────────┤
+│  1. SQL Pull      → BigQuery exports to JSON                    │
+│  2. Transform     → n8n formats for mockData.ts                 │
+│  3. LLM Draft     → Claude API generates new insight narrative  │
+│  4. Human Review  → Notion database for approval                │
+│  5. Git Commit    → Auto-commit to GitHub                       │
+│  6. Deploy        → Vercel webhook triggers build               │
+│  7. Notify        → Slack message with preview link             │
+│  8. Repurpose     → Queue for LinkedIn/Reddit/YouTube           │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-### What Breaks First
+---
 
-1. **Manual data exports** — Need direct SQL connection
-2. **AI content drift** — LLM narratives need human review
-3. **Translation lag** — French version needs manual sync
-4. **Chart responsiveness** — Complex charts need mobile-specific views
+### 🚨 What Breaks First (Known Limitations)
+
+| Issue | Current State | Fix |
+|-------|---------------|-----|
+| **Manual data exports** | CSV download from BigQuery | Need direct SQL connection via n8n |
+| **AI content drift** | LLM narratives may diverge from brand voice | Human review gate in workflow |
+| **Translation lag** | French version needs manual sync | Add i18n pipeline to n8n |
+| **Chart responsiveness** | Complex charts cramped on mobile | Mobile-specific chart variants |
+| **API key exposure** | OpenAI key in env vars | Move to serverless function |
 
 ---
 
 ## 📣 Distribution: The Concrete Plan
 
-### Your Audience Isn't Googling. They're Asking AI.
-
-| Source | AI Citation Share |
-|--------|-------------------|
-| Reddit | **40.11%** |
-| Wikipedia | **26.33%** |
-| YouTube | **23.52%** |
-| LinkedIn | **5.90%** |
-
-**Goal:** When someone asks ChatGPT "AI customer service benchmarks," CX Lab is the answer.
+> **Goal:** When someone asks ChatGPT "AI customer service benchmarks," CX Lab is the answer.
 
 ---
 
-### Week 1 Checklist
+### 📊 Channel Priority Matrix (AI Citation Potential)
 
-- [ ] Ship live report ✅
-- [ ] Email 15,000 Gorgias customers
-- [ ] LinkedIn carousel with Ramp tie-in
-- [ ] Reddit post in r/ecommerce + r/shopify
-- [ ] DM 3 newsletter owners (DTC Newsletter, Eli Weiss, Retention.blog)
+| Channel | AI Citation Share | Effort | Week 1 Priority | Why This Matters |
+|---------|------------------|--------|-----------------|------------------|
+| **Reddit** | 40.11% | Medium | ⭐⭐⭐⭐⭐ | Largest single source of AI training data |
+| **Wikipedia** | 26.33% | High (hard to edit) | ⭐⭐ | Long-game credibility play |
+| **YouTube** | 23.52% | High | ⭐⭐⭐ | Transcripts indexed by AI |
+| **LinkedIn** | 5.90% | Low | ⭐⭐⭐⭐ | B2B decision-makers, low effort |
+| **Newsletter** | N/A (borrowed) | Low | ⭐⭐⭐⭐⭐ | Immediate reach, trusted source |
+| **Substack** | Growing | Medium | ⭐⭐⭐ | Thought leadership positioning |
+| **Twitter/X** | ~3% | Low | ⭐⭐⭐ | Viral potential, commentary layer |
 
-### Week 2 Checklist
-
-- [ ] YouTube short (top insight)
-- [ ] Double down on winning channel
-- [ ] Partner newsletter placements go live
-- [ ] Twitter/X thread from best Reddit comments
-- [ ] Track Perplexity citations
+**Week 1 Focus:** Reddit + LinkedIn + Newsletter = 90% of effort
 
 ---
 
-### Target Influencers
+### 🎯 Target Distribution Channels (Prioritized)
 
-| Name | Role | Why |
-|------|------|-----|
-| Eli Weiss | VP CX, Jones Road | 180K followers, CX thought leader |
-| Nik Sharma | DTC Newsletter | 120K followers, ecom focus |
-| Kristen LaFrance | Resilient Retail | CX/retention expert |
-| Ara Kharazian | Ramp Economics Lab | Just published AI prediction |
-
-### Outreach Template
-
-```
-Subject: Data that validates your AI prediction
-
-Hey [Name],
-
-Saw your 2026 prediction on AI automating customer service. 
-Our data shows it's already happening—but with a twist.
-
-• Ticket volume down 33%
-• AI-influenced revenue up 7x
-• But the satisfaction gap? Still 0.8 points
-
-The question isn't "if" automation—it's "how well."
-
-Full data: [CX Lab link]
-
-Happy to share more if useful.
-
-— Kam
-```
-
----
+| Channel | Why | Week 1 Action | Success Metric |
+|---------|-----|---------------|----------------|
+| **Reddit** | 40% of AI citations | 3 posts in r/ecommerce, r/shopify, r/smallbusiness | 100+ upvotes |
+| **LinkedIn** | B2B decision-makers | Daily posts + 1 carousel | 50K impressions |
+| **Newsletters** | Borrowed audience | Pitch 5 newsletter owners | 2 placements |
+| **YouTube** | 24% of AI citations | 1 insight video (Descript) | 1K views |
+| **Substack** | Thought leadership | Guest post pitch to 3 writers | 1 acceptance |
 
 ---
 
