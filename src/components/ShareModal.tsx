@@ -130,7 +130,7 @@ export function ShareModal({
         
         pdf.setTextColor(150, 150, 150);
         pdf.setFontSize(8);
-        pdf.text('Generated from CX Lab | my-cx-lab-final.vercel.app', 15, footerY);
+        pdf.text('Generated from CX Lab | yuw-nu.vercel.app', 15, footerY);
         pdf.text(new Date().toLocaleDateString(), 180, footerY);
         
         // Download the PDF
