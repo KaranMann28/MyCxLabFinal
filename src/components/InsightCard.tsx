@@ -228,16 +228,6 @@ export function InsightCard({
             <span>Source: {source}</span>
             <span className="insight-card__source-divider">•</span>
             <motion.button 
-              className="insight-card__link insight-card__link--share"
-              onClick={() => setIsShareModalOpen(true)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="insight-card__link-icon">↗</span>
-              Share
-            </motion.button>
-            <span className="insight-card__source-divider">•</span>
-            <motion.button 
               className="insight-card__link insight-card__link--ai"
               onClick={() => setIsModalOpen(true)}
               whileHover={{ scale: 1.05 }}
