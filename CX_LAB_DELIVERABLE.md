@@ -1,6 +1,6 @@
 # 🔬 CX Lab: Final Deliverable
 
-**Live:** [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app)
+**Live:** [yuw-nu.vercel.app](https://yuw-nu.vercel.app)
 
 **GitHub:** [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal)
 
@@ -40,27 +40,35 @@ This section contains everything the team needs to review the technical implemen
 ![Research Lock & Key Findings](public/screenshots/cxlab-2-research-unlock.png)
 *"The Research" section with unlock animation, Two Trends Defining 2025 stat cards*
 
-#### 3. Efficiency Multiplier Chart (Main Insight)
+#### 3. Graph #1: Efficiency Multiplier Chart
 ![Efficiency Multiplier](public/screenshots/cxlab-3-efficiency-chart.png)
 *GMV vs AI Influence Rate - the 7x growth story, with annotations*
 
-#### 4. Full Analysis (Expanded)
+#### 4. Graph #2: Quality Flywheel Chart *(NEW)*
+![Quality Flywheel](public/screenshots/quality-flywheel-chart.png)
+*Good Ratings (green bars) + Quality Rate (green line) - showing 77% → 85% quality growth. Only positive metrics displayed.*
+
+#### 5. Full Analysis (Expanded)
 ![Full Analysis](public/screenshots/cxlab-4-full-analysis.png)
 *Expandable "Read more" section showing complete insight analysis*
 
-#### 5. Explore More Research Link
+#### 6. Graph #3: Ecommerce AI Index *(Visible by default per feedback)*
+![Ecommerce AI Index](public/screenshots/ecommerce-ai-index-visible.png)
+*Industry AI adoption rate - near-zero to 11% in 2 years, 1105× growth*
+
+#### 7. Explore More Research Link
 ![Explore More Research](public/screenshots/cxlab-5-explore-more.png)
 *Link to "More Insights" page for additional charts*
 
-#### 6. Methodology Section
+#### 8. Methodology Section
 ![Methodology](public/screenshots/cxlab-6-methodology.png)
 *Data source transparency, metrics explanation, "What This Means for Merchants"*
 
-#### 7. Limitations & AI Evolution
+#### 9. Limitations & AI Evolution
 ![Limitations](public/screenshots/cxlab-7-limitations.png)
 *Research limitations, correlation ≠ causation disclaimer, pro-AI framing*
 
-#### 8. Footer
+#### 10. Footer
 ![Footer](public/screenshots/cxlab-8-footer.png)
 *CX Lab footer with Gorgias branding, privacy statement*
 
@@ -356,7 +364,7 @@ MyCxLabFinal/
 
 | Resource | URL |
 |----------|-----|
-| **Live Site** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
+| **Live Site** | [yuw-nu.vercel.app](https://yuw-nu.vercel.app) |
 | **Vercel Dashboard** | [vercel.com/kams-projects-e9588e2f/my-cx-lab-final](https://vercel.com/kams-projects-e9588e2f/my-cx-lab-final) |
 | **GitHub Repo** | [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal) |
 | **Charts Code** | `/src/components/charts/` |
@@ -456,15 +464,25 @@ Purpose-built AI for ecommerce understands product context, order history, and s
 
 ---
 
-### Insight 3: The Quality Flywheel *(NEW)*
+### Graph #2: The Quality Flywheel *(NOW LIVE ON MAIN PAGE)*
 
 **Based on feedback:** "The merchant quality rate is actually going up. Why not use this graph?"
 
-**What the metric shows:**
+**Status:** ✅ Implemented as Graph #2 on the main CX Lab homepage
 
-| Metric | Definition | Trend |
-|--------|------------|-------|
-| Merchant Quality Rate | User feedback on AI Agent KB + execution performance | 📈 Rising |
+**Chart shows:**
+| Metric | Visual | Trend |
+|--------|--------|-------|
+| Good Ratings | Green bars | 📈 Doubled (28.5k → 58.5k) |
+| Quality Rate | Green line | 📈 77% → 85% (+10%) |
+
+> **Note:** Bad and OK data points removed per feedback to focus only on the positive story.
+
+**Key Metrics (visible on chart):**
+- Quality Rate: **85%**
+- Quality Growth: **+10%**
+- Good Ratings: **2× more**
+- Resolution Rate: **51%**
 
 **The narrative:**
 > "The merchants who invest in their AI Agent's knowledge base see compounding returns. Quality rate is rising not because AI got better overnight, but because the best merchants are training it."
@@ -479,12 +497,12 @@ Better KB → Better AI responses → Higher quality scores → More merchant in
 - Credits the merchant (your customer) for the improvement
 - Creates a clear action: "Invest in your knowledge base"
 - Positions Gorgias AI Agent as **trainable**, not just scalable
+- **Only positive metrics shown** — no Bad/OK confusion
 
 **Repeat to a colleague:**
 > "AI quality isn't magic—it's investment. The best merchants train their AI, and it compounds."
 
-**Why this should be in v2:**
-This is the most optimistic, actionable insight. It transforms the AI story from "AI has limits" to "AI rewards those who invest."
+**Deep dive article:** `/research/quality-flywheel`
 
 ---
 
@@ -540,7 +558,7 @@ This positions Gorgias as the solution, not part of the problem.
 
 | Resource | Access |
 |----------|--------|
-| **Live Site** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
+| **Live Site** | [yuw-nu.vercel.app](https://yuw-nu.vercel.app) |
 | **Vercel Project** | [vercel.com/kams-projects/my-cx-lab-final](https://vercel.com/kams-projects-e9588e2f/my-cx-lab-final) |
 | **GitHub Repo** | [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal) |
 | **Charts Code** | `/src/components/charts/AIRevenueInfluenceChart.tsx` |
@@ -1007,13 +1025,13 @@ ORDER BY 1;
 
 | Resource | URL |
 |----------|-----|
-| **Live Site** | [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app) |
+| **Live Site** | [yuw-nu.vercel.app](https://yuw-nu.vercel.app) |
 | **GitHub Repo** | [github.com/KaranMann28/MyCxLabFinal](https://github.com/KaranMann28/MyCxLabFinal) |
 | **Vercel Dashboard** | [vercel.com/kams-projects-e9588e2f/my-cx-lab-final](https://vercel.com/kams-projects-e9588e2f/my-cx-lab-final) |
-| **Efficiency Multiplier Chart** | [Live →](https://my-cx-lab-final.vercel.app/#insights) |
-| **More Insights Page** | [Live →](https://my-cx-lab-final.vercel.app/insights) |
-| **Deep Dive: Efficiency** | [Live →](https://my-cx-lab-final.vercel.app/research/efficiency-multiplier) |
-| **Deep Dive: Satisfaction Gap** | [Live →](https://my-cx-lab-final.vercel.app/research/ai-satisfaction-gap) |
+| **Efficiency Multiplier Chart** | [Live →](https://yuw-nu.vercel.app/#insights) |
+| **More Insights Page** | [Live →](https://yuw-nu.vercel.app/insights) |
+| **Deep Dive: Efficiency** | [Live →](https://yuw-nu.vercel.app/research/efficiency-multiplier) |
+| **Deep Dive: Satisfaction Gap** | [Live →](https://yuw-nu.vercel.app/research/ai-satisfaction-gap) |
 
 ---
 
@@ -1861,9 +1879,10 @@ How many "resolved" AI tickets need human follow-up within 24 hours?
 
 | Insight | Key Number | Positioning |
 |---------|------------|-------------|
-| The Efficiency Multiplier | 7x revenue growth | AI drives revenue, not just deflects |
-| The AI Satisfaction Gap | 0.8-point gap | Intelligent AI closes it |
-| The Quality Flywheel | Rising quality rate | AI rewards investment |
+| **Graph #1:** The Efficiency Multiplier | 7x revenue growth | AI drives revenue, not just deflects |
+| **Graph #2:** The Quality Flywheel | 77% → 85% quality | AI rewards investment (Good + Quality Rate only) |
+| **Graph #3:** Ecommerce AI Index | 11% adoption, 1105× growth | Industry shift is inevitable |
+| The AI Satisfaction Gap *(More Insights)* | 0.8-point gap | Intelligent AI closes it |
 
 **The narrative:** Automation is inevitable (Ramp agrees). The question is whether you automate with basic bots or intelligent AI. Gorgias is the intelligent choice.
 
@@ -2711,9 +2730,9 @@ Format as JSON matching the DeepDive.tsx article structure.
 ---
 
 **Live Deep Dives:**
-- [Efficiency Multiplier](https://my-cx-lab-final.vercel.app/research/efficiency-multiplier)
-- [AI Satisfaction Gap](https://my-cx-lab-final.vercel.app/research/ai-satisfaction-gap)
+- [Efficiency Multiplier](https://yuw-nu.vercel.app/research/efficiency-multiplier)
+- [AI Satisfaction Gap](https://yuw-nu.vercel.app/research/ai-satisfaction-gap)
 
-**Live:** [my-cx-lab-final.vercel.app](https://my-cx-lab-final.vercel.app)
+**Live:** [yuw-nu.vercel.app](https://yuw-nu.vercel.app)
 
 *Built by Kam for Gorgias*
