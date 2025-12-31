@@ -11,6 +11,7 @@ import {
   Footer,
   ScrollToTop,
   AIRevenueInfluenceChart,
+  AIQualityFlywheelChart,
 } from './components';
 import { useLanguage } from './context/LanguageContext';
 
@@ -101,6 +102,24 @@ What this means: The most successful brands are increasing the value of each int
 Why this matters: With customer acquisition costs rising across ecommerce, operational efficiency is now a competitive advantage. The growth playbook is shifting from "handle more tickets" to "make every ticket count." Brands achieving this balance are seeing support transform from a cost center into a revenue driver.`}
                 >
                   <AIRevenueInfluenceChart />
+                </InsightCard>
+
+                {/* Finding 2: The Quality Flywheel */}
+                <InsightCard
+                  title="The Quality Flywheel"
+                  subtitle="How Merchant Investment Drives AI Performance"
+                  source="CX Lab Research, AI Agent quality ratings Aug to Dec 2025"
+                  articleLink="https://www.gorgias.com/customers/vessel"
+                  articleLabel="See how VESSEL achieved 98% automation accuracy →"
+                  deepDiveSlug="quality-flywheel"
+                  aiSummary="Merchant quality rate for AI Agent interactions reached 85% and rising. Good ratings doubled while bad ratings dropped 44%. The brands winning aren't waiting for better AI. They're building better knowledge bases."
+                  fullAnalysis={`What the data shows: The merchant quality rate (GOOD or OK rated tickets divided by all rated tickets) has steadily climbed from 77% to 85% over five months. More importantly, the composition is shifting: good ratings have doubled, while bad ratings dropped by nearly half.
+
+What this means: This isn't AI getting smarter on its own. This is merchants getting smarter about their AI. The brands investing in comprehensive, well-maintained knowledge bases are seeing compounding returns. Better KB content leads to better AI responses, which leads to higher quality scores, which motivates more KB investment.
+
+Why this matters: The satisfaction gap between AI and human agents isn't fixed. It's a function of investment. The 0.8-point CSAT gap that plagued generic automation is closing for brands that treat their AI as a learning system, not a set-and-forget tool. The quality flywheel rewards those who put in the work.`}
+                >
+                  <AIQualityFlywheelChart />
                 </InsightCard>
                 
                 {/* More Insights Link */}

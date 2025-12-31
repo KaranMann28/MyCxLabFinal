@@ -18,4 +18,5 @@ export {
   CostSatisfactionChart,
   AIRevenueInfluenceChart,
   AISatisfactionGapChart,
+  AIQualityFlywheelChart,
 } from './charts';
