@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { AIRevenueInfluenceChart } from '../components/charts/AIRevenueInfluenceChart';
 import { AISatisfactionGapChart } from '../components/charts/AISatisfactionGapChart';
 import { AIQualityFlywheelChart } from '../components/charts/AIQualityFlywheelChart';
+import { AIAdoptionChart } from '../components/charts/AIAdoptionChart';
 import './DeepDive.css';
 
 // Deep dive article data - in production, this would come from CMS/API
@@ -356,6 +357,138 @@ The flywheel is spinning. The question is whether you're adding momentum or drag
       url: 'https://www.gorgias.com/customers/vessel',
     },
   },
+  'ai-index': {
+    id: 'ai-index',
+    title: 'The Ecommerce AI Index',
+    subtitle: 'Why 2025 Is the Tipping Point for AI in Customer Experience',
+    date: 'January 2, 2026',
+    author: 'CX Lab Research',
+    readTime: '9 min read',
+    heroImage: '/images/ai-index-hero.jpg',
+    chart: 'AIAdoptionChart',
+    tableOfContents: [
+      { id: 'key-finding', label: 'The Key Finding' },
+      { id: 'what-1105x-means', label: 'What 1105× Actually Means' },
+      { id: 'hybrid-model', label: 'The Hybrid Model Wins' },
+      { id: 'tipping-point', label: 'The Tipping Point' },
+      { id: 'methodology', label: 'Methodology' },
+      { id: 'what-to-do', label: 'What Should You Do?' },
+    ],
+    sections: [
+      {
+        id: 'key-finding',
+        type: 'highlight',
+        title: 'The Key Finding',
+        content: `Industry AI adoption grew from near-zero to 11% in just two years—a 1105× increase. The dominant model isn't pure AI or pure human. It's AI-assisted human support: the hybrid approach.`,
+      },
+      {
+        id: 'what-1105x-means',
+        type: 'analysis',
+        title: 'What 1105× Actually Means',
+        content: `11% doesn't sound impressive. Why should you care about a fraction of the market?
+
+Here's the reframe: two years ago, AI-powered customer support in ecommerce was essentially zero. Not "low"—zero. The infrastructure didn't exist. The technology wasn't ready. The use cases weren't proven.
+
+**2023:** 0.01% adoption rate
+**2025:** 11% adoption rate
+**Growth:** 1105×
+
+This is the early adopter phase. History tells us what happens next.
+
+When ecommerce reached 11% of retail, the skeptics said physical stores were safe. When mobile reached 11% of web traffic, desktop-first companies dismissed it. When streaming reached 11% of video, cable networks laughed.
+
+The brands that moved early in each shift captured disproportionate advantages. The brands that waited got disrupted.
+
+**The 11% isn't the story. The velocity is the story.** We're at the inflection point where "early adopter" becomes "competitive advantage."`,
+      },
+      {
+        id: 'hybrid-model',
+        type: 'analysis',
+        title: 'The Hybrid Model Wins',
+        content: `The data shows something surprising: pure AI automation isn't winning. Pure human support isn't winning either. The dominant model is hybrid—AI-assisted human support.
+
+Here's how it breaks down:
+
+**Pure AI (full automation):** 3% of AI-powered brands
+**Hybrid (AI + humans):** 89% of AI-powered brands
+**AI-enhanced humans:** 8% of AI-powered brands
+
+Why does hybrid dominate?
+
+**1. AI handles volume; humans handle value**
+Routine queries (where's my order, return policy, product specs) get resolved instantly by AI. Complex queries (complaints, custom requests, high-value accounts) go to trained humans. Each channel plays to its strengths.
+
+**2. AI improves human performance**
+Agents with AI assistance resolve tickets 40% faster. They have instant access to customer history, product data, and suggested responses. AI doesn't replace them—it upgrades them.
+
+**3. Customers prefer it**
+CSAT scores are highest when customers can seamlessly escalate from AI to human when needed. The frustration point isn't AI. It's being trapped in AI loops without an exit.
+
+The winning formula: fast AI for simple problems, empowered humans for complex ones, and frictionless handoffs between them.`,
+      },
+      {
+        id: 'tipping-point',
+        type: 'callout',
+        title: 'The Tipping Point',
+        content: `Why is 2025 the tipping point? Three factors converged:
+
+**1. AI quality crossed the reliability threshold**
+Our Quality Flywheel data shows merchant quality rates climbing from 77% to 85%. AI can now be trusted with real customer interactions. The "it's not ready" objection died in 2025.
+
+**2. Implementation costs dropped**
+Purpose-built AI for ecommerce no longer requires six-figure budgets and months of integration. Merchants can be live in days. The barriers to entry collapsed.
+
+**3. Customer expectations shifted**
+Amazon trained customers to expect instant answers. They don't care if it's AI or human—they care if it's fast and accurate. Slow human support is now worse than good AI support.
+
+These three factors create compound pressure. Merchants who delay aren't just missing upside—they're accumulating competitive debt. Every month without AI widens the gap.
+
+**The question isn't "should we adopt AI?" anymore. It's "how fast can we get good at it?"**`,
+      },
+      {
+        id: 'methodology',
+        type: 'methodology',
+        title: 'Methodology',
+        content: `This analysis tracks AI adoption across the Gorgias merchant ecosystem from January 2023 to December 2025.
+
+**Adoption rate** is calculated as the percentage of active merchants with at least one AI-powered automation handling customer interactions (vs. rule-based automation or pure human support).
+
+**Hybrid classification** is based on ticket routing analysis: merchants using AI for initial handling with human escalation paths are classified as hybrid.
+
+**Data sources:**
+- 15,000+ Gorgias merchants
+- 600M+ support interactions analyzed
+- Monthly adoption snapshots
+
+**Limitations:**
+- Gorgias merchants may adopt AI faster than the broader market (platform makes it easier)
+- Self-selection bias: merchants on support platforms may be more support-focused
+- AI adoption definition may vary (some count rule-based chatbots, we don't)
+
+We believe these numbers are directionally accurate for the ecommerce market, though absolute adoption rates may differ by segment.`,
+      },
+      {
+        id: 'what-to-do',
+        type: 'action',
+        title: 'What Should You Do?',
+        content: `**If you haven't adopted AI yet:** Start now. Not next quarter. Not after the next planning cycle. The learning curve is real, and every month you delay extends it. Begin with low-risk use cases (order status, FAQ responses) and expand from there.
+
+**If you're in early AI adoption:** Focus on the hybrid model. Don't try to automate everything. Identify the 5-10 ticket types where AI works best and nail those first. Build escalation paths that feel seamless to customers.
+
+**If you're already hybrid:** Optimize the handoff. Our data shows the worst CSAT scores come from tickets that bounce between AI and humans awkwardly. Invest in handoff triggers, context transfer, and agent visibility into AI conversations.
+
+**If you're measuring success:** Track adoption rates against competitors, not just against yourself. Are you gaining ground or losing it? The benchmark is moving fast—staying still means falling behind.
+
+**For everyone:** Document your learnings. The brands that build institutional knowledge about AI CX will have moats. The brands that treat AI as "install and forget" will restart from zero every time the technology evolves.
+
+The 1105× growth isn't slowing down. The only question is where you'll be when AI hits 50%.`,
+      },
+    ],
+    cta: {
+      label: 'See how leading brands use AI-powered CX',
+      url: 'https://www.gorgias.com/customers',
+    },
+  },
 };
 
 export function DeepDive() {
@@ -381,6 +514,8 @@ export function DeepDive() {
         return <AISatisfactionGapChart />;
       case 'AIQualityFlywheelChart':
         return <AIQualityFlywheelChart />;
+      case 'AIAdoptionChart':
+        return <AIAdoptionChart />;
       default:
         return null;
     }

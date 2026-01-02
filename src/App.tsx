@@ -129,6 +129,9 @@ Why this matters: The satisfaction gap between AI and human agents isn't fixed. 
                   title="Ecommerce AI Index"
                   subtitle="Industry Adoption Rate"
                   source={`CX Lab Research, ${summaryStats.totalInteractions} support interactions analyzed`}
+                  articleLink="https://www.gorgias.com/customers"
+                  articleLabel="See how leading brands use AI-powered CX →"
+                  deepDiveSlug="ai-index"
                   aiSummary={`The ecommerce industry is undergoing a structural shift in customer service. AI involvement in support tickets has grown from near-zero to ${summaryStats.currentAiTouchedPct} in under two years, signaling that AI-assisted support is becoming the industry standard, not an exception.`}
                   fullAnalysis={`The Trend: Across the ecommerce sector, AI is rapidly becoming embedded in customer support operations. Our analysis of ${summaryStats.totalInteractions} support interactions shows AI involvement growing from virtually nothing in early 2024 to ${summaryStats.currentAiTouchedPct} by late 2025, a ${summaryStats.growthMultiple} increase.
 
