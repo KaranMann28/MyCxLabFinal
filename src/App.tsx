@@ -109,17 +109,17 @@ Why this matters: With customer acquisition costs rising across ecommerce, opera
                 {/* Finding 2: The Quality Flywheel */}
                 <InsightCard
                   title="The Quality Flywheel"
-                  subtitle="How Merchant Investment Drives AI Performance"
+                  subtitle="AI Quality Improved 8 Points Industry-Wide"
                   source="CX Lab Research, AI Agent quality ratings Aug to Dec 2025"
                   articleLink="https://www.gorgias.com/customers/vessel"
                   articleLabel="See how VESSEL achieved 98% automation accuracy →"
                   deepDiveSlug="quality-flywheel"
-                  aiSummary="Merchant quality rate for AI Agent interactions reached 85% and rising. Good ratings doubled as merchants invested in better knowledge bases. The brands winning aren't waiting for better AI. They're building smarter systems."
-                  fullAnalysis={`What the data shows: The merchant quality rate has steadily climbed from 77% to 85% over five months. Good ratings have doubled as merchants invest in comprehensive, well-maintained knowledge bases.
+                  aiSummary="Industry-wide AI quality rate improved from 77% to 85% as AI capabilities matured. The technology is no longer experimental. Brands investing in AI training today can build on this proven foundation."
+                  fullAnalysis={`What the data shows: The industry-wide AI quality rate has climbed from 77% to 85% over five months. This 8-point improvement reflects maturing AI capabilities across the platform. Good ratings have doubled during this period.
 
-What this means: This isn't AI getting smarter on its own. This is merchants getting smarter about their AI. Better KB content leads to better AI responses, which leads to higher quality scores, which motivates more KB investment. The flywheel is real.
+What this means: AI technology is no longer experimental—it's proven. The improvement comes from a combination of platform enhancements and the natural learning curve as AI handles more interactions. Brands that invest in knowledge base optimization can amplify these gains further.
 
-Why this matters: The satisfaction gap between AI and human agents isn't fixed. It's a function of investment. Brands that treat their AI as a learning system, not a set-and-forget tool, are seeing quality scores approach human levels. The quality flywheel rewards those who put in the work.`}
+Why this matters: The 77% → 85% trajectory shows AI quality is improving industry-wide. This is the foundation early adopters are building on. The flywheel effect—where better AI enables more investment, which enables better AI—rewards brands who start now rather than waiting for "perfect" AI.`}
                 >
                   <AIQualityFlywheelChart />
                 </InsightCard>

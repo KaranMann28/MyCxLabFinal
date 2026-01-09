@@ -240,7 +240,7 @@ The satisfaction gap isn't destiny. It's a choice. Choose to invest.`,
   'quality-flywheel': {
     id: 'quality-flywheel',
     title: 'The Quality Flywheel',
-    subtitle: 'How Merchant Investment Creates Compounding AI Performance',
+    subtitle: 'Industry-Wide AI Quality Improved 8 Points in 5 Months',
     date: 'December 31, 2025',
     author: 'CX Lab Research',
     readTime: '7 min read',
@@ -259,25 +259,25 @@ The satisfaction gap isn't destiny. It's a choice. Choose to invest.`,
         id: 'key-finding',
         type: 'highlight',
         title: 'The Key Finding',
-        content: `Merchant quality rate climbed from 77% to 85% in five months. Good ratings doubled. Bad ratings dropped 44%. The brands winning at AI aren't waiting for better technology. They're building better knowledge bases.`,
+        content: `Industry-wide AI quality rate climbed from 77% to 85% in five months. Good ratings doubled. Bad ratings dropped 44%. AI technology has matured—the proof is in the data. Brands investing now can build on this proven foundation.`,
       },
       {
         id: 'flywheel-explained',
         type: 'analysis',
         title: 'The Flywheel Explained',
-        content: `The quality flywheel is simple in concept, powerful in execution:
+        content: `The quality flywheel concept is simple: as AI capabilities improve, merchants can invest more confidently, which enables further improvements.
 
-**Better KB → Better AI responses → Higher quality scores → More merchant investment → Better KB**
+**Better AI → Proven results → More merchant investment → Amplified gains**
 
-This isn't theoretical. We see it in the data. The merchants who started investing in their AI Agent's knowledge base in August 2025 are now seeing compounding returns.
+What we see in the data is the industry-wide improvement from 77% to 85%. This reflects maturing AI capabilities across the platform—the technology has gotten better.
 
-Why does this work?
+Why does this matter?
 
-**AI learns from what you feed it.** A knowledge base with comprehensive product information, common edge cases, and clear escalation paths produces dramatically better responses than one with generic FAQ content.
+**AI has crossed the reliability threshold.** A quality rate of 85% means AI can now be trusted with real customer interactions. The "it's not ready" objection is fading.
 
-**Quality scores create feedback loops.** When merchants see their quality rate improve, they invest more. When they see it stall, they audit their KB. The metrics drive behavior.
+**The foundation is proven.** Brands that invest in knowledge base optimization can build on this solid base. The improvement isn't random—it's sustainable.
 
-**Compounding is non-linear.** The difference between 77% and 85% quality rate isn't just 8 percentage points. It's the difference between "acceptable automation" and "AI that customers prefer." That shift changes everything.`,
+**Compounding is non-linear.** The difference between 77% and 85% quality rate isn't just 8 percentage points. It's the difference between "experimental automation" and "AI that customers accept." That shift changes the adoption calculus.`,
       },
       {
         id: 'what-changed',
@@ -698,4 +698,5 @@ export function DeepDive() {
     </motion.div>
   );
 }
+
 

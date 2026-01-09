@@ -60,7 +60,7 @@ const annotationVariants = {
 export function AIQualityFlywheelChart() {
   const annotations = [
     { label: 'Quality Rate', value: '85%', color: '#22C55E' },
-    { label: 'Quality Growth', value: '+10%', color: 'var(--success)' },
+    { label: 'Quality Gain', value: '+8 pts', color: 'var(--success)' },
     { label: 'Good Ratings', value: '2× more', color: '#16A34A' },
     { label: 'Resolution Rate', value: '51%', color: 'var(--coral)' },
   ];
@@ -74,7 +74,7 @@ export function AIQualityFlywheelChart() {
       variants={chartVariants}
     >
       <div className="chart-description">
-        Merchant quality rate rising steadily. Better knowledge bases create better AI responses.
+        Industry-wide AI quality rate improved from 77% to 85% as AI capabilities matured.
       </div>
       
       <motion.div
